@@ -20,7 +20,7 @@ class websocket extends React.Component {
         <div>
           Count: <strong>{this.state.count}</strong>
 
-          <Websocket url='ws://localhost:8080'
+          <Websocket url='ws://localhost:3000'
               onMessage={this.handleData.bind(this)}/>
         </div>
       );
