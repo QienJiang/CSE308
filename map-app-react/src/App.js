@@ -5,6 +5,8 @@ import "bootstrap/dist/css/bootstrap.min.css"
 import Map from './components/Map';
 import SignUp from './loginpage/SignUp';
 import SignIn from './loginpage/SignIn';
+import Guest from './loginpage/Guest';
+import home from './home';
 
 
 class App extends Component {
@@ -15,19 +17,25 @@ class App extends Component {
         <div className="Map">
         <Map/>
         </div>
-          <div className="App__Form">
-            <div className="PageSwitcher">
-                <NavLink to="/sign-in" activeClassName="PageSwitcher__Item--Active" className="PageSwitcher__Item">Sign In</NavLink>
-                <NavLink exact to="/" activeClassName="PageSwitcher__Item--Active" className="PageSwitcher__Item">Sign Up</NavLink>
-              </div>
+          <div className="App__Form" >
+              <Route exact path="/" component={home}>
+              </Route>
+            {/*<div className="PageSwitcher">*/}
+                {/*<NavLink to="/sign-in" activeClassName="PageSwitcher__Item--Active" className="PageSwitcher__Item">Sign In</NavLink>*/}
+                {/*<NavLink exact to="/" activeClassName="PageSwitcher__Item--Active" className="PageSwitcher__Item">Sign Up</NavLink>*/}
+                {/*<NavLink exact to="/Guest" activeClassName="PageSwitcher__Item--Active" className="PageSwitcher__Item">Guest</NavLink>*/}
+              {/*</div>*/}
 
-              <div className="FormTitle">
-                  <NavLink to="/sign-in" activeClassName="FormTitle__Link--Active" className="FormTitle__Link">Sign In</NavLink> or <NavLink exact to="/" activeClassName="FormTitle__Link--Active" className="FormTitle__Link">Sign Up</NavLink>
-              </div>
-              <Route exact path="/" component={SignUp}>
-              </Route>
-              <Route path="/sign-in" component={SignIn}>
-              </Route>
+              {/*<div className="FormTitle">*/}
+                  {/*<NavLink to="/sign-in" activeClassName="FormTitle__Link--Active" className="FormTitle__Link">Sign In</NavLink> or <NavLink exact to="/" activeClassName="FormTitle__Link--Active" className="FormTitle__Link">Sign Up</NavLink>*/}
+                  {/*or <NavLink exact to="/Guest" activeClassName="FormTitle__Link--Active" className="FormTitle__Link">Guest</NavLink>*/}
+              {/*</div>*/}
+              {/*<Route exact path="/" component={SignUp}>*/}
+              {/*</Route>*/}
+              {/*<Route path="/sign-in" component={SignIn}>*/}
+              {/*</Route>*/}
+              {/*<Route exact path="/Guest" component={Guest}>*/}
+              {/*</Route>*/}
           </div>
 
         </div>
