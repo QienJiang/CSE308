@@ -30,14 +30,22 @@ class SignInForm extends Component {
 
   handleSubmit(e) {
     e.preventDefault();
-    let  data=JSON.stringify({
+    var user=new Object();
+    user.name='abc';
+    user.email='123466@163.com';
+    alert(JSON.stringify(user));
+
+    alert(JSON.stringify({"email":'123456@163.com',"name":'abc'}));
+
+
+    let  data=JSON.stringify({//转JSON 格式
       "email":e.target.elements.email.value,
       "password":e.target.elements.password.value
     })
 
       console.log(data);
     this.setState({login: !this.state.login});
-    axios.get('http://localhost:8080/homepage/signin',
+    axios.post('http://localhost:8080/homepage/signin',
 
       data,{
       headers:{ 'Content-Type': 'application/json;charset=UTF-8'}
