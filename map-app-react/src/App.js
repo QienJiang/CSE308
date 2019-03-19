@@ -25,10 +25,7 @@ class App extends Component {
                 <NavLink exact to="/Guest" activeClassName="PageSwitcher__Item--Active" className="PageSwitcher__Item">Guest</NavLink>
               </div>
 
-              <div className="FormTitle">
-                  <NavLink to="/sign-in" activeClassName="FormTitle__Link--Active" className="FormTitle__Link">Sign In</NavLink> or <NavLink exact to="/sign-up" activeClassName="FormTitle__Link--Active" className="FormTitle__Link">Sign Up</NavLink>
-                  or <NavLink exact to="/Guest" activeClassName="FormTitle__Link--Active" className="FormTitle__Link">Guest</NavLink>
-              </div>
+          
               <Route exact path="/sign-up" component={SignUp}>
               </Route>
               <Route path="/sign-in" component={SignIn}>
