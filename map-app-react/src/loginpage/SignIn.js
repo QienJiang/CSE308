@@ -30,13 +30,10 @@ class SignInForm extends Component {
 
   handleSubmit(e) {
     e.preventDefault();
-    var user=new Object();
-    user.name='abc';
-    user.email='123466@163.com';
 
 
 
-    let  data=JSON.stringify({//转JSON 格式
+    let  data=JSON.stringify({
       "email":e.target.elements.email.value,
       "password":e.target.elements.password.value
     })
@@ -44,17 +41,12 @@ class SignInForm extends Component {
       console.log(data);
     this.setState({login: !this.state.login});
     axios.post('http://localhost:3000/homepage/signin',
-
       data,{
       headers:{ 'Content-Type': 'application/json;charset=UTF-8'}
 
     })
     .then(request =>{
-      console.log(request.data);
-        console.log(request.data.email);
-                console.log(request.data.password);
-                this.props.history.push('/');
-
+    console.log('The form was submitted with the following data:xxx');
 
     })
     console.log('The form was submitted with the following data:');

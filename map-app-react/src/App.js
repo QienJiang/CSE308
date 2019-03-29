@@ -31,8 +31,8 @@ class App extends Component {
       </Route>
       <Route exact path="/Guest" component={Guest}>
       </Route>
-      <Route exact path="/" component={home}>
-      </Route>
+
+
       </div>
 
 
