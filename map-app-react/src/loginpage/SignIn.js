@@ -33,9 +33,7 @@ class SignInForm extends Component {
     var user=new Object();
     user.name='abc';
     user.email='123466@163.com';
-    alert(JSON.stringify(user));
 
-    alert(JSON.stringify({"email":'123456@163.com',"name":'abc'}));
 
 
     let  data=JSON.stringify({//转JSON 格式
@@ -52,7 +50,12 @@ class SignInForm extends Component {
 
     })
     .then(request =>{
-      console.log('The form was submitted sucess');
+      console.log(request.data);
+        console.log(request.data.email);
+                console.log(request.data.password);
+                this.props.history.push('/');
+
+
     })
     console.log('The form was submitted with the following data:');
   }

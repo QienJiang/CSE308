@@ -13,31 +13,34 @@ class App extends Component {
   render() {
     return (
       <Router basename="/homepage/">
-        <div className="App">
-        <div className="Map">
-        <Map/>
-        </div>
-          <div className="App__Form" >
+      <div className="App">
+      <div className="Map">
+      <Map/>
+      </div>
+      <div className="App__Form" >
 
-            <div className="PageSwitcher">
-                <NavLink to="/sign-in" activeClassName="PageSwitcher__Item--Active" className="PageSwitcher__Item">Sign In</NavLink>
-                <NavLink exact to="/sign-up" activeClassName="PageSwitcher__Item--Active" className="PageSwitcher__Item">Sign Up</NavLink>
-                <NavLink exact to="/Guest" activeClassName="PageSwitcher__Item--Active" className="PageSwitcher__Item">Guest</NavLink>
-              </div>
+      <div className="PageSwitcher">
+      <NavLink to="/sign-in" activeClassName="PageSwitcher__Item--Active" className="PageSwitcher__Item">Sign In</NavLink>
+      <NavLink exact to="/sign-up" activeClassName="PageSwitcher__Item--Active" className="PageSwitcher__Item">Sign Up</NavLink>
+      <NavLink exact to="/Guest" activeClassName="PageSwitcher__Item--Active" className="PageSwitcher__Item">Guest</NavLink>
+      </div>
 
-          
-              <Route exact path="/sign-up" component={SignUp}>
-              </Route>
-              <Route path="/sign-in" component={SignIn}>
-              </Route>
-              <Route exact path="/Guest" component={Guest}>
-              </Route>
-          </div>
 
-        </div>
+      <Route exact path="/sign-up" component={SignUp}>
+      </Route>
+      <Route path="/sign-in" component={SignIn}>
+      </Route>
+      <Route exact path="/Guest" component={Guest}>
+      </Route>
+      <Route exact path="/" component={home}>
+
+      </Route>
+      </div>
+
+      </div>
       </Router>
-);
-}
+    );
+  }
 }
 
 export default App;
