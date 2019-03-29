@@ -32,9 +32,12 @@ class App extends Component {
       <Route exact path="/Guest" component={Guest}>
       </Route>
 
+<<<<<<< HEAD
 
       </div>
 
+=======
+>>>>>>> parent of 3be3e02... Merge branch 'master' of https://github.com/QienJiang/CSE308
       </div>
       </Router>
     );
