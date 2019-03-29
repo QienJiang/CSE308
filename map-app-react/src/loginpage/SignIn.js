@@ -43,12 +43,17 @@ class SignInForm extends Component {
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
     axios.post('http://localhost:3000/homepage/signin',
 =======
 =======
 >>>>>>> parent of 3be3e02... Merge branch 'master' of https://github.com/QienJiang/CSE308
 =======
 >>>>>>> parent of 3be3e02... Merge branch 'master' of https://github.com/QienJiang/CSE308
+    axios.post('http://localhost:8080/homepage/signin',
+
+>>>>>>> parent of 3be3e02... Merge branch 'master' of https://github.com/QienJiang/CSE308
+=======
     axios.post('http://localhost:8080/homepage/signin',
 
 >>>>>>> parent of 3be3e02... Merge branch 'master' of https://github.com/QienJiang/CSE308

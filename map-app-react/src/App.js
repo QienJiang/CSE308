@@ -34,9 +34,12 @@ class App extends Component {
 
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 
       </div>
 
+=======
+>>>>>>> parent of 3be3e02... Merge branch 'master' of https://github.com/QienJiang/CSE308
 =======
 >>>>>>> parent of 3be3e02... Merge branch 'master' of https://github.com/QienJiang/CSE308
 =======
