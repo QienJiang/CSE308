@@ -53,6 +53,7 @@ class SignInForm extends Component {
         console.log(request.data.email);
                 console.log(request.data.password);
                 this.props.history.push('/home');
+
     })
     console.log('The form was submitted with the following data:');
   }
