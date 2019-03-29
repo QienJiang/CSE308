@@ -21,19 +21,19 @@ class App extends Component {
       <div className="App__Form" >
 
       <div className="PageSwitcher">
-      <NavLink to="/signin" activeClassName="PageSwitcher__Item--Active" className="PageSwitcher__Item">Sign In</NavLink>
-      <NavLink exact to="/signup" activeClassName="PageSwitcher__Item--Active" className="PageSwitcher__Item">Sign Up</NavLink>
+      <NavLink to="/sign-in" activeClassName="PageSwitcher__Item--Active" className="PageSwitcher__Item">Sign In</NavLink>
+      <NavLink exact to="/sign-up" activeClassName="PageSwitcher__Item--Active" className="PageSwitcher__Item">Sign Up</NavLink>
       <NavLink exact to="/Guest" activeClassName="PageSwitcher__Item--Active" className="PageSwitcher__Item">Guest</NavLink>
       </div>
 
-      <Route exact path="/signup" component={SignUp}>
+      <Route exact path="/sign-up" component={SignUp}>
       </Route>
-      <Route path="/signin" component={SignIn}>
+      <Route path="/sign-in" component={SignIn}>
       </Route>
       <Route exact path="/Guest" component={Guest}>
       </Route>
-          <Route exact path="/" component={home}>
-          </Route>
+      <Route exact path="/home" component={home}>
+      </Route>
       </div>
 
 
