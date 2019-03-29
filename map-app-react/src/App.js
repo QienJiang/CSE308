@@ -13,6 +13,7 @@ class App extends Component {
   render() {
     return (
       <Router basename="/homepage/">
+<<<<<<< HEAD
       <div className="App">
       <div className="Map">
       <Map/>
@@ -38,6 +39,30 @@ class App extends Component {
       </div>
 
       </div>
+=======
+        <div className="App">
+        <div className="Map">
+        <Map/>
+        </div>
+          <div className="App__Form" >
+              {/*<Route exact path="/" component={home}></Route>*/}
+            <div className="PageSwitcher">
+                <NavLink to="/sign-in" activeClassName="PageSwitcher__Item--Active" className="PageSwitcher__Item">Sign In</NavLink>
+                <NavLink exact to="/sign-up" activeClassName="PageSwitcher__Item--Active" className="PageSwitcher__Item">Sign Up</NavLink>
+                <NavLink exact to="/Guest" activeClassName="PageSwitcher__Item--Active" className="PageSwitcher__Item">Guest</NavLink>
+              </div>
+
+          
+              <Route exact path="/sign-up" component={SignUp}>
+              </Route>
+              <Route path="/sign-in" component={SignIn}>
+              </Route>
+              <Route exact path="/Guest" component={Guest}>
+              </Route>
+          </div>
+
+        </div>
+>>>>>>> 11ecee327239f8f1f74a76dcc3f036a83729229e
       </Router>
     );
   }
