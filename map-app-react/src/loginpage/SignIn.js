@@ -43,7 +43,7 @@ class SignInForm extends Component {
 
       console.log(data);
     this.setState({login: !this.state.login});
-    axios.post('http://localhost:3000/#/homepage/signin',
+    axios.post('http://localhost:3000/homepage/signin',
 
       data,{
       headers:{ 'Content-Type': 'application/json;charset=UTF-8'}
