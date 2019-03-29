@@ -13,7 +13,10 @@ class App extends Component {
   render() {
     return (
       <Router basename="/homepage/">
+<<<<<<< HEAD
 
+=======
+>>>>>>> 7afb00a734e74490caa844ec257ebc5336476bb0
       <div className="App">
       <div className="Map">
       <Map/>
@@ -25,7 +28,6 @@ class App extends Component {
       <NavLink exact to="/sign-up" activeClassName="PageSwitcher__Item--Active" className="PageSwitcher__Item">Sign Up</NavLink>
       <NavLink exact to="/Guest" activeClassName="PageSwitcher__Item--Active" className="PageSwitcher__Item">Guest</NavLink>
       </div>
-
 
       <Route exact path="/sign-up" component={SignUp}>
       </Route>
@@ -39,6 +41,7 @@ class App extends Component {
       </div>
 
       </div>
+<<<<<<< HEAD
         <div className="App">
         <div className="Map">
         <Map/>
@@ -61,6 +64,8 @@ class App extends Component {
           </div>
 
         </div>
+=======
+>>>>>>> 7afb00a734e74490caa844ec257ebc5336476bb0
       </Router>
     );
   }
