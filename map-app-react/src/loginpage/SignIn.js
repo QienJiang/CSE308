@@ -30,40 +30,29 @@ class SignInForm extends Component {
 
   handleSubmit(e) {
     e.preventDefault();
+    var user=new Object();
+    // user.name='abc';
+    user.email='123@gmail.com';
+    user.password='123';
 
-
-
-    let  data=JSON.stringify({
+    let  data=JSON.stringify({//×ªJSON ¸ñÊ½
       "email":e.target.elements.email.value,
       "password":e.target.elements.password.value
     })
 
       console.log(data);
     this.setState({login: !this.state.login});
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-    axios.post('http://localhost:3000/homepage/signin',
-=======
-=======
->>>>>>> parent of 3be3e02... Merge branch 'master' of https://github.com/QienJiang/CSE308
-=======
->>>>>>> parent of 3be3e02... Merge branch 'master' of https://github.com/QienJiang/CSE308
     axios.post('http://localhost:8080/homepage/signin',
 
->>>>>>> parent of 3be3e02... Merge branch 'master' of https://github.com/QienJiang/CSE308
-=======
-    axios.post('http://localhost:8080/homepage/signin',
-
->>>>>>> parent of 3be3e02... Merge branch 'master' of https://github.com/QienJiang/CSE308
       data,{
       headers:{ 'Content-Type': 'application/json;charset=UTF-8'}
 
     })
     .then(request =>{
-    console.log('The form was submitted with the following data:xxx');
-
+      console.log(request.data);
+        console.log(request.data.email);
+                console.log(request.data.password);
+                this.props.history.push('/');
     })
     console.log('The form was submitted with the following data:');
   }
@@ -85,7 +74,7 @@ class SignInForm extends Component {
       </div>
 
       <div className="FormField">
-      <button className="FormField__Button mr-20">Sign In</button> <Link to="/" className="FormField__Link">Create an account</Link>
+      <button className="FormField__Button mr-20">Sign In</button> <Link to="/signup" className="FormField__Link">Create an account</Link>
       </div>
       </form>
 

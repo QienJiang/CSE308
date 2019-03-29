@@ -12,39 +12,32 @@ import home from './home';
 class App extends Component {
   render() {
     return (
-      <Router basename="/homepage/">
+      <Router basename="/homepage">
       <div className="App">
       <div className="Map">
       <Map/>
       </div>
+
       <div className="App__Form" >
 
       <div className="PageSwitcher">
-      <NavLink to="/sign-in" activeClassName="PageSwitcher__Item--Active" className="PageSwitcher__Item">Sign In</NavLink>
-      <NavLink exact to="/sign-up" activeClassName="PageSwitcher__Item--Active" className="PageSwitcher__Item">Sign Up</NavLink>
+      <NavLink to="/signin" activeClassName="PageSwitcher__Item--Active" className="PageSwitcher__Item">Sign In</NavLink>
+      <NavLink exact to="/signup" activeClassName="PageSwitcher__Item--Active" className="PageSwitcher__Item">Sign Up</NavLink>
       <NavLink exact to="/Guest" activeClassName="PageSwitcher__Item--Active" className="PageSwitcher__Item">Guest</NavLink>
       </div>
 
-      <Route exact path="/sign-up" component={SignUp}>
+      <Route exact path="/signup" component={SignUp}>
       </Route>
-      <Route path="/sign-in" component={SignIn}>
+      <Route path="/signin" component={SignIn}>
       </Route>
       <Route exact path="/Guest" component={Guest}>
       </Route>
-
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-
+          <Route exact path="/" component={home}>
+          </Route>
       </div>
 
-=======
->>>>>>> parent of 3be3e02... Merge branch 'master' of https://github.com/QienJiang/CSE308
-=======
->>>>>>> parent of 3be3e02... Merge branch 'master' of https://github.com/QienJiang/CSE308
-=======
->>>>>>> parent of 3be3e02... Merge branch 'master' of https://github.com/QienJiang/CSE308
-      </div>
+
+        </div>
       </Router>
     );
   }
