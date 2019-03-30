@@ -6,6 +6,7 @@ import Map from './components/Map';
 import SignUp from './loginpage/SignUp';
 import SignIn from './loginpage/SignIn';
 import Guest from './loginpage/Guest';
+import Toggle from './loginpage/Toggle';
 import home from './home';
 
 
@@ -20,15 +21,12 @@ class App extends Component {
 
       <div className="App__Form" >
 
-      <div className="PageSwitcher">
-      <NavLink to="/sign-in" activeClassName="PageSwitcher__Item--Active" className="PageSwitcher__Item">Sign In</NavLink>
-      <NavLink exact to="/sign-up" activeClassName="PageSwitcher__Item--Active" className="PageSwitcher__Item">Sign Up</NavLink>
-      <NavLink exact to="/Guest" activeClassName="PageSwitcher__Item--Active" className="PageSwitcher__Item">Guest</NavLink>
-      </div>
-
-      <Route exact path="/sign-up" component={SignUp}>
+      <Route exact path="/" component={Toggle} >
       </Route>
-      <Route path="/sign-in" component={SignIn}>
+
+      <Route exact path="/sign-up" component={SignUp} >
+      </Route>
+      <Route path="/sign-in" component={SignIn} >
       </Route>
       <Route exact path="/Guest" component={Guest}>
       </Route>

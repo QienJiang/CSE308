@@ -37,7 +37,7 @@
   overflow: auto;
 }
 
-.PageSwitcher {
+/* .PageSwitcher {
   display: flex;
   justify-content: flex-end;
   margin-bottom: 10%;
@@ -67,7 +67,7 @@
 .PageSwitcher__Item:last-child {
   border-top-right-radius: 25px;
   border-bottom-right-radius: 25px;
-}
+} */
 
 .FormCenter {
   margin-bottom: 100px;

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import { HashRouter as Router, Route, Link, NavLink } from 'react-router-dom';
 import axios from 'axios';
+import Toggle from './Toggle';
 
 class SignInForm extends Component {
   constructor() {
@@ -60,9 +61,8 @@ class SignInForm extends Component {
 
   render() {
     return (
-
-
       <div className="FormCenter" >
+      <Toggle/>
       <form onSubmit={this.handleSubmit} className="FormFields" onSubmit={this.handleSubmit}>
       <div className="FormField">
       <label className="FormField__Label" htmlFor="email">E-Mail Address</label>

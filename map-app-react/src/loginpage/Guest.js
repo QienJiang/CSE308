@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import { HashRouter as Router, Route, Link, NavLink } from 'react-router-dom';
+import Toggle from './Toggle';
 
 class GuestForm extends Component {
     constructor() {
@@ -36,6 +37,7 @@ class GuestForm extends Component {
     render() {
         return (
             <div className="FormCenter" >
+                  <Toggle/>
                 <form onSubmit={this.handleSubmit} className="FormFields">
                     <div className="FormField">
                         <button className="FormField__Button mr-20">Guest View</button>
