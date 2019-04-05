@@ -58,7 +58,7 @@ class home extends React.Component {
                 </Row>
                 <Row style={{'margin-top':30}}>
                     <Col sm={4}>
-                        <Button variant="outline-light" style={{width:100, 'font-size': '0.8em'}}>
+                        <Button variant="outline-light" style={{width:100, 'font-size': '0.8em'}} disabled>
                         alignment:
                         </Button>
                     </Col>
@@ -72,7 +72,7 @@ class home extends React.Component {
                 </Row>
                     <Row style={{'margin-top':30}}>
                         <Col sm={4}>
-                            <Button variant="outline-light" style={{width:100, 'font-size': '0.8em'}}>
+                            <Button variant="outline-light" style={{width:100, 'font-size': '0.8em'}} disabled>
                                 adherence:
                             </Button>
                         </Col>
@@ -86,7 +86,7 @@ class home extends React.Component {
                     </Row>
                     <Row style={{'margin-top':30}}>
                         <Col sm={4}>
-                            <Button variant="outline-light" style={{width:100, 'font-size': '0.8em'}}>
+                            <Button variant="outline-light" style={{width:100, 'font-size': '0.8em'}} disabled>
                                 compactness:
                             </Button>
                         </Col>
@@ -105,7 +105,7 @@ class home extends React.Component {
                     <Col><Button variant="outline-light" style={{width:70, 'font-size': '0.8em'}}>Resume</Button></Col>
                 </Row>
                     <Row style={{'margin-top':30}}>
-                        <Button disable variant="outline-light" style={{width:70, 'font-size': '0.8em'}}>Console:</Button>
+                        <Button disable variant="outline-light" style={{width:70, 'font-size': '0.8em'}} disabled>Console:</Button>
                         <Form style={{'margin-top':10}}>
                             <Form.Group controlId="exampleForm.ControlTextarea1">
                                 <Form.Control as="textarea" style={{width:'24em',height:'8em'}} disabled />
@@ -113,9 +113,9 @@ class home extends React.Component {
                         </Form>
                     </Row>
                     <Row style={{'margin-top':10}}>
-                        <Button variant="outline-light" style={{width:180, 'font-size': '0.8em'}}>Estimated Time: 2m 3s</Button>
+                        <Button variant="outline-light" style={{width:160, 'font-size': '0.8em'}} disabled>Estimated Time: 2m 3s:</Button>
                     </Row>
-                <ProgressBar style={{'margin-top':10}} animated now={45} />
+                <ProgressBar variant="dark" style={{'margin-top':10}} animated now={45} />
                 </Container>
             </div>
 
