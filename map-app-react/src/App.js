@@ -13,15 +13,15 @@ import home from './home';
 class App extends Component {
   render() {
     return (
-      <Router basename="/homepage">
+      <Router basename="/">
       <div className="App">
-      <div className="Map">
+
       <Map/>
-      </div>
+
 
       <div className="App__Form" >
 
-      <Route exact path="/" component={Toggle} >
+      <Route exact path="/" component={SignUp} >
       </Route>
 
       <Route exact path="/sign-up" component={SignUp} >

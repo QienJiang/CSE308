@@ -4,22 +4,28 @@ import Button from 'react-bootstrap/Button'
 import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
+import Form from 'react-bootstrap/Form'
+import Badge from 'react-bootstrap/Badge'
 import ProgressBar from 'react-bootstrap/ProgressBar'
+import 'react-input-range/lib/css/index.css'
+import InputRange from 'react-input-range';
+import Alert from 'react-bootstrap/Alert'
 import './App.css';
 import { Link } from 'react-router-dom';
 
 class home extends React.Component {
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
 
+        this.state = { value: 5 };
     }
     render() {
         return (
-            <div><Container>
-                <input type="Search"  onChange={this.handleChange} placeholder="Search..." />
-                <Row><Col>
+            <div>
+                <Container>
+                <Row style={{margin:10}}><Col>
                 <Dropdown >
-                    <Dropdown.Toggle style={{width:160}} variant="success" id="dropdown-basic">
+                    <Dropdown.Toggle style={{width:210}} variant="outline-light" id="dropdown-basic">
                         Seed Precinct
                     </Dropdown.Toggle>
                     <Dropdown.Menu>
@@ -29,11 +35,11 @@ class home extends React.Component {
                     </Dropdown.Menu>
                 </Dropdown>
                     </Col><Col>
-                    <Button variant="light" style={{width:80}}>Style</Button></Col>
+                    <Button variant="outline-light" style={{width:80}}>Style</Button></Col>
                 </Row>
-                <Row><Col>
+                <Row style={{margin:10}}><Col>
                     <Dropdown>
-                        <Dropdown.Toggle style={{width:160}} variant="success" id="dropdown-basic">
+                        <Dropdown.Toggle style={{width:210}} variant="outline-light" id="dropdown-basic">
                             Map history
                         </Dropdown.Toggle>
                         <Dropdown.Menu>
@@ -43,41 +49,75 @@ class home extends React.Component {
                         </Dropdown.Menu>
                     </Dropdown>
                 </Col><Col>
-                    <Button style={{width:80}} variant="light">Share</Button>
+                    <Button style={{width:80}} variant="outline-light">Share</Button>
                 </Col></Row>
-                <Row>
-                    <Col><Button variant="light" >Load Map</Button></Col>
-                    <Col><Button variant="light">Save Map</Button></Col>
-                    <Col><Button variant="light">Delete Map</Button></Col>
+                <Row style={{'margin-top':10}}>
+                    <Col><Button variant="outline-light" style={{width:100, 'font-size': '0.8em'}}>Load Map</Button></Col>
+                    <Col><Button variant="outline-light" style={{width:100, 'font-size': '0.8em'}}>Save Map</Button></Col>
+                    <Col><Button variant="outline-light" style={{width:100, 'font-size': '0.8em'}}>Delete Map</Button></Col>
                 </Row>
-                <h1 style={{color: 'grey'}}>Algorithm Weight</h1>
-                <Row><Col><p>Population</p></Col>
-                <Col><div className="slidecontainer">
-                    <input type="range" min="1" max="100" value="50" className="slider" id="myRange"/>
-                </div></Col></Row>
-                    <Row><Col><p>Compactness</p></Col>
-                    <Col><div className="slidecontainer">
-                        <input type="range" min="1" max="100" value="50" className="slider" id="myRange"/>
-                    </div></Col></Row><Row><Col><p>Alignment</p></Col>
-                    <Col><div className="slidecontainer">
-                        <input type="range" min="1" max="100" value="50" className="slider" id="myRange"/>
-                    </div></Col></Row>
-                <Row><Col><p>Adherence</p></Col>
-                    <Col><div className="slidecontainer">
-                        <input type="range" min="1" max="100" value="50" className="slider" id="myRange"/>
-                    </div></Col></Row>
-                <Row>
-                    <Col><Button variant="light" style={{width:70}}>Start</Button></Col>
-                    <Col><Button variant="light" style={{width:70}}>Stop</Button></Col>
-                    <Col><Button variant="light" style={{width:70}}>Pause</Button></Col>
-                    <Col><Button variant="light">Resume</Button></Col>
+                <Row style={{'margin-top':30}}>
+                    <Col sm={4}>
+                        <Button variant="outline-light" style={{width:100, 'font-size': '0.8em'}}>
+                        alignment:
+                        </Button>
+                    </Col>
+                    <Col sm={8}>
+                    <InputRange
+                        maxValue={10}
+                        minValue={0}
+                        value={this.state.value}
+                        onChange={value => this.setState({ value })} />
+                    </Col>
                 </Row>
-                <h1>Console:</h1>
-                <textarea style={{width:400}}  rows={5} col={200}></textarea>
-
-                <h2>Estimated Time: 2m 3s</h2>
-                <ProgressBar animated now={45} />
-            </Container></div>
+                    <Row style={{'margin-top':30}}>
+                        <Col sm={4}>
+                            <Button variant="outline-light" style={{width:100, 'font-size': '0.8em'}}>
+                                adherence:
+                            </Button>
+                        </Col>
+                        <Col sm={8}>
+                            <InputRange
+                                maxValue={10}
+                                minValue={0}
+                                value={this.state.value}
+                                onChange={value => this.setState({ value })} />
+                        </Col>
+                    </Row>
+                    <Row style={{'margin-top':30}}>
+                        <Col sm={4}>
+                            <Button variant="outline-light" style={{width:100, 'font-size': '0.8em'}}>
+                                compactness:
+                            </Button>
+                        </Col>
+                        <Col sm={8}>
+                            <InputRange
+                                maxValue={10}
+                                minValue={0}
+                                value={this.state.value}
+                                onChange={value => this.setState({ value })} />
+                        </Col>
+                    </Row>
+                <Row style={{'margin-top':30}}>
+                    <Col><Button variant="outline-light" style={{width:70, 'font-size': '0.8em'}}>Start</Button></Col>
+                    <Col><Button variant="outline-light" style={{width:70, 'font-size': '0.8em'}}>Stop</Button></Col>
+                    <Col><Button variant="outline-light" style={{width:70, 'font-size': '0.8em'}}>Pause</Button></Col>
+                    <Col><Button variant="outline-light" style={{width:70, 'font-size': '0.8em'}}>Resume</Button></Col>
+                </Row>
+                    <Row style={{'margin-top':30}}>
+                        <Button disable variant="outline-light" style={{width:70, 'font-size': '0.8em'}}>Console:</Button>
+                        <Form style={{'margin-top':10}}>
+                            <Form.Group controlId="exampleForm.ControlTextarea1">
+                                <Form.Control as="textarea" style={{width:'24em',height:'8em'}} disabled />
+                            </Form.Group>
+                        </Form>
+                    </Row>
+                    <Row style={{'margin-top':10}}>
+                        <Button variant="outline-light" style={{width:180, 'font-size': '0.8em'}}>Estimated Time: 2m 3s</Button>
+                    </Row>
+                <ProgressBar style={{'margin-top':10}} animated now={45} />
+                </Container>
+            </div>
 
 
         )

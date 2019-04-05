@@ -8,12 +8,12 @@ export const header = (props) =>{
         <div className = " Container">
           <div className = "navbar-header">
             <ul className = "nav navbar-nav">
-              <li><Link to ={"/home"}>Home</Link></li>
-              <li><Link to ={"/user"}>User</Link></li>
+              <li><link to ={"/home"}>Home</link></li>
+              <li><link to ={"/user"}>User</link></li>
             </ul>
           </div>
         </div>
       </nav>
   );
 }
-default export header;
+export default header;

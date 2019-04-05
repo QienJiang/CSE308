@@ -30,11 +30,15 @@
 }
 
 .App__Form {
-  width: 50%;
-  height:747px;
-  background-color: #2E4158;
+  border-radius: 25px;
+  width: 30em;
+  height: 100%;
+  background-color: black;
   padding: 25px 40px;
-  overflow: auto;
+  position: absolute;
+  right: 0px;
+  top: 0px;
+  opacity:0.8;
 }
 
 /* .PageSwitcher {

@@ -13,8 +13,8 @@ height: ${props => props.height};
 export default class Map extends React.Component{
 
   componentDidMount(){
-    this.mymap = L.map('mymap').setView([37.8, -96], 4);
-    this. popup = L.popup();
+    this.mymap = L.map(this.refs.mymap).setView([37.8, -70], 4);
+    this.popup = L.popup();
 
     this.mymap.on('click', this.onMapClick);
     L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
@@ -38,7 +38,7 @@ export default class Map extends React.Component{
 
   render() {
     return(
-      <Wrapper height = "747px" width = "1000px" id = "mymap"/>
+      <div ref = 'mymap' style={{height:"100%",width:"100%",position:"absolute", 'z-index': 0}}/>
     )
   };
 }
