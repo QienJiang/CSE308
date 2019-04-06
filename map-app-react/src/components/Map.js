@@ -126,7 +126,7 @@ export default class Map extends React.Component{
 
       this.info.update = function (props) {
           this._div.innerHTML = '<h4>Detail Information</h4>' +  (props ?
-              '<b>'+ 'Election_id: ' + props.ELECT_ID + '</b><br />' +'Population: '+ props.POP100
+              '<b>'+ 'Election_id: ' + props.NAME10 + '</b><br />' +'Population: '+ props.POP100
               + '<br />' + 'democracy vote: ' +props.GOV_DVOTE_+ '<br/>' + 'republican vote: ' + props.GOV_RVOTE_
               : 'Hover over a state');
       };
@@ -143,7 +143,7 @@ export default class Map extends React.Component{
 
   }
   zoomToFeature(e) {
-    this.mymap.fitBounds(e.target.getBounds());
+    this.mymap.flyToBounds(e.target.getBounds());
   }
 
 
