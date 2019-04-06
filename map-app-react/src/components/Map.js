@@ -64,7 +64,8 @@ export default class Map extends React.Component{
     }
     resetHighlight(e) {
         this.stateLayer.resetStyle(e.target);
-        this.layer.resetStyle(e.target);
+        this.nyLayer.resetStyle(e.target);
+        this.paLayer.resetStyle(e.target);
         this.info.update();
     }
     onEachFeature(feature, layer) {
@@ -104,15 +105,18 @@ export default class Map extends React.Component{
           console.log('233');
       });
       this.stateLayer = L.geoJson.ajax("https://raw.githubusercontent.com/QienJiang/CSE308/master/map-app-react/public/nycapa.json",{style: this.stateStyle,onEachFeature: this.onEachFeature});
-      this.layer = L.geoJson.ajax("https://raw.githubusercontent.com/QienJiang/CSE308/master/map-app-react/public/ny_final.json",{style: this.precinctStyle,onEachFeature: this.onEachFeature});
+      this.nyLayer = L.geoJson.ajax("https://raw.githubusercontent.com/QienJiang/CSE308/master/map-app-react/public/ny_final.json",{style: this.precinctStyle,onEachFeature: this.onEachFeature});
+      this.paLayer = L.geoJson.ajax("https://raw.githubusercontent.com/QienJiang/CSE308/master/map-app-react/public/pa_final.json",{style: this.precinctStyle,onEachFeature: this.onEachFeature});
       this.mymap.addLayer(this.stateLayer);
       this.mymap.on('zoomend', () =>{
           if (this.mymap.getZoom() >6){
-              this.mymap.addLayer(this.layer);
+              this.mymap.addLayer(this.nyLayer);
+              this.mymap.addLayer(this.paLayer);
               this.mymap.removeLayer(this.stateLayer);
           }
           else {
-              this.mymap.removeLayer(this.layer);
+              this.mymap.removeLayer(this.nyLayer);
+              this.mymap.removeLayer(this.paLayer);
               this.mymap.addLayer(this.stateLayer);
           }
       });
