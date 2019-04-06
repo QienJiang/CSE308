@@ -51,8 +51,8 @@ export default class Map extends React.Component{
         var layer = e.target;
 
         layer.setStyle({
-            weight: 5,
-            color: '#666',
+            weight: 3,
+            color: 'yellow',
             dashArray: '',
             fillOpacity: 0.7
         });
@@ -75,7 +75,10 @@ export default class Map extends React.Component{
         });
     }
   componentDidMount(){
-    this.mymap = L.map(this.refs.mymap).setView([37.8, -70], 4);
+    this.mymap = L.map(this.refs.mymap, {
+        zoomControl: false
+        //... other options
+    }).setView([37.8, -70], 4);
       this.popup = L.popup();
     // L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
       //       attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
@@ -88,6 +91,9 @@ export default class Map extends React.Component{
       accessToken: 'pk.eyJ1IjoicWllbiIsImEiOiJjanJ3aWg5ajAwZDVkNDlvOXF6OWh3dGJ3In0.ewZYRX60IgGsmtsGIffdfQ'
     }).addTo(this.mymap);
 
+      L.control.zoom({
+          position:'bottomleft'
+      }).addTo(this.mymap);
       this.realtime = L.realtime({
           url: 'https://wanderdrone.appspot.com/',
       }, {
@@ -111,7 +117,7 @@ export default class Map extends React.Component{
           }
       });
 
-      this.info = L.control({position: 'bottomleft'});
+      this.info = L.control({position: 'topleft'});
       this.info.onAdd = function (map) {
           this._div = L.DomUtil.create('div', 'info'); // create a div with a class "info"
           this.update();
@@ -120,7 +126,8 @@ export default class Map extends React.Component{
 
       this.info.update = function (props) {
           this._div.innerHTML = '<h4>Detail Information</h4>' +  (props ?
-              '<b>'+ 'Election_id' + props.ELECT_ID + '</b><br />' +'Population: '+ props.POP100
+              '<b>'+ 'Election_id: ' + props.ELECT_ID + '</b><br />' +'Population: '+ props.POP100
+              + '<br />' + 'democracy vote: ' +props.GOV_DVOTE_+ '<br/>' + 'republican vote: ' + props.GOV_RVOTE_
               : 'Hover over a state');
       };
 
@@ -142,7 +149,7 @@ export default class Map extends React.Component{
 
   render() {
     return(
-      <div ref = 'mymap' style={{height:"100%",width:"100%",position:"absolute", 'z-index': 0}}/>
+      <div ref = 'mymap' style={{height:"100%",width:"100%",position:"absolute", 'zIndex': 0}}/>
     )
   };
 }
