@@ -22,7 +22,8 @@ export default class Map extends React.Component{
         this.state ={
             info:'',
             data: [],
-            open: true
+            open: true,
+            state:'',
         };
         this.stateStyle = this.stateStyle.bind(this);
         this.precinctStyle = this.precinctStyle.bind(this);
@@ -82,7 +83,7 @@ export default class Map extends React.Component{
       this.socket.on('messageevent', (data)=> {
           var datas = data.split(':')
           this.stateLayer.eachLayer(function (layer) {
-              if(layer.feature.properties.NAME10 == datas[0]){
+              if(layer.feature.properties.NAME10 === datas[0]){
                   layer.setStyle({
                       fillColor : datas[1]
                   })
@@ -130,8 +131,10 @@ export default class Map extends React.Component{
       this.mymap.addLayer(this.stateLayer);
       this.mymap.on('zoomend', () =>{
           if (this.mymap.getZoom() >6){
-              this.mymap.addLayer(this.nyLayer);
-              this.mymap.addLayer(this.paLayer);
+              if(this.state.state === 'New York')
+                this.mymap.addLayer(this.nyLayer);
+              else if(this.state.state === 'Pennsylvania')
+                this.mymap.addLayer(this.paLayer);
               this.mymap.removeLayer(this.stateLayer);
           }
           else {
@@ -167,8 +170,12 @@ export default class Map extends React.Component{
 
   }
   zoomToFeature(e) {
-    //this.mymap.flyToBounds(e.target);
-      this.socket.emit('messageevent', {msgContent: "hello"});
+    this.mymap.flyToBounds(e.target);
+    this.setState({
+        state : e.target.feature.properties.GeoId
+    })
+      console.log(this.state.state)
+      //this.socket.emit('messageevent', {msgContent: "hello"});
 /*
       this.stateLayer.eachLayer(function (layer) {
           if(layer.feature.properties.NAME10 == 'New York'){
