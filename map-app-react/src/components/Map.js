@@ -50,20 +50,16 @@ export default class Map extends React.Component{
         var layer = e.target;
 
         layer.setStyle({
-            weight: 3,
             color: 'yellow',
-            dashArray: '',
-            fillOpacity: 0.7
         });
 
-        if (!L.Browser.ie && !L.Browser.opera && !L.Browser.edge) {
-            layer.bringToFront();
-        }
+
         this.info.update(layer.feature.properties);
     }
     resetHighlight(e) {
-        this.stateLayer.resetStyle(e.target);
-        this.nyLayer.resetStyle(e.target);
+        e.target.setStyle({
+            color: 'white'
+        });
         //this.paLayer.resetStyle(e.target);
         this.info.update();
     }
@@ -73,7 +69,6 @@ export default class Map extends React.Component{
             mouseout: this.resetHighlight,
             click: this.zoomToFeature
         });
-        layer._path.id = 'feature-' + layer.feature.properties.NAME10;
     }
   componentDidMount(){
     this.mymap = L.map(this.refs.mymap, {
@@ -115,6 +110,13 @@ export default class Map extends React.Component{
       this.stateLayer = L.geoJson.ajax("https://raw.githubusercontent.com/QienJiang/CSE308/master/map-app-react/public/nycapa.json",{style: this.stateStyle,onEachFeature: this.onEachFeature});
       this.nyLayer = L.geoJson.ajax("https://raw.githubusercontent.com/QienJiang/CSE308/master/map-app-react/public/ny_final.json",{style: this.precinctStyle,onEachFeature: this.onEachFeature});
      // this.paLayer = L.geoJson.ajax("https://raw.githubusercontent.com/QienJiang/CSE308/master/map-app-react/public/pa_final.json",{style: this.precinctStyle,onEachFeature: this.onEachFeature});
+      /*
+      this.stateLayer.on('data:loaded',()=> {
+          this.stateLayer.eachLayer(function (layer) {
+              layer._path.id = layer.feature.properties.NAME10;
+          })
+      })
+      */
       this.mymap.addLayer(this.stateLayer);
       this.mymap.on('zoomend', () =>{
           if (this.mymap.getZoom() >6){
@@ -155,7 +157,16 @@ export default class Map extends React.Component{
 
   }
   zoomToFeature(e) {
-    this.mymap.flyToBounds(e.target.getBounds());
+    this.mymap.flyToBounds(e.target);
+/*
+      this.stateLayer.eachLayer(function (layer) {
+          if(layer.feature.properties.NAME10 == 'New York'){
+              layer.setStyle({
+                  fillColor : 'blue'
+              })
+          }
+      })
+*/
   }
 
 
