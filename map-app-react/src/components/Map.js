@@ -174,7 +174,6 @@ export default class Map extends React.Component{
     this.setState({
         state : e.target.feature.properties.GeoId
     })
-      console.log(this.state.state)
       //this.socket.emit('messageevent', {msgContent: "hello"});
 /*
       this.stateLayer.eachLayer(function (layer) {
