@@ -5,6 +5,8 @@ import styled from "styled-components";
 import "leaflet-realtime";
 import "leaflet-ajax";
 import "./Map.css"
+import io from 'socket.io-client';
+
 
 import { Container, Row, Col }  from "react-bootstrap";
 
@@ -71,7 +73,23 @@ export default class Map extends React.Component{
         });
     }
   componentDidMount(){
-    this.mymap = L.map(this.refs.mymap, {
+
+        this.socket = io('http://localhost:9093');
+      this.socket.on('connect',()=>{
+          console.log("success")
+      })
+      this.socket.on('messageevent', (data)=> {
+          var datas = data.split(':')
+          this.stateLayer.eachLayer(function (layer) {
+              if(layer.feature.properties.NAME10 == datas[0]){
+                  layer.setStyle({
+                      fillColor : datas[1]
+                  })
+              }
+          })
+      });
+
+      this.mymap = L.map(this.refs.mymap, {
         zoomControl: false
         //... other options
     }).setView([37.8, -70], 4);
@@ -98,15 +116,6 @@ export default class Map extends React.Component{
       L.control.zoom({
           position:'bottomleft'
       }).addTo(this.mymap);
-      this.realtime = L.realtime({
-          url: 'https://wanderdrone.appspot.com/',
-      }, {
-          interval: 3 * 10000
-      }).addTo(this.mymap);
-
-      this.realtime.on('update', () =>{
-          console.log('233');
-      });
       this.stateLayer = L.geoJson.ajax("https://raw.githubusercontent.com/QienJiang/CSE308/master/map-app-react/public/nycapa.json",{style: this.stateStyle,onEachFeature: this.onEachFeature});
       this.nyLayer = L.geoJson.ajax("https://raw.githubusercontent.com/QienJiang/CSE308/master/map-app-react/public/ny_final.json",{style: this.precinctStyle,onEachFeature: this.onEachFeature});
      // this.paLayer = L.geoJson.ajax("https://raw.githubusercontent.com/QienJiang/CSE308/master/map-app-react/public/pa_final.json",{style: this.precinctStyle,onEachFeature: this.onEachFeature});
@@ -157,7 +166,8 @@ export default class Map extends React.Component{
 
   }
   zoomToFeature(e) {
-    this.mymap.flyToBounds(e.target);
+    //this.mymap.flyToBounds(e.target);
+      this.socket.emit('messageevent', {msgContent: "hello"});
 /*
       this.stateLayer.eachLayer(function (layer) {
           if(layer.feature.properties.NAME10 == 'New York'){
