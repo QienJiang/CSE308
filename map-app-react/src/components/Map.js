@@ -52,14 +52,15 @@ export default class Map extends React.Component{
         var layer = e.target;
 
         layer.setStyle({
+            weight: 3,
             color: 'yellow',
         });
-
 
         this.info.update(layer.feature.properties);
     }
     resetHighlight(e) {
         e.target.setStyle({
+            weight: 1,
             color: 'white'
         });
         //this.paLayer.resetStyle(e.target);
@@ -118,7 +119,7 @@ export default class Map extends React.Component{
       }).addTo(this.mymap);
       this.stateLayer = L.geoJson.ajax("https://raw.githubusercontent.com/QienJiang/CSE308/master/map-app-react/public/nycapa.json",{style: this.stateStyle,onEachFeature: this.onEachFeature});
       this.nyLayer = L.geoJson.ajax("https://raw.githubusercontent.com/QienJiang/CSE308/master/map-app-react/public/ny_final.json",{style: this.precinctStyle,onEachFeature: this.onEachFeature});
-     // this.paLayer = L.geoJson.ajax("https://raw.githubusercontent.com/QienJiang/CSE308/master/map-app-react/public/pa_final.json",{style: this.precinctStyle,onEachFeature: this.onEachFeature});
+      this.paLayer = L.geoJson.ajax("https://raw.githubusercontent.com/QienJiang/CSE308/master/map-app-react/public/pa_final.json",{style: this.precinctStyle,onEachFeature: this.onEachFeature});
       /*
       this.stateLayer.on('data:loaded',()=> {
           this.stateLayer.eachLayer(function (layer) {
@@ -130,12 +131,12 @@ export default class Map extends React.Component{
       this.mymap.on('zoomend', () =>{
           if (this.mymap.getZoom() >6){
               this.mymap.addLayer(this.nyLayer);
-             // this.mymap.addLayer(this.paLayer);
+              this.mymap.addLayer(this.paLayer);
               this.mymap.removeLayer(this.stateLayer);
           }
           else {
               this.mymap.removeLayer(this.nyLayer);
-              //this.mymap.removeLayer(this.paLayer);
+              this.mymap.removeLayer(this.paLayer);
               this.mymap.addLayer(this.stateLayer);
           }
       });
@@ -149,7 +150,7 @@ export default class Map extends React.Component{
 
       this.info.update = function (props) {
           this._div.innerHTML = '<h4>Detail Information</h4>' +  (props ?
-              '<b>'+ 'Election_id: ' + props.NAME10 + '</b><br />' +'Population: '+ props.POP100
+              '<b>'+ 'GeoId: ' + props.GEOID10 + '</b><br />' +'Population: '+ props.POP100
               + '<br />' + 'democracy vote: ' +props.GOV_DVOTE_+ '<br/>' + 'republican vote: ' + props.GOV_RVOTE_
               : 'Hover over a state');
       };
