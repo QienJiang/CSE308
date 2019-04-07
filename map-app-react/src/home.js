@@ -17,7 +17,9 @@ class home extends React.Component {
     constructor(props) {
         super(props);
 
-        this.state = { value: 5 };
+        this.state = { equality: 5,
+        fairness :5,
+        compactness : 5};
     }
     render() {
         return (
@@ -59,43 +61,43 @@ class home extends React.Component {
                 <Row style={{'margin-top':30}}>
                     <Col sm={4}>
                         <Button variant="outline-light" style={{width:100, 'font-size': '0.8em'}} disabled>
-                        alignment:
+                            Equality:
                         </Button>
                     </Col>
                     <Col sm={8}>
                     <InputRange
                         maxValue={10}
                         minValue={0}
-                        value={this.state.value}
-                        onChange={value => this.setState({ value })} />
+                        value={this.state.equality}
+                        onChange={value => this.setState({ equality : value})} />
                     </Col>
                 </Row>
                     <Row style={{'margin-top':30}}>
                         <Col sm={4}>
                             <Button variant="outline-light" style={{width:100, 'font-size': '0.8em'}} disabled>
-                                adherence:
+                                Fairness:
                             </Button>
                         </Col>
                         <Col sm={8}>
                             <InputRange
                                 maxValue={10}
                                 minValue={0}
-                                value={this.state.value}
-                                onChange={value => this.setState({ value })} />
+                                value={this.state.fairness}
+                                onChange={value => this.setState({ fairness:value })} />
                         </Col>
                     </Row>
                     <Row style={{'margin-top':30}}>
                         <Col sm={4}>
                             <Button variant="outline-light" style={{width:100, 'font-size': '0.8em'}} disabled>
-                                compactness:
+                                Compactness:
                             </Button>
                         </Col>
                         <Col sm={8}>
                             <InputRange
                                 maxValue={10}
                                 minValue={0}
-                                value={this.state.value}
-                                onChange={value => this.setState({ value })} />
+                                value={this.state.compactness}
+                                onChange={value => this.setState({ compactness: value })} />
                         </Col>
                     </Row>
                 <Row style={{'margin-top':30}}>
