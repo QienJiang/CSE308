@@ -171,6 +171,10 @@ export default class Map extends React.Component{
   }
   zoomToFeature(e) {
     this.mymap.flyToBounds(e.target);
+    console.log(e)
+    if(e.target.feature.properties.GeoId === 'New York' ||
+        e.target.feature.properties.GeoId === 'California'||
+        e.target.feature.properties.GeoId === 'Pennsylvania')
     this.setState({
         state : e.target.feature.properties.GeoId
     })
