@@ -5,6 +5,8 @@ import styled from "styled-components";
 import "leaflet-realtime";
 import "leaflet-ajax";
 import "./Map.css"
+import io from 'socket.io-client';
+
 
 import { Container, Row, Col }  from "react-bootstrap";
 
@@ -36,7 +38,6 @@ export default class Map extends React.Component{
             weight: 2,
             opacity: 1,
             color: 'white',
-            dashArray: '3',
         };
     }
     precinctStyle(feature) {
@@ -51,20 +52,17 @@ export default class Map extends React.Component{
         var layer = e.target;
 
         layer.setStyle({
-            weight: 3,
             color: 'yellow',
-            dashArray: '',
-            fillOpacity: 0.7
         });
 
-        if (!L.Browser.ie && !L.Browser.opera && !L.Browser.edge) {
-            layer.bringToFront();
-        }
+
         this.info.update(layer.feature.properties);
     }
     resetHighlight(e) {
-        this.stateLayer.resetStyle(e.target);
-        this.layer.resetStyle(e.target);
+        e.target.setStyle({
+            color: 'white'
+        });
+        //this.paLayer.resetStyle(e.target);
         this.info.update();
     }
     onEachFeature(feature, layer) {
@@ -75,15 +73,39 @@ export default class Map extends React.Component{
         });
     }
   componentDidMount(){
-    this.mymap = L.map(this.refs.mymap, {
+
+        this.socket = io('http://localhost:9093');
+      this.socket.on('connect',()=>{
+          console.log("success")
+      })
+      this.socket.on('messageevent', (data)=> {
+          var datas = data.split(':')
+          this.stateLayer.eachLayer(function (layer) {
+              if(layer.feature.properties.NAME10 == datas[0]){
+                  layer.setStyle({
+                      fillColor : datas[1]
+                  })
+              }
+          })
+      });
+
+      this.mymap = L.map(this.refs.mymap, {
         zoomControl: false
         //... other options
     }).setView([37.8, -70], 4);
       this.popup = L.popup();
-    // L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
-      //       attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+      /*
+     L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
+         attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>'
+         maxZoom: 15,
+         minZoom:2,
+         id: 'mapbox.streets',
+         accessToken: 'pk.eyJ1IjoicWllbiIsImEiOiJjanJ3aWg5ajAwZDVkNDlvOXF6OWh3dGJ3In0.ewZYRX60IgGsmtsGIffdfQ'
+     }).addTo(this.mymap);
+     */
       //https://api.mapbox.com/styles/v1/ccall/cju4omhh623za1flgiymq3do0/tiles/256/{z}/{x}/{y}@2x?access_token=pk.eyJ1IjoiY2NhbGwiLCJhIjoiY2p1NG9qemVhMTAxazQ0cDg1NWoweW5kYSJ9.f45ljFqvaHsgWlC1VjJ-Iw
       //https://api.mapbox.com/styles/v1/linzengxian/cju3oaz0b1tcm1fo6enjxem39/tiles/256/{z}/{x}/{y}@2x?access_token=pk.eyJ1IjoibGluemVuZ3hpYW4iLCJhIjoiY2pyd2J0MGx3MGI5aDQzcXJmbmVxYTk1OCJ9.Y-plQvOEnSriRzc9EcxqQA
+
       L.tileLayer('https://api.mapbox.com/styles/v1/ccall/cju4omhh623za1flgiymq3do0/tiles/256/{z}/{x}/{y}@2x?access_token=pk.eyJ1IjoiY2NhbGwiLCJhIjoiY2p1NG9qemVhMTAxazQ0cDg1NWoweW5kYSJ9.f45ljFqvaHsgWlC1VjJ-Iw', {
       maxZoom: 15,
           minZoom:2,
@@ -94,25 +116,26 @@ export default class Map extends React.Component{
       L.control.zoom({
           position:'bottomleft'
       }).addTo(this.mymap);
-      this.realtime = L.realtime({
-          url: 'https://wanderdrone.appspot.com/',
-      }, {
-          interval: 3 * 10000
-      }).addTo(this.mymap);
-
-      this.realtime.on('update', () =>{
-          console.log('233');
-      });
       this.stateLayer = L.geoJson.ajax("https://raw.githubusercontent.com/QienJiang/CSE308/master/map-app-react/public/nycapa.json",{style: this.stateStyle,onEachFeature: this.onEachFeature});
-      this.layer = L.geoJson.ajax("https://raw.githubusercontent.com/QienJiang/CSE308/master/map-app-react/public/ny_final.json",{style: this.precinctStyle,onEachFeature: this.onEachFeature});
+      this.nyLayer = L.geoJson.ajax("https://raw.githubusercontent.com/QienJiang/CSE308/master/map-app-react/public/ny_final.json",{style: this.precinctStyle,onEachFeature: this.onEachFeature});
+     // this.paLayer = L.geoJson.ajax("https://raw.githubusercontent.com/QienJiang/CSE308/master/map-app-react/public/pa_final.json",{style: this.precinctStyle,onEachFeature: this.onEachFeature});
+      /*
+      this.stateLayer.on('data:loaded',()=> {
+          this.stateLayer.eachLayer(function (layer) {
+              layer._path.id = layer.feature.properties.NAME10;
+          })
+      })
+      */
       this.mymap.addLayer(this.stateLayer);
       this.mymap.on('zoomend', () =>{
           if (this.mymap.getZoom() >6){
-              this.mymap.addLayer(this.layer);
+              this.mymap.addLayer(this.nyLayer);
+             // this.mymap.addLayer(this.paLayer);
               this.mymap.removeLayer(this.stateLayer);
           }
           else {
-              this.mymap.removeLayer(this.layer);
+              this.mymap.removeLayer(this.nyLayer);
+              //this.mymap.removeLayer(this.paLayer);
               this.mymap.addLayer(this.stateLayer);
           }
       });
@@ -126,7 +149,7 @@ export default class Map extends React.Component{
 
       this.info.update = function (props) {
           this._div.innerHTML = '<h4>Detail Information</h4>' +  (props ?
-              '<b>'+ 'Election_id: ' + props.ELECT_ID + '</b><br />' +'Population: '+ props.POP100
+              '<b>'+ 'Election_id: ' + props.NAME10 + '</b><br />' +'Population: '+ props.POP100
               + '<br />' + 'democracy vote: ' +props.GOV_DVOTE_+ '<br/>' + 'republican vote: ' + props.GOV_RVOTE_
               : 'Hover over a state');
       };
@@ -143,7 +166,17 @@ export default class Map extends React.Component{
 
   }
   zoomToFeature(e) {
-    this.mymap.fitBounds(e.target.getBounds());
+    //this.mymap.flyToBounds(e.target);
+      this.socket.emit('messageevent', {msgContent: "hello"});
+/*
+      this.stateLayer.eachLayer(function (layer) {
+          if(layer.feature.properties.NAME10 == 'New York'){
+              layer.setStyle({
+                  fillColor : 'blue'
+              })
+          }
+      })
+*/
   }
 
 
