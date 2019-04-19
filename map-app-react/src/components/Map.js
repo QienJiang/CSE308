@@ -38,7 +38,6 @@ export default class Map extends React.Component{
         if (prevProps.selectedState  !== this.props.selectedState ) {
             this.stateLayer.eachLayer((layer)=> {
                 if(layer.feature.properties.GeoId === this.props.selectedState){
-                    console.log(this.props.selectedState)
                     this.mymap.flyToBounds(layer);
                 }
             })
@@ -143,10 +142,15 @@ export default class Map extends React.Component{
       this.mymap.addLayer(this.stateLayer);
       this.mymap.on('zoomend', () =>{
           if (this.mymap.getZoom() >6){
-              if(this.props.selectedState === 'New York')
-                this.mymap.addLayer(this.nyLayer);
-              else if(this.props.selectedState === 'Pennsylvania')
-                this.mymap.addLayer(this.paLayer);
+              if(this.props.selectedState === 'New York') {
+                  this.mymap.removeLayer(this.paLayer);
+                  this.mymap.addLayer(this.nyLayer);
+              }
+              else if(this.props.selectedState === 'Pennsylvania') {
+                  this.mymap.removeLayer(this.nyLayer);
+                  this.mymap.addLayer(this.paLayer);
+
+              }
               this.mymap.removeLayer(this.stateLayer);
           }
           else {
@@ -171,6 +175,12 @@ export default class Map extends React.Component{
       };
 
       this.info.addTo(this.mymap);
+
+      this.overlayMaps = {
+          "Precinct": this.nyLayer,
+          "District": this.paLayer
+      }
+      L.control.layers(null,this.overlayMaps,{position:'bottomleft'}).addTo(this.mymap);
   /*  L.tileLayer('https://stamen-tiles-{s}.a.ssl.fastly.net/toner-labels/{z}/{x}/{y}{r}.{ext}', {
           attribution: 'Map tiles by <a href="http://stamen.com">Stamen Design</a>, <a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a> &mdash; Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
           subdomains: 'abcd',
