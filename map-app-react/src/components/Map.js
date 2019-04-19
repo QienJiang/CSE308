@@ -17,22 +17,22 @@ height: ${props => props.height};
 `;
 
 export default class Map extends React.Component{
-    constructor (props){
-        super (props);
-        this.state ={
-            info:'',
+    constructor (props) {
+        super(props);
+        this.state = {
+            info: '',
             data: [],
             open: true,
-            state:'',
+            state: '',
         };
         this.stateStyle = this.stateStyle.bind(this);
         this.precinctStyle = this.precinctStyle.bind(this);
+        this.districtStyle = this.districtStyle.bind(this);
         this.highlightFeature = this.highlightFeature.bind(this);
         this.resetHighlight = this.resetHighlight.bind(this);
-
         this.zoomToFeature = this.zoomToFeature.bind(this);
         this.onEachFeature = this.onEachFeature.bind(this);
-       // this.componentDidUpdate = this.componentDidUpdate.bind(this);
+        // this.componentDidUpdate = this.componentDidUpdate.bind(this);
     }
     componentDidUpdate(prevProps){
         if (prevProps.selectedState  !== this.props.selectedState ) {
@@ -58,6 +58,14 @@ export default class Map extends React.Component{
             weight: 1,
             opacity: 1,
             color: 'white',
+        };
+    }
+    districtStyle(feature) {
+        return {
+            fillColor: 'white',
+            weight: 1,
+            opacity: 1,
+            color: 'blue',
         };
     }
     highlightFeature(e) {
@@ -132,6 +140,7 @@ export default class Map extends React.Component{
       this.stateLayer = L.geoJson.ajax("https://raw.githubusercontent.com/QienJiang/CSE308/master/map-app-react/public/nycapa.json",{style: this.stateStyle,onEachFeature: this.onEachFeature});
       this.nyLayer = L.geoJson.ajax("https://raw.githubusercontent.com/QienJiang/CSE308/master/map-app-react/public/ny_final.json",{style: this.precinctStyle,onEachFeature: this.onEachFeature});
       this.paLayer = L.geoJson.ajax("https://raw.githubusercontent.com/QienJiang/CSE308/master/map-app-react/public/pa_final.json",{style: this.precinctStyle,onEachFeature: this.onEachFeature});
+      this.paDistrict = L.geoJson.ajax("https://raw.githubusercontent.com/QienJiang/CSE308/master/map-app-react/public/PaCongressional2019_01.geojson",{style: this.precinctStyle,onEachFeature: this.onEachFeature})
       /*
       this.stateLayer.on('data:loaded',()=> {
           this.stateLayer.eachLayer(function (layer) {
@@ -159,7 +168,23 @@ export default class Map extends React.Component{
               this.mymap.addLayer(this.stateLayer);
           }
       });
-
+        this.mymap.on('overlayadd',()=>{
+            if(this.props.selectedState === 'New York'){
+                this.mymap.addLayer(this.nyLayer)
+            }else if(this.props.selectedState === 'Pennsylvania'){
+                this.mymap.removeLayer(this.paLayer)
+                //this.mymap.addLayer(this.paDistrict)
+            }
+        })
+      this.mymap.on('overlayremove',()=>{
+          if(this.props.selectedState === 'New York'){
+              this.mymap.addLayer(this.nyLayer)
+          }else if(this.props.selectedState === 'Pennsylvania'){
+              this.mymap.removeLayer(this.paDistrict)
+              this.mymap.addLayer(this.paLayer)
+              //this.mymap.addLayer(this.paDistrict)
+          }
+      })
       this.info = L.control({position: 'topleft'});
       this.info.onAdd = function (map) {
           this._div = L.DomUtil.create('div', 'info'); // create a div with a class "info"
@@ -175,10 +200,8 @@ export default class Map extends React.Component{
       };
 
       this.info.addTo(this.mymap);
-
       this.overlayMaps = {
-          "Precinct": this.nyLayer,
-          "District": this.paLayer
+          "District": this.paDistrict
       }
       L.control.layers(null,this.overlayMaps,{position:'bottomleft'}).addTo(this.mymap);
   /*  L.tileLayer('https://stamen-tiles-{s}.a.ssl.fastly.net/toner-labels/{z}/{x}/{y}{r}.{ext}', {
