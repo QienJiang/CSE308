@@ -31,10 +31,6 @@ class SignInForm extends Component {
 
   handleSubmit(e) {
     e.preventDefault();
-    var user=new Object();
-    // user.name='abc';
-    user.email='123@gmail.com';
-    user.password='123';
 
     let  data=JSON.stringify({//×ªJSON ¸ñÊ½
       "email":e.target.elements.email.value,
