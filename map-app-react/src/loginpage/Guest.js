@@ -29,7 +29,7 @@ class GuestForm extends Component {
 
     handleSubmit(e) {
         e.preventDefault();
-
+        this.props.history.push('/home');
         console.log('The form was submitted with the following data:');
         console.log(this.state);
     }
