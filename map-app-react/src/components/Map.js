@@ -32,6 +32,18 @@ export default class Map extends React.Component{
 
         this.zoomToFeature = this.zoomToFeature.bind(this);
         this.onEachFeature = this.onEachFeature.bind(this);
+       // this.componentDidUpdate = this.componentDidUpdate.bind(this);
+    }
+    componentDidUpdate(prevProps){
+        if (prevProps.selectedState  !== this.props.selectedState ) {
+            this.stateLayer.eachLayer((layer)=> {
+                if(layer.feature.properties.GeoId === this.props.selectedState){
+                    console.log(this.props.selectedState)
+                    this.mymap.flyToBounds(layer);
+                }
+            })
+        }
+
     }
     stateStyle(feature) {
         return {
@@ -131,9 +143,9 @@ export default class Map extends React.Component{
       this.mymap.addLayer(this.stateLayer);
       this.mymap.on('zoomend', () =>{
           if (this.mymap.getZoom() >6){
-              if(this.state.state === 'New York')
+              if(this.props.selectedState === 'New York')
                 this.mymap.addLayer(this.nyLayer);
-              else if(this.state.state === 'Pennsylvania')
+              else if(this.props.selectedState === 'Pennsylvania')
                 this.mymap.addLayer(this.paLayer);
               this.mymap.removeLayer(this.stateLayer);
           }
@@ -171,13 +183,15 @@ export default class Map extends React.Component{
   }
   zoomToFeature(e) {
     this.mymap.flyToBounds(e.target);
-    console.log(e)
     if(e.target.feature.properties.GeoId === 'New York' ||
         e.target.feature.properties.GeoId === 'California'||
         e.target.feature.properties.GeoId === 'Pennsylvania')
+        this.props.setSelectedState( e.target.feature.properties.GeoId);
+        /*
     this.setState({
-        state : e.target.feature.properties.GeoId
+        state : e.target.feature.properties.GeoId,
     })
+    */
       //this.socket.emit('messageevent', {msgContent: "hello"});
 /*
       this.stateLayer.eachLayer(function (layer) {

@@ -17,7 +17,7 @@ class home extends React.Component {
     constructor(props) {
         super(props);
 
-        this.state = { equality: 5,
+        this.state = {equality: 5,
         fairness :5,
         compactness : 5};
     }
@@ -28,12 +28,12 @@ class home extends React.Component {
                 <Row style={{margin:10}}><Col>
                 <Dropdown >
                     <Dropdown.Toggle style={{width:210}} variant="outline-light" id="dropdown-basic">
-                        Seed Precinct
+                        {this.props.selectedState}
                     </Dropdown.Toggle>
                     <Dropdown.Menu>
-                        <Dropdown.Item href="#/seed-1">Action</Dropdown.Item>
-                        <Dropdown.Item href="#/seed-2">Another action</Dropdown.Item>
-                        <Dropdown.Item href="#/seed-3">Something else</Dropdown.Item>
+                        <Dropdown.Item onClick={()=>this.props.setSelectedState('New York')}>New York</Dropdown.Item>
+                        <Dropdown.Item onClick={()=>this.props.setSelectedState('California')}>California</Dropdown.Item>
+                        <Dropdown.Item onClick={()=>this.props.setSelectedState('Pennsylvania')}>Pennsylvania</Dropdown.Item>
                     </Dropdown.Menu>
                 </Dropdown>
                     </Col><Col>

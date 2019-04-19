@@ -7,16 +7,29 @@ import SignUp from './loginpage/SignUp';
 import SignIn from './loginpage/SignIn';
 import Guest from './loginpage/Guest';
 import Toggle from './loginpage/Toggle';
-import home from './home';
+import Home from './home';
 
 
 class App extends Component {
+  constructor(props){
+    super(props);
+    this.state ={
+      selectedState :'Select State'
+    }
+    this.setSelectedState = this.setSelectedState.bind(this)
+  }
+
+  setSelectedState(s){
+    this.setState({
+        selectedState : s
+    })
+  }
   render() {
     return (
       <Router basename="/">
       <div className="App">
 
-      <Map/>
+      <Map selectedState = {this.state.selectedState} setSelectedState = {this.setSelectedState}/>
 
 
       <div className="App__Form" >
@@ -30,7 +43,7 @@ class App extends Component {
       </Route>
       <Route exact path="/Guest" component={Guest}>
       </Route>
-      <Route exact path="/home" component={home}>
+      <Route exact path="/home" render={()=> <Home selectedState = {this.state.selectedState} setSelectedState = {this.setSelectedState}/>} >
       </Route>
       </div>
 
