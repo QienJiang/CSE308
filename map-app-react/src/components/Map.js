@@ -94,15 +94,10 @@ export default class Map extends React.Component{
         });
     }
   componentDidMount(){
-
-        this.socket = io('http://localhost:9093');
-      this.socket.on('connect',()=>{
-          console.log("success")
-      })
-      this.socket.on('messageevent', (data)=> {
+      this.props.socket.on('messageevent', (data)=> {
           var datas = data.split(':')
-          this.stateLayer.eachLayer(function (layer) {
-              if(layer.feature.properties.NAME10 === datas[0]){
+          this.paLayer.eachLayer(function (layer) {
+              if(layer.feature.properties.GEOID10 === datas[0]){
                   layer.setStyle({
                       fillColor : datas[1]
                   })
@@ -141,6 +136,7 @@ export default class Map extends React.Component{
       this.nyLayer = L.geoJson.ajax("https://raw.githubusercontent.com/QienJiang/CSE308/master/map-app-react/public/ny_final.json",{style: this.precinctStyle,onEachFeature: this.onEachFeature});
       this.paLayer = L.geoJson.ajax("https://raw.githubusercontent.com/QienJiang/CSE308/master/map-app-react/public/pa_final.json",{style: this.precinctStyle,onEachFeature: this.onEachFeature});
       this.paDistrict = L.geoJson.ajax("https://raw.githubusercontent.com/QienJiang/CSE308/master/map-app-react/public/PaCongressional2019_01.geojson",{style: this.precinctStyle,onEachFeature: this.onEachFeature})
+      this.nyDistrict = L.geoJson.ajax("https://raw.githubusercontent.com/QienJiang/CSE308/master/map-app-react/public/nydistrict.geojson",{style: this.precinctStyle,onEachFeature: this.onEachFeature})
       /*
       this.stateLayer.on('data:loaded',()=> {
           this.stateLayer.eachLayer(function (layer) {
@@ -170,14 +166,16 @@ export default class Map extends React.Component{
       });
         this.mymap.on('overlayadd',()=>{
             if(this.props.selectedState === 'New York'){
-                this.mymap.addLayer(this.nyLayer)
+                this.mymap.removeLayer(this.nyLayer)
+                this.mymap.addLayer(this.nyDistrict)
             }else if(this.props.selectedState === 'Pennsylvania'){
                 this.mymap.removeLayer(this.paLayer)
-                //this.mymap.addLayer(this.paDistrict)
+                this.mymap.addLayer(this.paDistrict)
             }
         })
       this.mymap.on('overlayremove',()=>{
           if(this.props.selectedState === 'New York'){
+              this.mymap.removeLayer(this.nyDistrict)
               this.mymap.addLayer(this.nyLayer)
           }else if(this.props.selectedState === 'Pennsylvania'){
               this.mymap.removeLayer(this.paDistrict)
@@ -201,7 +199,7 @@ export default class Map extends React.Component{
 
       this.info.addTo(this.mymap);
       this.overlayMaps = {
-          "District": this.paDistrict
+          "District": this.stateLayer
       }
       L.control.layers(null,this.overlayMaps,{position:'bottomleft'}).addTo(this.mymap);
   /*  L.tileLayer('https://stamen-tiles-{s}.a.ssl.fastly.net/toner-labels/{z}/{x}/{y}{r}.{ext}', {

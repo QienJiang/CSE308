@@ -101,7 +101,8 @@ class home extends React.Component {
                         </Col>
                     </Row>
                 <Row style={{'margin-top':30}}>
-                    <Col><Button variant="outline-light" style={{width:70, 'font-size': '0.8em'}}>Start</Button></Col>
+                    <Col><Button variant="outline-light" style={{width:70, 'font-size': '0.8em'}} onClick ={()=>{
+                        this.props.socket.emit('messageevent', {msgContent: "hello"})}}>Start</Button></Col>
                     <Col><Button variant="outline-light" style={{width:70, 'font-size': '0.8em'}}>Stop</Button></Col>
                     <Col><Button variant="outline-light" style={{width:70, 'font-size': '0.8em'}}>Pause</Button></Col>
                     <Col><Button variant="outline-light" style={{width:70, 'font-size': '0.8em'}}>Resume</Button></Col>
