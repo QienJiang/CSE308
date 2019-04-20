@@ -12,6 +12,7 @@ import InputRange from 'react-input-range';
 import Alert from 'react-bootstrap/Alert'
 import './App.css';
 import { Link } from 'react-router-dom';
+import hashmap from "hashmap";
 
 class home extends React.Component {
     constructor(props) {
@@ -19,8 +20,17 @@ class home extends React.Component {
 
         this.state = {equality: 5,
         fairness :5,
-        compactness : 5};
+        compactness : 5,
+        text : ""};
     }
+    componentDidMount() {
+        this.props.socket.on('message', (data)=> {
+          this.setState({
+              text: this.state.text +'\n'+ data
+          })
+        });
+    }
+
     render() {
         return (
             <div>
@@ -102,7 +112,7 @@ class home extends React.Component {
                     </Row>
                 <Row style={{'margin-top':30}}>
                     <Col><Button variant="outline-light" style={{width:70, 'font-size': '0.8em'}} onClick ={()=>{
-                        this.props.socket.emit('messageevent', {msgContent: "hello"})}}>Start</Button></Col>
+                        this.props.socket.emit('runAlgorithm', {msgContent: "run"})}}>Start</Button></Col>
                     <Col><Button variant="outline-light" style={{width:70, 'font-size': '0.8em'}}>Stop</Button></Col>
                     <Col><Button variant="outline-light" style={{width:70, 'font-size': '0.8em'}}>Pause</Button></Col>
                     <Col><Button variant="outline-light" style={{width:70, 'font-size': '0.8em'}}>Resume</Button></Col>
@@ -111,7 +121,7 @@ class home extends React.Component {
                         <Button disable variant="outline-light" style={{width:70, 'font-size': '0.8em'}} disabled>Console:</Button>
                         <Form style={{'margin-top':10}}>
                             <Form.Group controlId="exampleForm.ControlTextarea1">
-                                <Form.Control as="textarea" style={{width:'24em',height:'8em'}} disabled />
+                                <Form.Control as="textarea" style={{width:'24em',height:'8em',color:'green'}} value = {this.state.text}disabled />
                             </Form.Group>
                         </Form>
                     </Row>

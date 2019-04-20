@@ -96,7 +96,7 @@ export default class Map extends React.Component{
 
     }
   componentDidMount(){
-      this.props.socket.on('messageevent', (data)=> {
+      this.props.socket.on('updateColor', (data)=> {
         var array = data.split(',');
         var datamap = new hashmap();
 
