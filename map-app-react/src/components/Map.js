@@ -36,6 +36,7 @@ export default class Map extends React.Component{
     }
     componentDidUpdate(prevProps){
         if (prevProps.selectedState  !== this.props.selectedState ) {
+
             this.stateLayer.eachLayer((layer)=> {
                 if(layer.feature.properties.GeoId === this.props.selectedState){
                     this.mymap.flyToBounds(layer);
@@ -95,14 +96,17 @@ export default class Map extends React.Component{
     }
   componentDidMount(){
       this.props.socket.on('messageevent', (data)=> {
-          var datas = data.split(':')
-          this.paLayer.eachLayer(function (layer) {
-              if(layer.feature.properties.GEOID10 === datas[0]){
-                  layer.setStyle({
-                      fillColor : datas[1]
-                  })
-              }
-          })
+          var datas = data.split(',')
+          for(var i = 0; i <datas.length; i++) {
+              this.paLayer.eachLayer(function (layer) {
+                  var update = datas[i].split(':')
+                  if (layer.feature.properties.GEOID10 === update[0]) {
+                      layer.setStyle({
+                          fillColor: update[1]
+                      })
+                  }
+              })
+          }
       });
 
       this.mymap = L.map(this.refs.mymap, {
