@@ -6,6 +6,7 @@ import "leaflet-realtime";
 import "leaflet-ajax";
 import "./Map.css"
 import io from 'socket.io-client';
+import hashmap from 'hashmap';
 
 
 import { Container, Row, Col }  from "react-bootstrap";
@@ -15,7 +16,6 @@ const Wrapper = styled.div`
 width: ${props => props.width};
 height: ${props => props.height};
 `;
-
 export default class Map extends React.Component{
     constructor (props) {
         super(props);
@@ -93,20 +93,28 @@ export default class Map extends React.Component{
             mouseout: this.resetHighlight,
             click: this.zoomToFeature
         });
+
     }
   componentDidMount(){
       this.props.socket.on('messageevent', (data)=> {
-          var datas = data.split(',')
-          for(var i = 0; i <datas.length; i++) {
+        var array = data.split(',');
+        var datamap = new hashmap();
+
+        for(var i=0; i<array.length; i++){
+          var temp = array[i].split(':');
+          datamap.set(temp[0],temp[1]);
+        }
+          console.log(datamap.get("42123181"));
               this.paLayer.eachLayer(function (layer) {
-                  var update = datas[i].split(':')
-                  if (layer.feature.properties.GEOID10 === update[0]) {
+                  if (datamap.has(layer.feature.properties.GEOID10)) {
+                    console.log("find");
                       layer.setStyle({
-                          fillColor: update[1]
+                          fillColor: datamap.get(layer.feature.properties.GEOID10),
+                          fillOpacity : 1
                       })
                   }
               })
-          }
+
       });
 
       this.mymap = L.map(this.refs.mymap, {

@@ -6,6 +6,7 @@
     "axios": "^0.18.0",
     "bootstrap": "^4.3.1",
     "classnames": "^2.2.6",
+    "hashmap": "^2.3.0",
     "leaflet": "^1.4.0",
     "leaflet-ajax": "^2.1.0",
     "leaflet-realtime": "^2.1.1",
