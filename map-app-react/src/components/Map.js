@@ -235,7 +235,7 @@ export default class Map extends React.Component{
         state : e.target.feature.properties.GeoId,
     })
     */
-      //this.socket.emit('messageevent', {msgContent: "hello"});
+    //  this.socket.emit('messageevent', {msgContent: "hello"});
 /*
       this.stateLayer.eachLayer(function (layer) {
           if(layer.feature.properties.NAME10 == 'New York'){
