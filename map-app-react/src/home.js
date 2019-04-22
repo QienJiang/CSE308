@@ -31,6 +31,10 @@ class home extends React.Component {
         });
     }
 
+    componentDidUpdate(prevProps, prevState, snapshot) {
+        this.textarea.scrollTop = this.textarea.scrollHeight;
+
+    }
     render() {
         return (
             <div>
@@ -121,7 +125,7 @@ class home extends React.Component {
                         <Button disable variant="outline-light" style={{width:70, 'font-size': '0.8em'}} disabled>Console:</Button>
                         <Form style={{'margin-top':10}}>
                             <Form.Group controlId="exampleForm.ControlTextarea1">
-                                <Form.Control as="textarea" style={{width:'24em',height:'8em',color:'green'}} value = {this.state.text}disabled />
+                                <Form.Control ref = {(el)=>this.textarea = el}as="textarea" style={{width:'24em',height:'8em','background-color':'black',opacity:1,color:'white'}} value = {this.state.text} disabled />
                             </Form.Group>
                         </Form>
                     </Row>
