@@ -123,9 +123,9 @@ class home extends React.Component {
                 </Row>
                     <Row style={{'margin-top':30}}>
                         <Button disable variant="outline-light" style={{width:70, 'font-size': '0.8em'}} disabled>Console:</Button>
-                        <Form style={{'margin-top':10}}>
-                            <Form.Group controlId="exampleForm.ControlTextarea1">
-                                <Form.Control ref = {(el)=>this.textarea = el}as="textarea" style={{width:'24em',height:'8em','background-color':'black',opacity:1,color:'white'}} value = {this.state.text} disabled />
+                        <Form style={{'margin-top':10, fontSize: '0.5em'}}>
+                            <Form.Group controlId="exampleForm.ControlTextarea1" >
+                                <Form.Control ref = {(el)=>this.textarea = el}as="textarea" style={{width:'400px',height:'130px','background-color':'black',opacity:1,color:'white','font-size': '10px'}} value = {this.state.text} disabled />
                             </Form.Group>
                         </Form>
                     </Row>
