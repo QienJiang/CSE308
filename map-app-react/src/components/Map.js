@@ -116,6 +116,10 @@ export default class Map extends React.Component{
               })
 
       });
+      this.props.socket.on('updateBoundary',(data)=>{
+          var boundry = JSON.parse(data)
+          this.paDistrict = L.geoJson(boundry,{style: this.stateStyle,onEachFeature: this.onEachFeature})
+      })
 
       this.mymap = L.map(this.refs.mymap, {
         zoomControl: false
@@ -211,7 +215,7 @@ export default class Map extends React.Component{
 
       this.info.addTo(this.mymap);
       this.overlayMaps = {
-          "District": this.stateLayer
+          "OriginalDistrict": this.stateLayer
       }
       L.control.layers(null,this.overlayMaps,{position:'bottomleft'}).addTo(this.mymap);
   /*  L.tileLayer('https://stamen-tiles-{s}.a.ssl.fastly.net/toner-labels/{z}/{x}/{y}{r}.{ext}', {

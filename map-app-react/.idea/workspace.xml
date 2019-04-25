@@ -3,6 +3,10 @@
   <component name="ChangeListManager">
     <list default="true" id="70f1d53b-8570-4fbc-af18-b25098566ca7" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/nycapa.json" beforeDir="false" afterPath="$PROJECT_DIR$/public/nycapa.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Map.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Map.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/home.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/home.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -29,7 +33,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/index.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="136">
+            <state relative-caret-position="204">
               <caret line="12" selection-start-line="12" selection-end-line="12" />
               <folding>
                 <element signature="e#0#26#0" expanded="true" />
@@ -41,8 +45,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/loginpage/Toggle.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="204">
-              <caret line="14" selection-start-line="14" selection-end-line="14" />
+            <state relative-caret-position="187">
+              <caret line="11" column="77" selection-start-line="11" selection-start-column="77" selection-end-line="11" selection-end-column="77" />
               <folding>
                 <element signature="e#0#41#0" expanded="true" />
               </folding>
@@ -53,7 +57,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/components/Header.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="153">
+            <state relative-caret-position="170">
               <caret line="10" column="29" selection-start-line="10" selection-start-column="29" selection-end-line="10" selection-end-column="29" />
               <folding>
                 <element signature="e#0#26#0" expanded="true" />
@@ -63,22 +67,10 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/loginpage/SignIn.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="289">
-              <caret line="20" column="3" selection-start-line="20" selection-start-column="3" selection-end-line="20" selection-end-column="3" />
-              <folding>
-                <element signature="e#0#41#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/home.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="153">
-              <caret line="127" column="124" selection-start-line="127" selection-start-column="124" selection-end-line="127" selection-end-column="124" />
+            <state relative-caret-position="296">
+              <caret line="218" column="38" selection-start-line="218" selection-start-column="38" selection-end-line="218" selection-end-column="38" />
               <folding>
                 <element signature="e#0#41#0" expanded="true" />
               </folding>
@@ -89,8 +81,17 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/public/nycapa.json">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="51">
-              <caret line="3" column="43" selection-start-line="3" selection-start-column="43" selection-end-line="3" selection-end-column="48" />
+            <state>
+              <caret selection-end-line="5" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/public/pa_final.json">
+          <provider selected="true" editor-type-id="LargeFileEditor">
+            <state relative-caret-position="17">
+              <caret line="1" column="29" lean-forward="true" selection-start-line="1" selection-end-line="1" selection-end-column="29" />
             </state>
           </provider>
         </entry>
@@ -98,8 +99,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/App.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="221">
-              <caret line="23" column="8" selection-start-line="23" selection-start-column="8" selection-end-line="23" selection-end-column="8" />
+            <state relative-caret-position="395">
+              <caret line="54" column="12" selection-start-line="54" selection-start-column="12" selection-end-line="54" selection-end-column="12" />
               <folding>
                 <element signature="e#0#41#0" expanded="true" />
               </folding>
@@ -107,11 +108,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/components/Map.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1598">
-              <caret line="105" column="9" selection-start-line="105" selection-start-column="9" selection-end-line="105" selection-end-column="9" />
+            <state relative-caret-position="327">
+              <caret line="131" column="21" lean-forward="true" selection-start-line="131" selection-start-column="21" selection-end-line="131" selection-end-column="21" />
               <folding>
                 <element signature="e#0#26#0" expanded="true" />
               </folding>
@@ -161,17 +162,19 @@
         <option value="$PROJECT_DIR$/public/index.html" />
         <option value="$PROJECT_DIR$/src/plugin/leaflet-realtime.js" />
         <option value="$PROJECT_DIR$/src/components/Map.css" />
-        <option value="$PROJECT_DIR$/public/nycapa.json" />
+        <option value="$PROJECT_DIR$/src/AlgorithmControl.css" />
         <option value="$PROJECT_DIR$/src/App.js" />
-        <option value="$PROJECT_DIR$/src/components/Map.js" />
         <option value="$PROJECT_DIR$/src/home.js" />
+        <option value="$PROJECT_DIR$/public/nycapa.json" />
+        <option value="$PROJECT_DIR$/public/test.json" />
+        <option value="$PROJECT_DIR$/src/components/Map.js" />
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="390" />
-    <option name="y" value="107" />
-    <option name="width" value="1490" />
+  <component name="ProjectFrameBounds" extendedState="7">
+    <option name="x" value="28" />
+    <option name="y" value="288" />
+    <option name="width" value="1853" />
     <option name="height" value="1040" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
@@ -209,24 +212,18 @@
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="loginpage" type="462c0819:PsiDirectoryNode" />
             </path>
-            <path>
-              <item name="map-app-react" type="b2602c69:ProjectViewProjectNode" />
-              <item name="map-app-react" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="plugin" type="462c0819:PsiDirectoryNode" />
-            </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="PackagesPane" />
       <pane id="Scope" />
+      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1555807066854" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1556225887515" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
@@ -277,12 +274,14 @@
       <workItem from="1555633036661" duration="8846000" />
       <workItem from="1555700498717" duration="21835000" />
       <workItem from="1555807401583" duration="954000" />
-      <workItem from="1555872062919" duration="5644000" />
+      <workItem from="1555872062919" duration="12403000" />
+      <workItem from="1556147581285" duration="405000" />
+      <workItem from="1556212719178" duration="9369000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="106943000" />
+    <option name="totallyTimeSpent" value="123476000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -297,7 +296,7 @@
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.12214765" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.12483221" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -414,16 +413,38 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/AlgorithmControl.css" />
+    <entry file="file://$PROJECT_DIR$/src/loginpage/Toggle.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="9" selection-end-line="31" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/public/pa_final.json">
       <provider selected="true" editor-type-id="LargeFileEditor">
         <state relative-caret-position="17">
-          <caret line="1" column="9992" selection-start-line="1" selection-start-column="9985" selection-end-line="1" selection-end-column="9992" />
+          <caret line="1" column="29" lean-forward="true" selection-start-line="1" selection-end-line="1" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/nycapa.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret selection-end-line="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/test.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="6" column="107" lean-forward="true" selection-end-line="10" selection-end-column="2" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/index.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
+        <state relative-caret-position="204">
           <caret line="12" selection-start-line="12" selection-end-line="12" />
           <folding>
             <element signature="e#0#26#0" expanded="true" />
@@ -433,8 +454,38 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/loginpage/Toggle.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="14" selection-start-line="14" selection-end-line="14" />
+        <state relative-caret-position="187">
+          <caret line="11" column="77" selection-start-line="11" selection-start-column="77" selection-end-line="11" selection-end-column="77" />
+          <folding>
+            <element signature="e#0#41#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/home.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="296">
+          <caret line="218" column="38" selection-start-line="218" selection-start-column="38" selection-end-line="218" selection-end-column="38" />
+          <folding>
+            <element signature="e#0#41#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/loginpage/SignIn.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="51">
+          <caret line="6" column="17" selection-start-line="6" selection-start-column="17" selection-end-line="6" selection-end-column="17" />
+          <folding>
+            <element signature="e#0#41#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/App.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="395">
+          <caret line="54" column="12" selection-start-line="54" selection-start-column="12" selection-end-line="54" selection-end-column="12" />
           <folding>
             <element signature="e#0#41#0" expanded="true" />
           </folding>
@@ -443,7 +494,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/components/Header.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
+        <state relative-caret-position="170">
           <caret line="10" column="29" selection-start-line="10" selection-start-column="29" selection-end-line="10" selection-end-column="29" />
           <folding>
             <element signature="e#0#26#0" expanded="true" />
@@ -451,49 +502,12 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/loginpage/SignIn.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="289">
-          <caret line="20" column="3" selection-start-line="20" selection-start-column="3" selection-end-line="20" selection-end-column="3" />
-          <folding>
-            <element signature="e#0#41#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/nycapa.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="51">
-          <caret line="3" column="43" selection-start-line="3" selection-start-column="43" selection-end-line="3" selection-end-column="48" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/App.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
-          <caret line="23" column="8" selection-start-line="23" selection-start-column="8" selection-end-line="23" selection-end-column="8" />
-          <folding>
-            <element signature="e#0#41#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/components/Map.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1598">
-          <caret line="105" column="9" selection-start-line="105" selection-start-column="9" selection-end-line="105" selection-end-column="9" />
+        <state relative-caret-position="327">
+          <caret line="131" column="21" lean-forward="true" selection-start-line="131" selection-start-column="21" selection-end-line="131" selection-end-column="21" />
           <folding>
             <element signature="e#0#26#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/home.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="127" column="124" selection-start-line="127" selection-start-column="124" selection-end-line="127" selection-end-column="124" />
-          <folding>
-            <element signature="e#0#41#0" expanded="true" />
           </folding>
         </state>
       </provider>

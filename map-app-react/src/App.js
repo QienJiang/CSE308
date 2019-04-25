@@ -53,9 +53,7 @@ class App extends Component {
       <Route exact path="/home" render={()=> <Home selectedState = {this.state.selectedState} setSelectedState = {this.setSelectedState} socket={this.socket}/>} >
       </Route>
       </div>
-
-
-        </div>
+      </div>
       </Router>
     );
   }
