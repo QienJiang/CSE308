@@ -116,7 +116,7 @@ export default class Map extends React.Component{
               })
 
       });
-      this.props.socket.on('updateBoundary',(data)=>{
+      this.props.socket.on('updateDistrictBoundary',(data)=>{
           var boundry = JSON.parse(data)
           this.paDistrict = L.geoJson(boundry,{style: this.stateStyle,onEachFeature: this.onEachFeature})
       })
