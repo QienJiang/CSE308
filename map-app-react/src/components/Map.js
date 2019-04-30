@@ -104,10 +104,8 @@ export default class Map extends React.Component{
           var temp = array[i].split(':');
           datamap.set(temp[0],temp[1]);
         }
-          console.log(datamap.get("42123181"));
               this.paLayer.eachLayer(function (layer) {
                   if (datamap.has(layer.feature.properties.GEOID10)) {
-                    console.log("find");
                       layer.setStyle({
                           fillColor: datamap.get(layer.feature.properties.GEOID10),
                           fillOpacity : 1
@@ -119,6 +117,12 @@ export default class Map extends React.Component{
       this.props.socket.on('updateDistrictBoundary',(data)=>{
           var boundry = JSON.parse(data)
           this.paDistrict = L.geoJson(boundry,{style: this.stateStyle,onEachFeature: this.onEachFeature})
+          this.paDistrict.eachLayer((layer)=> {
+              layer.setStyle({
+                  fillColor : layer.feature.properties.COLOR,
+                  fillOpacity:1
+              })
+          })
       })
 
       this.mymap = L.map(this.refs.mymap, {
