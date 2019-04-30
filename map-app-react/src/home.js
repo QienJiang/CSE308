@@ -29,6 +29,7 @@ class home extends React.Component {
             competitiveness :5,
             efficiencyGpa :5,
             numOfRun:1,
+            interestCommunity : 'NATIVEAMERICAN',
             text : "",
         };
 
@@ -39,6 +40,7 @@ class home extends React.Component {
     clickOnPhaseOne(e){
         this.setState({
             phaseOneStarted: true,
+            text :''
         })
         this.props.socket.emit('runAlgorithm', this.state)
 
@@ -48,7 +50,7 @@ class home extends React.Component {
     }
     setNumOfDistrict(e){
         this.setState({
-            targetDistrictNum : e.target.value
+            targetDistrictNumber : e.target.value
         })
     }
     setNumOfBatchRun(e){
