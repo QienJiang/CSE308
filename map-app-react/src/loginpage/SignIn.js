@@ -11,6 +11,7 @@ class SignInForm extends Component {
       email: '',
       password: '',
       login:false,
+        msg :''
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -21,7 +22,7 @@ class SignInForm extends Component {
   }
   handleChange(e) {
     let target = e.target;
-    let value = target.type === 'checkbox' ? target.checked : target.value;
+    let value = target.value;
     let name = target.name;
 
     this.setState({
@@ -36,30 +37,27 @@ class SignInForm extends Component {
       "email":e.target.elements.email.value,
       "password":e.target.elements.password.value
     })
-
-      console.log(data);
-    this.setState({login: !this.state.login});
     axios.post('http://localhost:8080/homepage/signin',
-
       data,{
       headers:{ 'Content-Type': 'application/json;charset=UTF-8'}
-
     })
     .then(request =>{
-      console.log(request.data);
-        console.log(request.data.email);
-                console.log(request.data.password);
-                this.props.history.push('/home');
+      this.setState({login: !this.state.login});
+      this.props.history.push('/home');
 
+    }).catch((error)=>{
+      this.setState({
+          msg: 'Invalid User or Password'
+      })
     })
-    console.log('The form was submitted with the following data:');
   }
 
   render() {
     return (
       <div className="FormCenter" >
       <Toggle/>
-      <form onSubmit={this.handleSubmit} className="FormFields" onSubmit={this.handleSubmit}>
+          <div style={{color :'red'}}>{this.state.msg}</div>
+      <form onSubmit={this.handleSubmit} className="FormFields">
       <div className="FormField">
       <label className="FormField__Label" htmlFor="email">E-Mail Address</label>
       <input type="email" id="email" className="FormField__Input" placeholder="Enter your email" name="email" value={this.state.email} onChange={this.handleChange} />

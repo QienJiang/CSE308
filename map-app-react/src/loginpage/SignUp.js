@@ -11,7 +11,8 @@ class SignUpForm extends Component {
             email: '',
             password: '',
             name: '',
-            hasAgreed: false
+            hasAgreed: false,
+            msg : ''
         };
 
         this.handleChange = this.handleChange.bind(this);
@@ -35,7 +36,7 @@ class SignUpForm extends Component {
 
     handleSubmit(e) {
         e.preventDefault();
-        if(this.state.hasAgreed == true){
+        if(this.state.hasAgreed === true){
 
           console.log("submit "+this.state.hasAgreed);
         let  data=JSON.stringify({//×ªJSON ¸ñÊ½
@@ -43,20 +44,19 @@ class SignUpForm extends Component {
           "password":e.target.elements.password.value,
           "name":e.target.elements.name.value
         })
-
-          console.log(data);
-        this.setState({login: !this.state.login});
         axios.post('http://localhost:8080/homepage/signup',
           data,{
           headers:{ 'Content-Type': 'application/json;charset=UTF-8'}
 
         })
         .then(request =>{
-          console.log(request.data);
-            console.log(request.data.email);
-                    console.log(request.data.password);
+            this.setState({login: !this.state.login});
                     this.props.history.push('/home');
 
+        }).catch(error=>{
+            this.setState({
+                msg: 'User already exist.'
+            })
         })
         console.log('The form was submitted with the following data:');
       }
@@ -67,6 +67,7 @@ class SignUpForm extends Component {
         return (
         <div className="FormCenter" >
               <Toggle/>
+            <div style={{color :'red'}}>{this.state.msg}</div>
             <form onSubmit={this.handleSubmit} className="FormFields">
               <div className="FormField">
                 <label className="FormField__Label" htmlFor="name">Full Name</label>
