@@ -128,8 +128,46 @@ class home extends React.Component {
                                         </Dropdown.Menu>
                                     </Dropdown>
                                 </Col><Col>
-                                    <Form.Control type="number"  value = {this.state.targetDistrictNumber} onChange={this.setNumOfDistrict}/>
+
                                 </Col></Row>
+                                <Row style={{'margin-top':20}}>
+                                    <Col sm={3}>
+                                        <Button variant="outline-light" style={{width:80, 'font-size': '0.5em'}} disabled>
+                                            TargetDistrict:
+                                        </Button>
+                                    </Col>
+                                    <Col sm={3}>
+                                        <Form.Control type="number"  value = {this.state.targetDistrictNumber} onChange={this.setNumOfDistrict}/>
+                                    </Col>
+                                    <Col sm={3}>
+                                        <Button variant="outline-light" style={{width:80, 'font-size': '0.5em'}} disabled>
+                                            TargetMajorMinor:
+                                        </Button>
+                                    </Col>
+                                    <Col sm={3}>
+                                        <Form.Control type="number"  value = {this.state.targetDistrictNumber} onChange={this.setNumOfDistrict}/>
+                                    </Col>
+
+                                </Row>
+                                <Row style={{'margin-top':20}}>
+                                    <Col sm={3}>
+                                        <Button variant="outline-light" style={{width:80, 'font-size': '0.5em'}} disabled>
+                                            MaxMajorMinor:
+                                        </Button>
+                                    </Col>
+                                    <Col sm={3}>
+                                        <Form.Control type="number"  value = {this.state.targetDistrictNumber} onChange={this.setNumOfDistrict}/>
+                                    </Col>
+                                    <Col sm={3}>
+                                        <Button variant="outline-light" style={{width:80, 'font-size': '0.5em'}} disabled>
+                                            MinMajorMinor:
+                                        </Button>
+                                    </Col>
+                                    <Col sm={3}>
+                                        <Form.Control type="number"  value = {this.state.targetDistrictNumber} onChange={this.setNumOfDistrict}/>
+                                    </Col>
+                                </Row>
+
                                 <Row style={{'margin-top':20}}>
                                     <Col sm={4}>
                                         <Button variant="outline-light" style={{width:100, 'font-size': '0.8em'}} disabled>
