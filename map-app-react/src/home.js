@@ -13,7 +13,8 @@ import InputRange from 'react-input-range';
 import Alert from 'react-bootstrap/Alert'
 import './App.css';
 import './loginpage/Toggle.css'
-import {Link, NavLink} from 'react-router-dom';
+import store from 'store'
+import {Link, NavLink, Redirect,withRouter} from 'react-router-dom';
 import hashmap from "hashmap";
 
 class home extends React.Component {
@@ -36,6 +37,11 @@ class home extends React.Component {
         this.clickOnPhaseOne = this.clickOnPhaseOne.bind(this);
         this.clickOnPhaseTwo = this.clickOnPhaseTwo.bind(this);
         this.setNumOfDistrict = this.setNumOfDistrict.bind(this);
+        this.logout = this.logout.bind(this)
+    }
+    logout(e){
+        this.props.history.push("/")
+        store.remove('loggedIn')
     }
     clickOnPhaseOne(e){
         this.setState({
@@ -64,6 +70,7 @@ class home extends React.Component {
               text: this.state.text +'\n'+ data
           })
         });
+
     }
 
     componentDidUpdate(prevProps, prevState, snapshot) {
@@ -71,6 +78,9 @@ class home extends React.Component {
 
     }
     render() {
+        if(!!!store.get('loggedIn')){
+            return <Redirect to="/sign-in" />
+        }
         return (
             <div>
                 <Container>
@@ -89,7 +99,7 @@ class home extends React.Component {
                                         </Dropdown.Menu>
                                     </Dropdown>
                                 </Col><Col>
-                                    <Button style={{width:100}} variant="outline-light">Log Out</Button>
+                                    <Button style={{width:100}} variant="outline-light" onClick={this.logout}>Log Out</Button>
                                 </Col>
                                 </Row>
                                 <Row style={{margin:10}}><Col>
@@ -258,4 +268,4 @@ class home extends React.Component {
     }
 }
 
-export default home;
+export default withRouter(home);

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { HashRouter as Router, Route, Link, NavLink } from 'react-router-dom';
 import axios from 'axios';
 import Toggle from './Toggle';
+import store from 'store'
 
 class SignInForm extends Component {
   constructor() {
@@ -10,7 +11,6 @@ class SignInForm extends Component {
     this.state = {
       email: '',
       password: '',
-      login:false,
         msg :''
     };
 
@@ -42,7 +42,7 @@ class SignInForm extends Component {
       headers:{ 'Content-Type': 'application/json;charset=UTF-8'}
     })
     .then(request =>{
-      this.setState({login: !this.state.login});
+      store.set('loggedIn',true);
       this.props.history.push('/home');
 
     }).catch((error)=>{

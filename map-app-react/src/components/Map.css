@@ -9,3 +9,17 @@
     margin: 0 0 5px;
     color: greenyellow;
 }
+.districtInfo {
+    padding: 6px 8px;
+    font: 14px/16px Arial, Helvetica, sans-serif;
+    opacity:0.8;
+    background-color: black;
+    border-radius: 5px;
+    float: left;
+    clear: both;
+}
+.districtInfo h4 {
+    margin: 0 0 5px;
+    color: greenyellow;
+}
+

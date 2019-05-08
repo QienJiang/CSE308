@@ -214,10 +214,26 @@ export default class Map extends React.Component{
           this._div.innerHTML = '<h4>Detail Information</h4>' +  (props ?
               '<b>'+ 'GeoId: ' + props.GEOID10 + '</b><br />' +'Population: '+ props.POP100
               + '<br />' + 'democracy vote: ' +props.GOV_DVOTE_+ '<br/>' + 'republican vote: ' + props.GOV_RVOTE_
-              : 'Hover over a state');
+              : 'Hover over a precinct');
+      };
+      this.districtInfo = L.control({position: 'topleft'});
+      this.districtInfo.onAdd = function (map) {
+          this._districtDiv = L.DomUtil.create('div', 'districtInfo');
+          this.update();
+          return this._districtDiv;
+      };
+
+      this.districtInfo.update = function (props) {
+          this._districtDiv.innerHTML = '<h4>Detail Information</h4>' +  (props ?
+              '<b>'+ 'GeoId: ' + props.GEOID10 + '</b><br />' +'Population: '+ props.POP100
+              + '<br />' + 'democracy vote: ' +props.GOV_DVOTE_+ '<br/>' + 'republican vote: ' + props.GOV_RVOTE_
+              : 'Hover over a precinct');
       };
 
       this.info.addTo(this.mymap);
+      this.districtInfo.addTo(this.mymap);
+
+
       this.overlayMaps = {
           "OriginalDistrict": this.stateLayer
       }
