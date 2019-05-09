@@ -26,10 +26,13 @@ class home extends React.Component {
             equality: 5,
             fairness :5,
             compactness : 5,
-            majorMinor : 5,
+            majorMinorWeight : 5,
             competitiveness :5,
             efficiencyGpa :5,
             numOfRun:1,
+            maxMajorMinorPercent : 50,
+            minMajorMinorPercent: 0,
+            desiredNumMajorMinorDistrict: 0,
             interestCommunity : 'NATIVEAMERICAN',
             text : "",
         };
@@ -57,6 +60,11 @@ class home extends React.Component {
     setNumOfDistrict(e){
         this.setState({
             targetDistrictNumber : e.target.value
+        })
+    }
+    setNumOfMajorMinor(e){
+        this.setState({
+            desiredNumMajorMinorDistrict : e.target.value
         })
     }
     setNumOfBatchRun(e){
@@ -145,29 +153,38 @@ class home extends React.Component {
                                         </Button>
                                     </Col>
                                     <Col sm={3}>
-                                        <Form.Control type="number"  value = {this.state.targetDistrictNumber} onChange={this.setNumOfDistrict}/>
+                                        <Form.Control type="number"  value = {this.state.desiredNumMajorMinorDistrict} onChange={this.setNumOfMajorMinor}/>
                                     </Col>
 
                                 </Row>
                                 <Row style={{'margin-top':20}}>
-                                    <Col sm={3}>
-                                        <Button variant="outline-light" style={{width:80, 'font-size': '0.5em'}} disabled>
-                                            MaxMajorMinor:
-                                        </Button>
-                                    </Col>
-                                    <Col sm={3}>
-                                        <Form.Control type="number"  value = {this.state.targetDistrictNumber} onChange={this.setNumOfDistrict}/>
-                                    </Col>
-                                    <Col sm={3}>
-                                        <Button variant="outline-light" style={{width:80, 'font-size': '0.5em'}} disabled>
+                                    <Col sm={4}>
+                                        <Button variant="outline-light" style={{width:100, 'font-size': '0.8em'}} disabled>
                                             MinMajorMinor:
                                         </Button>
                                     </Col>
-                                    <Col sm={3}>
-                                        <Form.Control type="number"  value = {this.state.targetDistrictNumber} onChange={this.setNumOfDistrict}/>
+                                    <Col sm={8}>
+                                        <InputRange
+                                            maxValue={100}
+                                            minValue={0}
+                                            value={this.state.minMajorMinorPercent}
+                                            onChange={value => this.setState({minMajorMinorPercent: value})} />
                                     </Col>
                                 </Row>
-
+                                <Row style={{'margin-top':20}}>
+                                    <Col sm={4}>
+                                        <Button variant="outline-light" style={{width:100, 'font-size': '0.8em'}} disabled>
+                                            MaxMajorMinor:
+                                        </Button>
+                                    </Col>
+                                    <Col sm={8}>
+                                        <InputRange
+                                            maxValue={100}
+                                            minValue={0}
+                                            value={this.state.maxMajorMinorPercent}
+                                            onChange={value => this.setState({ maxMajorMinorPercent : value})} />
+                                    </Col>
+                                </Row>
                                 <Row style={{'margin-top':20}}>
                                     <Col sm={4}>
                                         <Button variant="outline-light" style={{width:100, 'font-size': '0.8em'}} disabled>
@@ -220,8 +237,8 @@ class home extends React.Component {
                                         <InputRange
                                             maxValue={10}
                                             minValue={0}
-                                            value={this.state.majorMinor}
-                                            onChange={value => this.setState({ majorMinor: value })} />
+                                            value={this.state.majorMinorWeight}
+                                            onChange={value => this.setState({  majorMinorWeight: value })} />
                                     </Col>
                                 </Row>
                                 <Row style={{'margin-top':10}}>

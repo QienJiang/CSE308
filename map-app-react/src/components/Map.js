@@ -1,4 +1,5 @@
 import React from 'react';
+import ReactDOM from "react-dom";
 import L from 'leaflet';
 import "leaflet/dist/leaflet.css";
 import styled from "styled-components";
@@ -6,11 +7,12 @@ import "leaflet-realtime";
 import "leaflet-ajax";
 import "./Map.css"
 import io from 'socket.io-client';
+import {Radar,Bar,Pie,Doughnut} from "react-chartjs-2";
 import hashmap from 'hashmap';
 
 
 import { Container, Row, Col }  from "react-bootstrap";
-
+import MyRadar from "./MyRadar";
 
 const Wrapper = styled.div`
 width: ${props => props.width};
@@ -32,6 +34,7 @@ export default class Map extends React.Component{
         this.resetHighlight = this.resetHighlight.bind(this);
         this.zoomToFeature = this.zoomToFeature.bind(this);
         this.onEachFeature = this.onEachFeature.bind(this);
+        this.updatePrecinctInfo = this.updatePrecinctInfo.bind(this);
         // this.componentDidUpdate = this.componentDidUpdate.bind(this);
     }
     componentDidUpdate(prevProps){
@@ -61,6 +64,30 @@ export default class Map extends React.Component{
             color: 'white',
         };
     }
+
+    updatePrecinctInfo(props){
+        var chartData = {
+            labels: ['Boston', 'Worcester', 'Springfield', 'Lowell', 'Cambridge', 'New Bedford'],
+            datasets:[
+                {
+                    label:'Population',
+                    data:[
+                        617594,
+                        581045,
+                        553060,
+                        406519,
+                        305162,
+                        705072
+                    ],
+                    backgroundColor:
+                        'rgb(102, 255, 255,0.7)'
+
+                }
+            ],
+
+        }
+        ReactDOM.render(<MyRadar vote = {props} chartData={chartData}/>,this.precinctInfo)
+    }
     districtStyle(feature) {
         return {
             fillColor: 'white',
@@ -71,13 +98,13 @@ export default class Map extends React.Component{
     }
     highlightFeature(e) {
         var layer = e.target;
-
+        layer.openPopup()
         layer.setStyle({
             weight: 3,
             color: 'yellow',
         });
 
-        this.info.update(layer.feature.properties);
+        this.updatePrecinctInfo(layer.feature.properties);
     }
     resetHighlight(e) {
         e.target.setStyle({
@@ -85,9 +112,16 @@ export default class Map extends React.Component{
             color: 'white'
         });
         //this.paLayer.resetStyle(e.target);
-        this.info.update();
     }
     onEachFeature(feature, layer) {
+        var customOptions =
+            {
+                'maxWidth': '400',
+                'width': '200',
+                'height': 200,
+                'className' : 'precinctCustom'
+            }
+        layer.bindPopup(this.precinctInfo,customOptions)
         layer.on({
             mouseover: this.highlightFeature,
             mouseout: this.resetHighlight,
@@ -164,6 +198,7 @@ export default class Map extends React.Component{
           })
       })
       */
+      this.precinctInfo = L.DomUtil.create('div', 'precinctInfo')
       this.mymap.addLayer(this.stateLayer);
       this.mymap.on('zoomend', () =>{
           if (this.mymap.getZoom() >6){
@@ -203,19 +238,70 @@ export default class Map extends React.Component{
               //this.mymap.addLayer(this.paDistrict)
           }
       })
-      this.info = L.control({position: 'topleft'});
-      this.info.onAdd = function (map) {
-          this._div = L.DomUtil.create('div', 'info'); // create a div with a class "info"
-          this.update();
-          return this._div;
-      };
 
-      this.info.update = function (props) {
-          this._div.innerHTML = '<h4>Detail Information</h4>' +  (props ?
-              '<b>'+ 'GeoId: ' + props.GEOID10 + '</b><br />' +'Population: '+ props.POP100
-              + '<br />' + 'democracy vote: ' +props.GOV_DVOTE_+ '<br/>' + 'republican vote: ' + props.GOV_RVOTE_
-              : 'Hover over a precinct');
-      };
+
+
+          /*
+                this.info = L.control({position: 'topleft'});
+                this.info.onAdd = function (map) {
+                    this._div = L.DomUtil.create('div', 'info'); // create a div with a class "info"
+                    this.update();
+                    return this._div;
+                };
+                this.info.update = function (props) {
+                    var chartData = {
+                        labels: ['Boston', 'Worcester', 'Springfield', 'Lowell', 'Cambridge', 'New Bedford'],
+                        datasets:[
+                            {
+                                label:'Population',
+                                data:[
+                                    617594,
+                                    581045,
+                                    553060,
+                                    406519,
+                                    305162,
+                                    705072
+                                    ],
+                                backgroundColor:
+                                    'rgb(102, 255, 255,0.7)'
+
+                            }
+                            ],
+
+                    }
+                    ReactDOM.render(<Radar width={200}
+                                           height={200}
+                                           options={{
+                                               legend : {
+                                                   labels : {
+                                                       fontColor : 'white'
+                                                   }
+                                               },
+                                               maintainAspectRatio: false,
+                                               scale: {
+                                                   ticks: {
+                                                       display: false,
+                                                       maxTicksLimit: 3
+                                                   },
+                                                   pointLabels:{
+                                                       fontColor: 'white'
+                                                   },
+                                                   gridLines: { color: 'rgb(0, 255, 255)'  },
+                                                   angleLines: { color: 'rgb(0, 255, 255)' }
+                                               }
+                                           }
+                                           } data = {chartData}/>,this._div)
+
+                    this._div.innerHTML = '<h4>Detail Information</h4>' +  (props ?
+                        '<b>'+ 'GeoId: ' + props.GEOID10 + '</b><br />' +'Population: '+ props.POP100
+                        + '<br />' + 'democracy vote: ' +props.GOV_DVOTE_+ '<br/>' + 'republican vote: ' + props.GOV_RVOTE_
+                        + <MyRadar data = {chartData}/>
+                        : 'Hover over a precinct');
+
+                };
+                this.info.addTo(this.mymap);
+          */
+
       this.districtInfo = L.control({position: 'topleft'});
       this.districtInfo.onAdd = function (map) {
           this._districtDiv = L.DomUtil.create('div', 'districtInfo');
@@ -224,15 +310,12 @@ export default class Map extends React.Component{
       };
 
       this.districtInfo.update = function (props) {
-          this._districtDiv.innerHTML = '<h4>Detail Information</h4>' +  (props ?
+          this._districtDiv.innerHTML = '<h4>District Information</h4>' +  (props ?
               '<b>'+ 'GeoId: ' + props.GEOID10 + '</b><br />' +'Population: '+ props.POP100
               + '<br />' + 'democracy vote: ' +props.GOV_DVOTE_+ '<br/>' + 'republican vote: ' + props.GOV_RVOTE_
-              : 'Hover over a precinct');
+              : 'run algorithm to see detail');
       };
-
-      this.info.addTo(this.mymap);
       this.districtInfo.addTo(this.mymap);
-
 
       this.overlayMaps = {
           "OriginalDistrict": this.stateLayer
