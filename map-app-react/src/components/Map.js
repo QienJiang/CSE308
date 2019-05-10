@@ -67,20 +67,29 @@ export default class Map extends React.Component{
 
     updatePrecinctInfo(props){
         var chartData = {
-            labels: ['Boston', 'Worcester', 'Springfield', 'Lowell', 'Cambridge', 'New Bedford'],
+            labels: ['Asian', 'African', 'Other', 'Indian', 'Hispanic','Hawaiian'],
             datasets:[
                 {
                     label:'Population',
                     data:[
-                        617594,
-                        581045,
-                        553060,
-                        406519,
-                        305162,
-                        705072
+                        props.asian,
+                        props.black,
+                        props.other,
+                        props.indian,
+                        props.hispanic,
+                        props.hawaiian,
                     ],
                     backgroundColor:
-                        'rgb(102, 255, 255,0.7)'
+                    [
+                        'rgb(102, 255, 255,0.7)',
+                        'rgba(255, 99, 132, 0.6)',
+                    'rgba(54, 162, 235, 0.6)',
+                    'rgba(255, 206, 86, 0.6)',
+                    'rgba(75, 192, 192, 0.6)',
+                    'rgba(153, 102, 255, 0.6)',
+                    'rgba(255, 159, 64, 0.6)',
+                    'rgba(255, 99, 132, 0.6)'
+            ]
 
                 }
             ],
@@ -188,7 +197,7 @@ export default class Map extends React.Component{
       }).addTo(this.mymap);
       this.stateLayer = L.geoJson.ajax("https://raw.githubusercontent.com/QienJiang/CSE308/master/map-app-react/public/nycapa.json",{style: this.stateStyle,onEachFeature: this.onEachFeature});
       this.nyLayer = L.geoJson.ajax("https://raw.githubusercontent.com/QienJiang/CSE308/master/map-app-react/public/ny_final.json",{style: this.precinctStyle,onEachFeature: this.onEachFeature});
-      this.paLayer = L.geoJson.ajax("https://raw.githubusercontent.com/QienJiang/CSE308/master/map-app-react/public/pa_final.json",{style: this.precinctStyle,onEachFeature: this.onEachFeature});
+      this.paLayer = L.geoJson.ajax("https://raw.githubusercontent.com/QienJiang/CSE308/master/map-app-react/public/pa_data.geojson",{style: this.precinctStyle,onEachFeature: this.onEachFeature});
       this.paDistrict = L.geoJson.ajax("https://raw.githubusercontent.com/QienJiang/CSE308/master/map-app-react/public/PaCongressional2019_01.geojson",{style: this.precinctStyle,onEachFeature: this.onEachFeature})
       this.nyDistrict = L.geoJson.ajax("https://raw.githubusercontent.com/QienJiang/CSE308/master/map-app-react/public/nydistrict.geojson",{style: this.precinctStyle,onEachFeature: this.onEachFeature})
       /*
@@ -318,7 +327,7 @@ export default class Map extends React.Component{
       this.districtInfo.addTo(this.mymap);
 
       this.overlayMaps = {
-          "OriginalDistrict": this.stateLayer
+          "OriginalDistrict": this.paDistrict
       }
       L.control.layers(null,this.overlayMaps,{position:'bottomleft'}).addTo(this.mymap);
   /*  L.tileLayer('https://stamen-tiles-{s}.a.ssl.fastly.net/toner-labels/{z}/{x}/{y}{r}.{ext}', {

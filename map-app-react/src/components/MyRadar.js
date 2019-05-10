@@ -1,5 +1,5 @@
 import React,{Component} from 'react'
-import {Radar,Bar} from "react-chartjs-2";
+import {Radar,Bar,Doughnut} from "react-chartjs-2";
 import {Carousel} from 'react-bootstrap'
 
 
@@ -9,19 +9,25 @@ class MyRadar extends Component{
         this.state={
             chartData:props.chartData
         }
+        this.nf = new Intl.NumberFormat()
     }
 
-    componentDidMount() {
-        console.log(this.state.chartData)
+    componentDidUpdate(prevProps, prevState, snapshot) {
+        if(prevProps !== this.props){
+            this.setState({
+                chartData:this.props.chartData
+            })
+        }
     }
 
     render() {
         return (
             <div>
                 <p className='voteStyle'>
-                    Precinct Id: {this.props.vote.GEOID10} <br/>
-                Democracy  vote: {this.props.vote.GOV_DVOTE_} <br/>
-                Republican vote: {this.props.vote.GOV_RVOTE_}
+                    Precinct Id: {this.props.vote.PA_GEO_ID} <br/>
+                    Population: {this.nf.format(this.props.vote.total)}<br/>
+                Democracy  vote: {this.nf.format(this.props.vote.GOVDV2010)} <br/>
+                Republican vote: {this.nf.format(this.props.vote.GOVRV2010)}
                 </p>
                 <Carousel>
                     <Carousel.Item>
@@ -48,7 +54,7 @@ class MyRadar extends Component{
                                } data = {this.state.chartData}/>
                     </Carousel.Item>
                     <Carousel.Item>
-                        <Bar width={200}
+                        <Doughnut width={200}
                                height={200}
                                options={{
                                    legend : {
