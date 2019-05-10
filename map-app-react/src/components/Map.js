@@ -196,7 +196,8 @@ export default class Map extends React.Component{
           position:'bottomleft'
       }).addTo(this.mymap);
       this.stateLayer = L.geoJson.ajax("https://raw.githubusercontent.com/QienJiang/CSE308/master/map-app-react/public/paksmi.json",{style: this.stateStyle,onEachFeature: this.onEachFeature});
-      this.ksLayer = L.geoJson.ajax("https://raw.githubusercontent.com/QienJiang/CSE308/master/map-app-react/public/ks_final.json",{style: this.precinctStyle,onEachFeature: this.onEachFeature});
+      this.ksLayer = L.geoJson.ajax("https://raw.githubusercontent.com/QienJiang/CSE308/master/map-app-react/public/ks_data.geojson",{style: this.precinctStyle,onEachFeature: this.onEachFeature});
+      this.moLayer = L.geoJSON.ajax("https://raw.githubusercontent.com/QienJiang/CSE308/master/map-app-react/public/mo_data.geojson",{style: this.precinctStyle,onEachFeature: this.onEachFeature})
       this.paLayer = L.geoJson.ajax("https://raw.githubusercontent.com/QienJiang/CSE308/master/map-app-react/public/pa_data.geojson",{style: this.precinctStyle,onEachFeature: this.onEachFeature});
       this.paDistrict = L.geoJson.ajax("https://raw.githubusercontent.com/QienJiang/CSE308/master/map-app-react/public/PaCongressional2019_01.geojson",{style: this.precinctStyle,onEachFeature: this.onEachFeature})
       this.nyDistrict = L.geoJson.ajax("https://raw.githubusercontent.com/QienJiang/CSE308/master/map-app-react/public/nydistrict.geojson",{style: this.precinctStyle,onEachFeature: this.onEachFeature})
@@ -343,7 +344,7 @@ export default class Map extends React.Component{
   zoomToFeature(e) {
     this.mymap.flyToBounds(e.target);
     if(e.target.feature.properties.name === 'Kansas' ||
-        e.target.feature.properties.name === 'California'||
+        e.target.feature.properties.name === 'Missouri'||
         e.target.feature.properties.name === 'Pennsylvania')
         this.props.setSelectedState( e.target.feature.properties.name);
         /*
