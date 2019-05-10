@@ -147,16 +147,36 @@ export default class Map extends React.Component{
           var temp = array[i].split(':');
           datamap.set(temp[0],temp[1]);
         }
-              this.paLayer.eachLayer(function (layer) {
-                  if (datamap.has(layer.feature.properties.GEOID10)) {
-                      layer.setStyle({
-                          fillColor: datamap.get(layer.feature.properties.GEOID10),
-                          fillOpacity : 1
-                      })
-                  }
-              })
-
+        if(this.props.selectedState === 'Pennsylvania') {
+            this.paLayer.eachLayer(function (layer) {
+                if (datamap.has(layer.feature.properties.GEOID10)) {
+                    layer.setStyle({
+                        fillColor: datamap.get(layer.feature.properties.GEOID10),
+                        fillOpacity: 1
+                    })
+                }
+            })
+        }else if(this.props.selectedState === 'Kansas'){
+            this.ksLayer.eachLayer(function (layer) {
+                if (datamap.has(layer.feature.properties.GEOID10)) {
+                    layer.setStyle({
+                        fillColor: datamap.get(layer.feature.properties.GEOID10),
+                        fillOpacity: 1
+                    })
+                }
+            })
+        }else if(this.props.selectedState === 'Missouri'){
+            this.moLayer.eachLayer(function (layer) {
+                if (datamap.has(layer.feature.properties.GEOID10)) {
+                    layer.setStyle({
+                        fillColor: datamap.get(layer.feature.properties.GEOID10),
+                        fillOpacity: 1
+                    })
+                }
+            })
+        }
       });
+
       this.props.socket.on('updateDistrictBoundary',(data)=>{
           var boundry = JSON.parse(data)
           this.paDistrict = L.geoJson(boundry,{style: this.stateStyle,onEachFeature: this.onEachFeature})
