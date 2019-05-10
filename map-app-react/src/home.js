@@ -22,6 +22,7 @@ class home extends React.Component {
         super(props);
 
         this.state = {
+            state: 20,
             targetDistrictNumber:10,
             equality: 5,
             fairness :5,
@@ -101,9 +102,9 @@ class home extends React.Component {
                                             {this.props.selectedState}
                                         </Dropdown.Toggle>
                                         <Dropdown.Menu>
-                                            <Dropdown.Item onClick={()=>this.props.setSelectedState('Kansas')}>Kansas</Dropdown.Item>
-                                            <Dropdown.Item onClick={()=>this.props.setSelectedState('Missouri')}>Missouri</Dropdown.Item>
-                                            <Dropdown.Item onClick={()=>this.props.setSelectedState('Pennsylvania')}>Pennsylvania</Dropdown.Item>
+                                            <Dropdown.Item onClick={()=>{this.props.setSelectedState('Kansas'); this.setState({state : 20})}}>Kansas</Dropdown.Item>
+                                            <Dropdown.Item onClick={()=>{this.props.setSelectedState('Missouri'); this.setState({state : 29})}}>Missouri</Dropdown.Item>
+                                            <Dropdown.Item onClick={()=>{this.props.setSelectedState('Pennsylvania'); this.setState({state : 42})}}>Pennsylvania</Dropdown.Item>
                                         </Dropdown.Menu>
                                     </Dropdown>
                                 </Col><Col>

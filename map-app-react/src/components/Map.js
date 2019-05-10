@@ -213,17 +213,24 @@ export default class Map extends React.Component{
       this.mymap.on('zoomend', () =>{
           if (this.mymap.getZoom() >6){
               if(this.props.selectedState === 'Kansas') {
+                  this.mymap.removeLayer(this.moLayer);
                   this.mymap.removeLayer(this.paLayer);
                   this.mymap.addLayer(this.ksLayer);
               }
               else if(this.props.selectedState === 'Pennsylvania') {
+                  this.mymap.removeLayer(this.moLayer);
                   this.mymap.removeLayer(this.ksLayer);
                   this.mymap.addLayer(this.paLayer);
 
+              }else if(this.props.selectedState === 'Missouri'){
+                  this.mymap.removeLayer(this.ksLayer);
+                  this.mymap.removeLayer(this.paLayer);
+                  this.mymap.addLayer(this.moLayer);
               }
               this.mymap.removeLayer(this.stateLayer);
           }
           else {
+              this.mymap.removeLayer(this.moLayer);
               this.mymap.removeLayer(this.ksLayer);
               this.mymap.removeLayer(this.paLayer);
               this.mymap.addLayer(this.stateLayer);
