@@ -33,7 +33,7 @@ class home extends React.Component {
             maxMajorMinorPercent : 50,
             minMajorMinorPercent: 0,
             desiredNumMajorMinorDistrict: 0,
-            interestCommunity : 'NATIVEAMERICAN',
+            interestCommunity : 'WHITE',
             text : "",
         };
 
