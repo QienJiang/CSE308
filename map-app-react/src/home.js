@@ -101,7 +101,7 @@ class home extends React.Component {
                                             {this.props.selectedState}
                                         </Dropdown.Toggle>
                                         <Dropdown.Menu>
-                                            <Dropdown.Item onClick={()=>this.props.setSelectedState('New York')}>New York</Dropdown.Item>
+                                            <Dropdown.Item onClick={()=>this.props.setSelectedState('Kansas')}>Kansas</Dropdown.Item>
                                             <Dropdown.Item onClick={()=>this.props.setSelectedState('California')}>California</Dropdown.Item>
                                             <Dropdown.Item onClick={()=>this.props.setSelectedState('Pennsylvania')}>Pennsylvania</Dropdown.Item>
                                         </Dropdown.Menu>
