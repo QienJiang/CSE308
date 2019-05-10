@@ -41,7 +41,7 @@ export default class Map extends React.Component{
         if (prevProps.selectedState  !== this.props.selectedState ) {
 
             this.stateLayer.eachLayer((layer)=> {
-                if(layer.feature.properties.GeoId === this.props.selectedState){
+                if(layer.feature.properties.name === this.props.selectedState){
                     this.mymap.flyToBounds(layer);
                 }
             })
@@ -342,10 +342,10 @@ export default class Map extends React.Component{
   }
   zoomToFeature(e) {
     this.mymap.flyToBounds(e.target);
-    if(e.target.feature.properties.GeoId === 'New York' ||
-        e.target.feature.properties.GeoId === 'California'||
-        e.target.feature.properties.GeoId === 'Pennsylvania')
-        this.props.setSelectedState( e.target.feature.properties.GeoId);
+    if(e.target.feature.properties.name === 'New York' ||
+        e.target.feature.properties.name === 'California'||
+        e.target.feature.properties.name === 'Pennsylvania')
+        this.props.setSelectedState( e.target.feature.properties.name);
         /*
     this.setState({
         state : e.target.feature.properties.GeoId,

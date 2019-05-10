@@ -24,7 +24,7 @@ class MyRadar extends Component{
         return (
             <div>
                 <p className='voteStyle'>
-                    Precinct Id: {this.props.vote.PA_GEO_ID} <br/>
+                    Id: {this.props.vote.PA_GEO_ID || this.props.vote.name} <br/>
                     Population: {this.nf.format(this.props.vote.total)}<br/>
                 Democracy  vote: {this.nf.format(this.props.vote.GOVDV2010)} <br/>
                 Republican vote: {this.nf.format(this.props.vote.GOVRV2010)}
