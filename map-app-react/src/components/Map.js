@@ -120,6 +120,7 @@ export default class Map extends React.Component{
             weight: 1,
             color: 'white'
         });
+        e.target.closePopup();
         //this.paLayer.resetStyle(e.target);
     }
     onEachFeature(feature, layer) {
