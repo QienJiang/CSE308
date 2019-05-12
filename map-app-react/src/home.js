@@ -41,6 +41,8 @@ class home extends React.Component {
 
         this.clickOnStart = this.clickOnStart.bind(this);
         this.setNumOfDistrict = this.setNumOfDistrict.bind(this);
+        this.setNumOfMajorMinor = this.setNumOfMajorMinor.bind(this);
+        this.setNumOfBatchRun = this.setNumOfBatchRun.bind(this);
         this.logout = this.logout.bind(this)
     }
     logout(e){
