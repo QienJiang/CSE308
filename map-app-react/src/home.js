@@ -22,7 +22,7 @@ class home extends React.Component {
         super(props);
 
         this.state = {
-            state: 20,
+            state: 35,
             targetDistrictNumber:10,
             equality: 5,
             fairness :5,
@@ -35,11 +35,11 @@ class home extends React.Component {
             minMajorMinorPercent: 0,
             desiredNumMajorMinorDistrict: 0,
             interestCommunity : 'WHITE',
+            phase: 'Start',
             text : "",
         };
 
-        this.clickOnPhaseOne = this.clickOnPhaseOne.bind(this);
-        this.clickOnPhaseTwo = this.clickOnPhaseTwo.bind(this);
+        this.clickOnStart = this.clickOnStart.bind(this);
         this.setNumOfDistrict = this.setNumOfDistrict.bind(this);
         this.logout = this.logout.bind(this)
     }
@@ -47,15 +47,23 @@ class home extends React.Component {
         this.props.history.push("/")
         store.remove('loggedIn')
     }
-    clickOnPhaseOne(e){
-        this.setState({
-            phaseOneStarted: true,
-            text :''
-        })
-        this.props.socket.emit('runAlgorithm', this.state)
-
-    }
-    clickOnPhaseTwo(e){
+    clickOnStart(e){
+        if(e.target.value === 'Start') {
+            this.props.socket.emit('runAlgorithm', this.state)
+            this.setState({
+                phase : 'Next'
+            })
+        }else if(e.target.value === 'Next'){
+            this.props.socket.emit('resume')
+        }else if(e.target.value === 'Phase two'){
+            this.props.socket.emit('resume')
+        }else if(e.target.value === 'stop'){
+            this.props.socket.emit('stop')
+        }else if(e.target.value === 'pause'){
+            this.props.socket.emit('pause')
+        }else if(e.target.value === 'resume'){
+            this.props.socket.emit('resume')
+        }
 
     }
     setNumOfDistrict(e){
@@ -79,14 +87,19 @@ class home extends React.Component {
               text: this.state.text +'\n'+ data
           })
         });
+        this.props.socket.on('Phase two', (data)=> {
+            this.setState({
+                phase: 'Phase two'
+            })
+        });
 
     }
 
     componentDidUpdate(prevProps, prevState, snapshot) {
         if(prevProps.selectedState !== this.props.selectedState){
-            if(this.props.selectedState === 'Kansas'){
+            if(this.props.selectedState === 'New Mexico'){
                 this.setState({
-                    state : 20
+                    state : 35
                 })
             }else if(this.props.selectedState=== 'Missouri'){
                 this.setState({
@@ -117,7 +130,7 @@ class home extends React.Component {
                                             {this.props.selectedState}
                                         </Dropdown.Toggle>
                                         <Dropdown.Menu>
-                                            <Dropdown.Item onClick={()=>{this.props.setSelectedState('Kansas');}}>Kansas</Dropdown.Item>
+                                            <Dropdown.Item onClick={()=>{this.props.setSelectedState('New Mexico');}}>New Mexico</Dropdown.Item>
                                             <Dropdown.Item onClick={()=>{this.props.setSelectedState('Missouri');}}>Missouri</Dropdown.Item>
                                             <Dropdown.Item onClick={()=>{this.props.setSelectedState('Pennsylvania');}}>Pennsylvania</Dropdown.Item>
                                         </Dropdown.Menu>
@@ -286,10 +299,10 @@ class home extends React.Component {
                                     </Col>
                                 </Row>
                                 <Row style={{'margin-top':30}}>
-                                    <Col><Button variant="outline-light" style={{width:70, 'font-size': '0.8em'}} onClick={this.clickOnPhaseOne}>Start</Button></Col>
-                                    <Col><Button variant="outline-light" style={{width:70, 'font-size': '0.8em'}}>Stop</Button></Col>
-                                    <Col><Button variant="outline-light" style={{width:70, 'font-size': '0.8em'}}>Pause</Button></Col>
-                                    <Col><Button variant="outline-light" style={{width:70, 'font-size': '0.8em'}}>Resume</Button></Col>
+                                    <Col><Button variant="outline-light" style={{width:70, 'font-size': '0.8em'}} value = {this.state.phase} onClick={this.clickOnStart}>{this.state.phase}</Button></Col>
+                                    <Col><Button variant="outline-light" style={{width:70, 'font-size': '0.8em'}} value = 'stop' onClick={this.clickOnStart}>Stop</Button></Col>
+                                    <Col><Button variant="outline-light" style={{width:70, 'font-size': '0.8em'}} value = 'pause' onClick={this.clickOnStart} >Pause</Button></Col>
+                                    <Col><Button variant="outline-light" style={{width:70, 'font-size': '0.8em'}} value = 'resume' onClick={this.clickOnStart}>Resume</Button></Col>
                                 </Row>
                                 <Row style={{'margin-top':20}}>
                                     <Button disable variant="outline-light" style={{width:70, 'font-size': '0.8em'}} disabled>Console:</Button>

@@ -157,8 +157,8 @@ export default class Map extends React.Component{
                     })
                 }
             })
-        }else if(this.props.selectedState === 'Kansas'){
-            this.ksLayer.eachLayer(function (layer) {
+        }else if(this.props.selectedState === 'New Mexico'){
+            this.nmLayer.eachLayer(function (layer) {
                 if (datamap.has(layer.feature.properties.GEOID10)) {
                     layer.setStyle({
                         fillColor: datamap.get(layer.feature.properties.GEOID10),
@@ -217,7 +217,7 @@ export default class Map extends React.Component{
           position:'bottomleft'
       }).addTo(this.mymap);
       this.stateLayer = L.geoJson.ajax("https://raw.githubusercontent.com/QienJiang/CSE308/master/map-app-react/public/paksmi.json",{style: this.stateStyle,onEachFeature: this.onEachFeature});
-      this.ksLayer = L.geoJson.ajax("https://raw.githubusercontent.com/QienJiang/CSE308/master/map-app-react/public/ks_data.geojson",{style: this.precinctStyle,onEachFeature: this.onEachFeature});
+      this.nmLayer = L.geoJson.ajax("https://raw.githubusercontent.com/QienJiang/CSE308/master/map-app-react/public/nm_data.geojson",{style: this.precinctStyle,onEachFeature: this.onEachFeature});
       this.moLayer = L.geoJson.ajax("https://raw.githubusercontent.com/QienJiang/CSE308/master/map-app-react/public/mo_data.geojson",{style: this.precinctStyle,onEachFeature: this.onEachFeature})
       this.paLayer = L.geoJson.ajax("https://raw.githubusercontent.com/QienJiang/CSE308/master/map-app-react/public/pa_data.geojson",{style: this.precinctStyle,onEachFeature: this.onEachFeature});
       this.paDistrict = L.geoJson.ajax("https://raw.githubusercontent.com/QienJiang/CSE308/master/map-app-react/public/PaCongressional2019_01.geojson",{style: this.precinctStyle,onEachFeature: this.onEachFeature})
@@ -233,18 +233,18 @@ export default class Map extends React.Component{
       this.mymap.addLayer(this.stateLayer);
       this.mymap.on('zoomend', () =>{
           if (this.mymap.getZoom() >6){
-              if(this.props.selectedState === 'Kansas') {
+              if(this.props.selectedState === 'New Mexico') {
                   this.mymap.removeLayer(this.moLayer);
                   this.mymap.removeLayer(this.paLayer);
-                  this.mymap.addLayer(this.ksLayer);
+                  this.mymap.addLayer(this.nmLayer);
               }
               else if(this.props.selectedState === 'Pennsylvania') {
                   this.mymap.removeLayer(this.moLayer);
-                  this.mymap.removeLayer(this.ksLayer);
+                  this.mymap.removeLayer(this.nmLayer);
                   this.mymap.addLayer(this.paLayer);
 
               }else if(this.props.selectedState === 'Missouri'){
-                  this.mymap.removeLayer(this.ksLayer);
+                  this.mymap.removeLayer(this.nmLayer);
                   this.mymap.removeLayer(this.paLayer);
                   this.mymap.addLayer(this.moLayer);
               }
@@ -252,14 +252,14 @@ export default class Map extends React.Component{
           }
           else {
               this.mymap.removeLayer(this.moLayer);
-              this.mymap.removeLayer(this.ksLayer);
+              this.mymap.removeLayer(this.nmLayer);
               this.mymap.removeLayer(this.paLayer);
               this.mymap.addLayer(this.stateLayer);
           }
       });
         this.mymap.on('overlayadd',()=>{
-            if(this.props.selectedState === 'Kansas'){
-                this.mymap.removeLayer(this.ksLayer)
+            if(this.props.selectedState === 'New Mexico'){
+                this.mymap.removeLayer(this.nmLayer)
                 this.mymap.addLayer(this.nyDistrict)
             }else if(this.props.selectedState === 'Pennsylvania'){
                 this.mymap.removeLayer(this.paLayer)
@@ -267,9 +267,9 @@ export default class Map extends React.Component{
             }
         })
       this.mymap.on('overlayremove',()=>{
-          if(this.props.selectedState === 'Kansas'){
+          if(this.props.selectedState === 'New Mexico'){
               this.mymap.removeLayer(this.nyDistrict)
-              this.mymap.addLayer(this.ksLayer)
+              this.mymap.addLayer(this.nmLayer)
           }else if(this.props.selectedState === 'Pennsylvania'){
               this.mymap.removeLayer(this.paDistrict)
               this.mymap.addLayer(this.paLayer)
@@ -371,7 +371,7 @@ export default class Map extends React.Component{
   }
   zoomToFeature(e) {
     this.mymap.flyToBounds(e.target);
-    if(e.target.feature.properties.name === 'Kansas' ||
+    if(e.target.feature.properties.name === 'New Mexico' ||
         e.target.feature.properties.name === 'Missouri'||
         e.target.feature.properties.name === 'Pennsylvania')
         this.props.setSelectedState( e.target.feature.properties.name);
