@@ -23,6 +23,7 @@ class home extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
+            email: store.get('email'),
             state: 35,
             targetDistrictNumber:10,
             equality: 5,

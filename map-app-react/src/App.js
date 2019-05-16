@@ -17,7 +17,8 @@ class App extends Component {
     super(props);
     this.state ={
       selectedState :'Select State',
-        compareList : []
+        compareList : [],
+        email : '',
     }
     this.setSelectedState = this.setSelectedState.bind(this)
       this.updateCompare = this.updateCompare.bind(this)
@@ -40,13 +41,19 @@ class App extends Component {
     })
   }
 
+  storeEmail(s){
+      this.setState({
+          email: s
+      })
+  }
+
 
     render() {
     return (
       <Router basename="/">
       <div className="App">
 
-      <Map selectedState = {this.state.selectedState} setSelectedState = {this.setSelectedState} socket = {this.socket} updateCompare ={this.updateCompare} compareList ={this.state.compareList}/>
+      <Map selectedState = {this.state.selectedState} setSelectedState = {this.setSelectedState} socket = {this.socket} updateCompare ={this.updateCompare} compareList ={this.state.compareList} email ={this.state.email}/>
 
 
       <div className="App__Form" >
@@ -56,7 +63,7 @@ class App extends Component {
 
       <Route exact path="/sign-up" component={SignUp} >
       </Route>
-      <Route path="/sign-in" component={SignIn} >
+      <Route path="/sign-in" component={SignIn} storeEmail = {this.storeEmail}>
       </Route>
       <Route exact path="/Guest" component={Guest}>
       </Route>

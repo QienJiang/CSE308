@@ -5,8 +5,8 @@ import Toggle from './Toggle';
 import store from 'store'
 
 class SignInForm extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
 
     this.state = {
       email: '',
@@ -43,6 +43,7 @@ class SignInForm extends Component {
     })
     .then(request =>{
       store.set('loggedIn',true);
+      store.set('email',request.data.email)
       this.props.history.push('/home');
 
     }).catch((error)=>{

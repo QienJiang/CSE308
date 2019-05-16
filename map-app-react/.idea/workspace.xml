@@ -2,11 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="70f1d53b-8570-4fbc-af18-b25098566ca7" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/components/CompareInfo.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Map.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Map.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/home.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/home.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/loginpage/SignIn.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/loginpage/SignIn.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -33,8 +31,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/home.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="322">
-              <caret line="397" column="38" lean-forward="true" selection-start-line="397" selection-start-column="38" selection-end-line="397" selection-end-column="38" />
+            <state relative-caret-position="118">
+              <caret line="28" column="24" lean-forward="true" selection-start-line="28" selection-start-column="24" selection-end-line="28" selection-end-column="24" />
               <folding>
                 <element signature="e#0#41#0" expanded="true" />
               </folding>
@@ -63,7 +61,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/components/Map.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="183">
+            <state relative-caret-position="3451">
               <caret line="218" column="8" selection-start-line="218" selection-start-column="8" selection-end-line="218" selection-end-column="8" />
               <folding>
                 <element signature="e#0#26#0" expanded="true" />
@@ -105,8 +103,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/App.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="153">
-              <caret line="27" column="3" selection-start-line="27" selection-start-column="3" selection-end-line="27" selection-end-column="3" />
+            <state relative-caret-position="134">
+              <caret line="65" column="77" selection-start-line="65" selection-start-column="67" selection-end-line="65" selection-end-column="77" />
               <folding>
                 <element signature="e#0#41#0" expanded="true" />
               </folding>
@@ -129,8 +127,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/loginpage/SignIn.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="799">
-              <caret line="51" column="6" selection-start-line="39" selection-start-column="3" selection-end-line="51" selection-end-column="6" />
+            <state relative-caret-position="102">
+              <caret line="45" column="17" lean-forward="true" selection-start-line="45" selection-start-column="17" selection-end-line="45" selection-end-column="22" />
               <folding>
                 <element signature="e#0#41#0" expanded="true" />
               </folding>
@@ -150,7 +148,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>kansas</find>
       <find>desiredNumMajorMinorDistrict</find>
       <find>setNumOfMajorMinor</find>
       <find>.setNumOfDistrict</find>
@@ -177,9 +174,10 @@
       <find>weight</find>
       <find>nyDis</find>
       <find>save</find>
-      <find>overlay</find>
       <find>target</find>
       <find>clickOnStart</find>
+      <find>storeEmail</find>
+      <find>overlay</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -196,7 +194,6 @@
         <option value="$PROJECT_DIR$/src/AlgorithmControl.css" />
         <option value="$PROJECT_DIR$/public/test.json" />
         <option value="$PROJECT_DIR$/src/loginpage/SignUp.js" />
-        <option value="$PROJECT_DIR$/src/loginpage/SignIn.js" />
         <option value="$PROJECT_DIR$/src/components/Radar.js" />
         <option value="$PROJECT_DIR$/src/App.css" />
         <option value="$PROJECT_DIR$/src/components/Map.css" />
@@ -205,10 +202,11 @@
         <option value="$PROJECT_DIR$/public/hw6" />
         <option value="$PROJECT_DIR$/public/paksmi.json" />
         <option value="$PROJECT_DIR$/src/components/Admin.js" />
-        <option value="$PROJECT_DIR$/src/App.js" />
         <option value="$PROJECT_DIR$/src/components/compareInfo.js" />
         <option value="$PROJECT_DIR$/src/components/CompareInfo.js" />
         <option value="$PROJECT_DIR$/src/components/Map.js" />
+        <option value="$PROJECT_DIR$/src/App.js" />
+        <option value="$PROJECT_DIR$/src/loginpage/SignIn.js" />
         <option value="$PROJECT_DIR$/src/home.js" />
       </list>
     </option>
@@ -219,7 +217,7 @@
       <select />
     </treeState>
   </component>
-  <component name="ProjectFrameBounds" extendedState="7">
+  <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="376" />
     <option name="y" value="265" />
     <option name="width" value="1397" />
@@ -271,7 +269,7 @@
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1558038962234" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1558040866757" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
@@ -340,12 +338,12 @@
       <workItem from="1557726711307" duration="505000" />
       <workItem from="1557970518440" duration="4859000" />
       <workItem from="1557983259840" duration="5441000" />
-      <workItem from="1558029321461" duration="9094000" />
+      <workItem from="1558029321461" duration="10621000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="224750000" />
+    <option name="totallyTimeSpent" value="226277000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -573,16 +571,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/loginpage/SignIn.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="799">
-          <caret line="51" column="6" selection-start-line="39" selection-start-column="3" selection-end-line="51" selection-end-column="6" />
-          <folding>
-            <element signature="e#0#41#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/public/nm_congressional_district.geojson">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="34">
@@ -594,16 +582,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="204">
           <caret line="12" column="39" selection-start-line="12" selection-start-column="39" selection-end-line="12" selection-end-column="39" />
-          <folding>
-            <element signature="e#0#41#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/App.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="27" column="3" selection-start-line="27" selection-start-column="3" selection-end-line="27" selection-end-column="3" />
           <folding>
             <element signature="e#0#41#0" expanded="true" />
           </folding>
@@ -624,6 +602,26 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/loginpage/SignIn.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="45" column="17" lean-forward="true" selection-start-line="45" selection-start-column="17" selection-end-line="45" selection-end-column="22" />
+          <folding>
+            <element signature="e#0#41#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/App.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="134">
+          <caret line="65" column="77" selection-start-line="65" selection-start-column="67" selection-end-line="65" selection-end-column="77" />
+          <folding>
+            <element signature="e#0#41#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/components/Map.css">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="136">
@@ -633,7 +631,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/components/Map.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="183">
+        <state relative-caret-position="3451">
           <caret line="218" column="8" selection-start-line="218" selection-start-column="8" selection-end-line="218" selection-end-column="8" />
           <folding>
             <element signature="e#0#26#0" expanded="true" />
@@ -643,8 +641,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/home.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="322">
-          <caret line="397" column="38" lean-forward="true" selection-start-line="397" selection-start-column="38" selection-end-line="397" selection-end-column="38" />
+        <state relative-caret-position="118">
+          <caret line="28" column="24" lean-forward="true" selection-start-line="28" selection-start-column="24" selection-end-line="28" selection-end-column="24" />
           <folding>
             <element signature="e#0#41#0" expanded="true" />
           </folding>
