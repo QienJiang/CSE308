@@ -34,20 +34,28 @@ class home extends React.Component {
             maxMajorMinorPercent : 50,
             minMajorMinorPercent: 0,
             desiredNumMajorMinorDistrict: 0,
-            interestCommunity : 'WHITE',
+            interestCommunity : 'Community of Interest',
             phase: 'Start',
             text : "",
+            startDisable: false,
+            compactnessMethod: 'Select compactness'
         };
 
         this.clickOnStart = this.clickOnStart.bind(this);
         this.setNumOfDistrict = this.setNumOfDistrict.bind(this);
         this.setNumOfMajorMinor = this.setNumOfMajorMinor.bind(this);
         this.setNumOfBatchRun = this.setNumOfBatchRun.bind(this);
-        this.logout = this.logout.bind(this)
+        this.logout = this.logout.bind(this);
+        this.setSelectedInterest = this.setSelectedInterest.bind(this);
     }
     logout(e){
         this.props.history.push("/")
         store.remove('loggedIn')
+    }
+    setSelectedInterest(s){
+        this.setState({
+            interestCommunity : s
+        })
     }
     clickOnStart(e){
         if(e.target.value === 'Start') {
@@ -59,6 +67,9 @@ class home extends React.Component {
             this.props.socket.emit('resume')
         }else if(e.target.value === 'Phase two'){
             this.props.socket.emit('resume')
+            this.setState({
+                startDisable : true
+            })
         }else if(e.target.value === 'stop'){
             this.props.socket.emit('stop')
         }else if(e.target.value === 'pause'){
@@ -66,6 +77,12 @@ class home extends React.Component {
         }else if(e.target.value === 'resume'){
             this.props.socket.emit('resume')
         }
+
+    }
+    setSelectedCompactnessMethod(s){
+        this.setState({
+            compactnessMethod : s
+        })
 
     }
     setNumOfDistrict(e){
@@ -159,12 +176,28 @@ class home extends React.Component {
                                 <Row style={{margin:10}}><Col>
                                     <Dropdown>
                                         <Dropdown.Toggle style={{width:210}} variant="outline-light" id="dropdown-basic">
-                                            Community of Interest
+                                            {this.state.interestCommunity}
                                         </Dropdown.Toggle>
                                         <Dropdown.Menu>
-                                            <Dropdown.Item>Asian</Dropdown.Item>
-                                            <Dropdown.Item>Africa-American</Dropdown.Item>
-                                            <Dropdown.Item>Native-American</Dropdown.Item>
+                                            <Dropdown.Item onClick={()=>{this.setSelectedInterest('WHITE');}}>White</Dropdown.Item>
+                                            <Dropdown.Item onClick={()=>{this.setSelectedInterest('AFRICANAMERICAN');}}>African-American</Dropdown.Item>
+                                            <Dropdown.Item onClick={()=>{this.setSelectedInterest('ASIAN');}}>Asian</Dropdown.Item>
+                                            <Dropdown.Item onClick={()=>{this.setSelectedInterest('HISPANIC');}}>Hispanic</Dropdown.Item>
+                                            <Dropdown.Item onClick={()=>{this.setSelectedInterest('HAWAIIAN');}}>Hawaiian</Dropdown.Item>
+                                            <Dropdown.Item onClick={()=>{this.setSelectedInterest('OTHER');}}>Other</Dropdown.Item>
+                                        </Dropdown.Menu>
+                                    </Dropdown>
+                                </Col><Col>
+
+                                </Col></Row>
+                                <Row style={{margin:10}}><Col>
+                                    <Dropdown>
+                                        <Dropdown.Toggle style={{width:210}} variant="outline-light" id="dropdown-basic">
+                                            {this.state.compactnessMethod}
+                                        </Dropdown.Toggle>
+                                        <Dropdown.Menu>
+                                            <Dropdown.Item onClick={()=>{this.setSelectedCompactnessMethod('PolsbyPopper');}}>PolsbyPopper</Dropdown.Item>
+                                            <Dropdown.Item onClick={()=>{this.setSelectedCompactnessMethod('Schwartzberg');}}>Schwartzberg</Dropdown.Item>
                                         </Dropdown.Menu>
                                     </Dropdown>
                                 </Col><Col>
@@ -302,7 +335,7 @@ class home extends React.Component {
                                     </Col>
                                 </Row>
                                 <Row style={{'margin-top':30}}>
-                                    <Col><Button variant="outline-light" style={{width:70, 'font-size': '0.8em'}} value = {this.state.phase} onClick={this.clickOnStart}>{this.state.phase}</Button></Col>
+                                    <Col><Button variant="outline-light" style={{width:70, 'font-size': '0.8em'}} disabled = {this.state.startDisable} value = {this.state.phase} onClick={this.clickOnStart}>{this.state.phase}</Button></Col>
                                     <Col><Button variant="outline-light" style={{width:70, 'font-size': '0.8em'}} value = 'stop' onClick={this.clickOnStart}>Stop</Button></Col>
                                     <Col><Button variant="outline-light" style={{width:70, 'font-size': '0.8em'}} value = 'pause' onClick={this.clickOnStart} >Pause</Button></Col>
                                     <Col><Button variant="outline-light" style={{width:70, 'font-size': '0.8em'}} value = 'resume' onClick={this.clickOnStart}>Resume</Button></Col>
