@@ -16,9 +16,11 @@ class App extends Component {
   constructor(props){
     super(props);
     this.state ={
-      selectedState :'Select State'
+      selectedState :'Select State',
+        compareList : []
     }
     this.setSelectedState = this.setSelectedState.bind(this)
+      this.updateCompare = this.updateCompare.bind(this)
       this.socket = io('http://localhost:9093');
       this.socket.on('connect',()=>{
           console.log("success")
@@ -32,12 +34,19 @@ class App extends Component {
     })
   }
 
+  updateCompare(l){
+    this.setState({
+        compareList : l
+    })
+  }
+
+
     render() {
     return (
       <Router basename="/">
       <div className="App">
 
-      <Map selectedState = {this.state.selectedState} setSelectedState = {this.setSelectedState} socket = {this.socket}/>
+      <Map selectedState = {this.state.selectedState} setSelectedState = {this.setSelectedState} socket = {this.socket} updateCompare ={this.updateCompare} compareList ={this.state.compareList}/>
 
 
       <div className="App__Form" >
@@ -51,7 +60,7 @@ class App extends Component {
       </Route>
       <Route exact path="/Guest" component={Guest}>
       </Route>
-      <Route exact path="/home" render={()=> <Home selectedState = {this.state.selectedState} setSelectedState = {this.setSelectedState} socket={this.socket}/>} >
+      <Route exact path="/home" render={()=> <Home selectedState = {this.state.selectedState} setSelectedState = {this.setSelectedState} socket={this.socket} compareList = {this.state.compareList}/>} >
       </Route>
           <Route exact path="/admin" component={Admin}>
           </Route>

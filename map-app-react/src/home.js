@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
+import ReactDOM from "react-dom";
 import Dropdown from 'react-bootstrap/Dropdown'
 import Button from 'react-bootstrap/Button'
 import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import Form from 'react-bootstrap/Form'
-import {Tabs,Tab} from 'react-bootstrap'
+import {Tabs,Tab,InputGroup} from 'react-bootstrap'
 import Badge from 'react-bootstrap/Badge'
 import ProgressBar from 'react-bootstrap/ProgressBar'
 import 'react-input-range/lib/css/index.css'
@@ -16,11 +17,11 @@ import './loginpage/Toggle.css'
 import store from 'store'
 import {Link, NavLink, Redirect,withRouter} from 'react-router-dom';
 import hashmap from "hashmap";
+import CompareInfo from "./components/CompareInfo";
 
 class home extends React.Component {
     constructor(props) {
         super(props);
-
         this.state = {
             state: 35,
             targetDistrictNumber:10,
@@ -47,10 +48,28 @@ class home extends React.Component {
         this.setNumOfBatchRun = this.setNumOfBatchRun.bind(this);
         this.logout = this.logout.bind(this);
         this.setSelectedInterest = this.setSelectedInterest.bind(this);
+        this.clickOnCompare = this.clickOnCompare.bind(this);
+        this.clickOnCompareWithOriginal = this.clickOnCompareWithOriginal.bind(this)
+    }
+    saveMap(e){
+        this.props.socket.emit('saveMap')
+    }
+    loadMap(e){
+        this.props.socket.emit('loadMap')
+    }
+    deleteMap(e){
+        this.props.socket.emit('deleteMap', this.state)
+    }
+    clickOnCompare(e){
+        console.log(this.props.compareList)
+        ReactDOM.render(<CompareInfo compareList ={this.props.compareList}/>,document.getElementById("summaryResult"))
     }
     logout(e){
         this.props.history.push("/")
         store.remove('loggedIn')
+    }
+    clickOnCompareWithOriginal(e){
+
     }
     setSelectedInterest(s){
         this.setState({
@@ -171,7 +190,7 @@ class home extends React.Component {
                                         </Dropdown.Menu>
                                     </Dropdown>
                                 </Col><Col>
-                                    <Button style={{width:100}} variant="outline-light">Save Map</Button>
+                                    <Button style={{width:100}} variant="outline-light" onClick={this.saveMap}>Save Map</Button>
                                 </Col></Row>
                                 <Row style={{margin:10}}><Col>
                                     <Dropdown>
@@ -188,7 +207,7 @@ class home extends React.Component {
                                         </Dropdown.Menu>
                                     </Dropdown>
                                 </Col><Col>
-
+                                        <Button style={{width:100}} variant="outline-light" onClick={this.loadMap}>Load Map</Button>
                                 </Col></Row>
                                 <Row style={{margin:10}}><Col>
                                     <Dropdown>
@@ -201,32 +220,31 @@ class home extends React.Component {
                                         </Dropdown.Menu>
                                     </Dropdown>
                                 </Col><Col>
-
+                                        <Button style={{width:100}} variant="outline-light" onClick={this.deleteMap}>Delete Map</Button>
                                 </Col></Row>
                                 <Row style={{'margin-top':20}}>
-                                    <Col sm={3}>
-                                        <Button variant="outline-light" style={{width:80, 'font-size': '0.5em'}} disabled>
+                                    <Col sm={4}>
                                             TargetDistrict:
-                                        </Button>
+
                                     </Col>
                                     <Col sm={3}>
                                         <Form.Control type="number"  value = {this.state.targetDistrictNumber} onChange={this.setNumOfDistrict}/>
-                                    </Col>
-                                    <Col sm={3}>
-                                        <Button variant="outline-light" style={{width:80, 'font-size': '0.5em'}} disabled>
-                                            TargetMajorMinor:
-                                        </Button>
-                                    </Col>
-                                    <Col sm={3}>
-                                        <Form.Control type="number"  value = {this.state.desiredNumMajorMinorDistrict} onChange={this.setNumOfMajorMinor}/>
                                     </Col>
 
                                 </Row>
                                 <Row style={{'margin-top':20}}>
                                     <Col sm={4}>
-                                        <Button variant="outline-light" style={{width:100, 'font-size': '0.8em'}} disabled>
+                                        TargetMajorMinor:
+                                    </Col>
+                                    <Col sm={3}>
+                                        <Form.Control type="number"  value = {this.state.desiredNumMajorMinorDistrict} onChange={this.setNumOfMajorMinor}/>
+                                    </Col>
+                                </Row>
+                                <Row style={{'margin-top':20}}>
+                                    <Col sm={4}>
+
                                             MinMajorMinor:
-                                        </Button>
+
                                     </Col>
                                     <Col sm={8}>
                                         <InputRange
@@ -238,9 +256,9 @@ class home extends React.Component {
                                 </Row>
                                 <Row style={{'margin-top':20}}>
                                     <Col sm={4}>
-                                        <Button variant="outline-light" style={{width:100, 'font-size': '0.8em'}} disabled>
+
                                             MaxMajorMinor:
-                                        </Button>
+
                                     </Col>
                                     <Col sm={8}>
                                         <InputRange
@@ -252,9 +270,8 @@ class home extends React.Component {
                                 </Row>
                                 <Row style={{'margin-top':20}}>
                                     <Col sm={4}>
-                                        <Button variant="outline-light" style={{width:100, 'font-size': '0.8em'}} disabled>
+
                                             Equality:
-                                        </Button>
                                     </Col>
                                     <Col sm={8}>
                                         <InputRange
@@ -266,9 +283,9 @@ class home extends React.Component {
                                 </Row>
                                 <Row style={{'margin-top':10}}>
                                     <Col sm={4}>
-                                        <Button variant="outline-light" style={{width:100, 'font-size': '0.8em'}} disabled>
+
                                             Fairness:
-                                        </Button>
+
                                     </Col>
                                     <Col sm={8}>
                                         <InputRange
@@ -280,9 +297,8 @@ class home extends React.Component {
                                 </Row>
                                 <Row style={{'margin-top':10}}>
                                     <Col sm={4}>
-                                        <Button variant="outline-light" style={{width:100, 'font-size': '0.8em'}} disabled>
+
                                             Compactness:
-                                        </Button>
                                     </Col>
                                     <Col sm={8}>
                                         <InputRange
@@ -294,9 +310,8 @@ class home extends React.Component {
                                 </Row>
                                 <Row style={{'margin-top':10}}>
                                     <Col sm={4}>
-                                        <Button variant="outline-light" style={{width:100, 'font-size': '0.8em'}} disabled>
+
                                             MajorMinor:
-                                        </Button>
                                     </Col>
                                     <Col sm={8}>
                                         <InputRange
@@ -308,9 +323,9 @@ class home extends React.Component {
                                 </Row>
                                 <Row style={{'margin-top':10}}>
                                     <Col sm={4}>
-                                        <Button variant="outline-light" style={{width:100, 'font-size': '0.8em'}} disabled>
+
                                             EfficiencyGpa
-                                        </Button>
+
                                     </Col>
                                     <Col sm={8}>
                                         <InputRange
@@ -322,9 +337,8 @@ class home extends React.Component {
                                 </Row>
                                 <Row style={{'margin-top':10}}>
                                     <Col sm={4}>
-                                        <Button variant="outline-light" style={{width:100, 'font-size': '0.8em'}} disabled>
                                             Competitive:
-                                        </Button>
+
                                     </Col>
                                     <Col sm={8}>
                                         <InputRange
@@ -365,18 +379,41 @@ class home extends React.Component {
                                     </Col>
                                 </Row>
                                 <Row style={{'margin-top':30}}>
-                                    <Col><Button variant="outline-light" style={{width:70, 'font-size': '0.8em'}}>Batch Run</Button></Col>
-                                    <Col><Button variant="outline-light" style={{width:70, 'font-size': '0.8em'}}>Stop</Button></Col>
-                                    <Col><Button variant="outline-light" style={{width:70, 'font-size': '0.8em'}}>Pause</Button></Col>
-                                    <Col><Button variant="outline-light" style={{width:70, 'font-size': '0.8em'}}>Resume</Button></Col>
+                                    <Col><Button variant="outline-light" style={{width:70, 'font-size': '0.8em'}}  onClick={this.clickOnStart}>Batch Run</Button></Col>
+                                    <Col><Button variant="outline-light" style={{width:70, 'font-size': '0.8em'}}  onClick={this.clickOnStart}>Stop</Button></Col>
+                                    <Col><Button variant="outline-light" style={{width:70, 'font-size': '0.8em'}}  onClick={this.clickOnStart}>Pause</Button></Col>
+                                    <Col><Button variant="outline-light" style={{width:70, 'font-size': '0.8em'}}  onClick={this.clickOnStart}>Resume</Button></Col>
                                 </Row>
+                                <Row>
+                                    <input type="radio" name="config" value="compactness"/> Compactness
+                                </Row>
+                                <Row>
+                                    <input type="radio" name="config" value="female"/> Population equality
+                                </Row>
+                                <Row>
+                                    <input type="radio" name="config" value="other"/> Fairness
+                                </Row>
+                                <Row>
+                                    <input type="radio" name="config" value="aa"/> Major Minor
+                                </Row>
+                                <Row>
+                                    <input type="radio" name="config" value="other"/> Efficiency Gap
+                                </Row>
+                                <Row>
+                                    <input type="radio" name="config" value="other"/> Competitive
+                                </Row>
+
                                 <Row style={{'margin-top':10}}>
                                     <Button variant="outline-light" style={{width:160, 'font-size': '0.8em'}} disabled>Estimated Time: 2m 3s:</Button>
                                 </Row>
                                 <ProgressBar variant="dark" style={{'margin-top':10}} animated now={45} />
                             </Tab>
                             <Tab eventKey="summary" title="Summary">
+                                <Button variant="outline-light" style={{width:70, 'font-size': '0.8em'}} value = 'Compare' onClick={this.clickOnCompare}>Compare</Button>
+                                <Button variant="outline-light" style={{width:70, 'font-size': '0.8em'}} value = 'CompareWithOriginal' onClick={this.clickOnCompareWithOriginal}>CompareWithOriginal</Button>
+                                <div id="summaryResult">
 
+                                </div>
                             </Tab>
                         </Tabs>
                     </Row>

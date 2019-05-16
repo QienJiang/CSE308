@@ -25,7 +25,7 @@ export default class Map extends React.Component{
             info: '',
             data: [],
             open: true,
-            state: '',
+            state: ''
         };
         this.stateStyle = this.stateStyle.bind(this);
         this.precinctStyle = this.precinctStyle.bind(this);
@@ -35,7 +35,9 @@ export default class Map extends React.Component{
         this.zoomToFeature = this.zoomToFeature.bind(this);
         this.onEachFeature = this.onEachFeature.bind(this);
         this.updatePrecinctInfo = this.updatePrecinctInfo.bind(this);
+        this.addCompare = this.addCompare.bind(this);
         // this.componentDidUpdate = this.componentDidUpdate.bind(this);
+        this.newDistrict = null
     }
     componentDidUpdate(prevProps){
         if (prevProps.selectedState  !== this.props.selectedState ) {
@@ -116,12 +118,38 @@ export default class Map extends React.Component{
         this.updatePrecinctInfo(layer.feature.properties);
     }
     resetHighlight(e) {
+        let list = this.props.compareList;
+        for(let i = 0; i < list.length;i++) {
+            if (list[i] === e.target) {
+                return
+            }
+        }
         e.target.setStyle({
             weight: 1,
             color: 'white'
         });
         //this.paLayer.resetStyle(e.target);
     }
+    addCompare(e){
+        let list = this.props.compareList;
+        for(let i = 0; i < list.length;i++){
+            if(list[i] === e.target){
+                e.target.setStyle({
+                    weight: 1,
+                });
+                list.splice(i, 1)
+                return;
+            }
+        }
+        list.push(e.target)
+        e.target.setStyle({
+            weight: 3,
+        });
+        this.props.updateCompare(list);
+    }
+
+
+
     onEachFeature(feature, layer) {
         var customOptions =
             {
@@ -134,7 +162,8 @@ export default class Map extends React.Component{
         layer.on({
             mouseover: this.highlightFeature,
             mouseout: this.resetHighlight,
-            click: this.zoomToFeature
+            click: this.zoomToFeature,
+            contextmenu : this.addCompare,
         });
 
     }
@@ -179,13 +208,14 @@ export default class Map extends React.Component{
 
       this.props.socket.on('updateDistrictBoundary',(data)=>{
           var boundry = JSON.parse(data)
-          this.paDistrict = L.geoJson(boundry,{style: this.stateStyle,onEachFeature: this.onEachFeature})
-          this.paDistrict.eachLayer((layer)=> {
+          this.newDistrict = L.geoJson(boundry,{style: this.stateStyle,onEachFeature: this.onEachFeature})
+          this.newDistrict.eachLayer((layer)=> {
               layer.setStyle({
                   fillColor : layer.feature.properties.COLOR,
                   fillOpacity:1
               })
           })
+          this.baseLayer.addOverlay(this.newDistrict,"new District")
       })
 
       this.mymap = L.map(this.refs.mymap, {
@@ -219,8 +249,8 @@ export default class Map extends React.Component{
       this.nmLayer = L.geoJson.ajax("https://raw.githubusercontent.com/QienJiang/CSE308/master/map-app-react/public/nm_data.geojson",{style: this.precinctStyle,onEachFeature: this.onEachFeature});
       this.moLayer = L.geoJson.ajax("https://raw.githubusercontent.com/QienJiang/CSE308/master/map-app-react/public/mo_data.geojson",{style: this.precinctStyle,onEachFeature: this.onEachFeature})
       this.paLayer = L.geoJson.ajax("https://raw.githubusercontent.com/QienJiang/CSE308/master/map-app-react/public/pa_data.geojson",{style: this.precinctStyle,onEachFeature: this.onEachFeature});
-      this.paDistrict = L.geoJson.ajax("https://raw.githubusercontent.com/QienJiang/CSE308/master/map-app-react/public/PaCongressional2019_01.geojson",{style: this.precinctStyle,onEachFeature: this.onEachFeature})
-      this.nyDistrict = L.geoJson.ajax("https://raw.githubusercontent.com/QienJiang/CSE308/master/map-app-react/public/nydistrict.geojson",{style: this.precinctStyle,onEachFeature: this.onEachFeature})
+      this.paDistrict = L.geoJson.ajax("https://raw.githubusercontent.com/QienJiang/CSE308/master/map-app-react/public/PaCongressional2019_01.geojson",{style: this.precinctStyle,onEachFeature: this.onEachFeature});
+      this.nmDistrict = L.geoJson.ajax("https://raw.githubusercontent.com/QienJiang/CSE308/master/map-app-react/public/nm_congressional_district.geojson",{style: this.precinctStyle,onEachFeature: this.onEachFeature})
       /*
       this.stateLayer.on('data:loaded',()=> {
           this.stateLayer.eachLayer(function (layer) {
@@ -259,7 +289,7 @@ export default class Map extends React.Component{
         this.mymap.on('overlayadd',()=>{
             if(this.props.selectedState === 'New Mexico'){
                 this.mymap.removeLayer(this.nmLayer)
-                this.mymap.addLayer(this.nyDistrict)
+                this.mymap.addLayer(this.nmDistrict)
             }else if(this.props.selectedState === 'Pennsylvania'){
                 this.mymap.removeLayer(this.paLayer)
                 this.mymap.addLayer(this.paDistrict)
@@ -267,7 +297,7 @@ export default class Map extends React.Component{
         })
       this.mymap.on('overlayremove',()=>{
           if(this.props.selectedState === 'New Mexico'){
-              this.mymap.removeLayer(this.nyDistrict)
+              this.mymap.removeLayer(this.nmDistrict)
               this.mymap.addLayer(this.nmLayer)
           }else if(this.props.selectedState === 'Pennsylvania'){
               this.mymap.removeLayer(this.paDistrict)
@@ -355,9 +385,8 @@ export default class Map extends React.Component{
       this.districtInfo.addTo(this.mymap);
 
       this.overlayMaps = {
-          "OriginalDistrict": this.paDistrict
       }
-      L.control.layers(null,this.overlayMaps,{position:'bottomleft'}).addTo(this.mymap);
+      this.baseLayer = L.control.layers(null,this.overlayMaps,{position:'bottomleft'}).addTo(this.mymap);
   /*  L.tileLayer('https://stamen-tiles-{s}.a.ssl.fastly.net/toner-labels/{z}/{x}/{y}{r}.{ext}', {
           attribution: 'Map tiles by <a href="http://stamen.com">Stamen Design</a>, <a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a> &mdash; Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
           subdomains: 'abcd',
@@ -372,8 +401,24 @@ export default class Map extends React.Component{
     this.mymap.flyToBounds(e.target);
     if(e.target.feature.properties.name === 'New Mexico' ||
         e.target.feature.properties.name === 'Missouri'||
-        e.target.feature.properties.name === 'Pennsylvania')
-        this.props.setSelectedState( e.target.feature.properties.name);
+        e.target.feature.properties.name === 'Pennsylvania') {
+        this.props.setSelectedState(e.target.feature.properties.name);
+        if(e.target.feature.properties.name === 'New Mexico'){
+            if(this.newDistrict!==null) {
+                this.baseLayer.removeLayer(this.newDistrict)
+            }
+            this.baseLayer.removeLayer(this.paLayer)
+            this.baseLayer.addBaseLayer(this.nmLayer,"Precinct")
+        }else if(e.target.feature.properties.name === 'Pennsylvania'){
+            if(this.newDistrict!==null) {
+                this.baseLayer.removeLayer(this.newDistrict)
+            }
+            this.baseLayer.removeLayer(this.nmLayer)
+            this.baseLayer.addBaseLayer(this.paLayer,"Precinct")
+        }else{
+
+        }
+    }
         /*
     this.setState({
         state : e.target.feature.properties.GeoId,
