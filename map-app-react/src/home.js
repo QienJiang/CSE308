@@ -117,7 +117,8 @@ class home extends React.Component {
 
     }
     render() {
-        if(!!!store.get('loggedIn')){
+        console.log(!store.get('loggedIn'))
+        if(!store.get('loggedIn')){
             return <Redirect to="/sign-in" />
         }
         return (

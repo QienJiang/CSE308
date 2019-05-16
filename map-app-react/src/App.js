@@ -8,6 +8,7 @@ import SignIn from './loginpage/SignIn';
 import Guest from './loginpage/Guest';
 import Toggle from './loginpage/Toggle';
 import Home from './home';
+import Admin from './components/Admin'
 import io from "socket.io-client";
 
 
@@ -52,6 +53,8 @@ class App extends Component {
       </Route>
       <Route exact path="/home" render={()=> <Home selectedState = {this.state.selectedState} setSelectedState = {this.setSelectedState} socket={this.socket}/>} >
       </Route>
+          <Route exact path="/admin" component={Admin}>
+          </Route>
       </div>
       </div>
       </Router>
