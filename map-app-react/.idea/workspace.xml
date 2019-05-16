@@ -2,9 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="70f1d53b-8570-4fbc-af18-b25098566ca7" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/components/Admin.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/home.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/home.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -32,8 +29,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/home.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="218">
-              <caret line="91" column="30" lean-forward="true" selection-start-line="91" selection-start-column="30" selection-end-line="91" selection-end-column="39" />
+            <state relative-caret-position="248">
+              <caret line="192" column="129" selection-start-line="192" selection-start-column="129" selection-end-line="192" selection-end-column="129" />
               <folding>
                 <element signature="e#0#41#0" expanded="true" />
               </folding>
@@ -155,7 +152,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>log</find>
       <find>this.info</find>
       <find>this.districtInfo</find>
       <find>login</find>
@@ -185,6 +181,7 @@
       <find>setNumOfMajorMinor</find>
       <find>.setNumOfDistrict</find>
       <find>store</find>
+      <find>startDisable</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -341,12 +338,12 @@
       <workItem from="1557638471063" duration="5654000" />
       <workItem from="1557706383069" duration="5654000" />
       <workItem from="1557726711307" duration="505000" />
-      <workItem from="1557970518440" duration="1419000" />
+      <workItem from="1557970518440" duration="3629000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="206775000" />
+    <option name="totallyTimeSpent" value="208985000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -358,7 +355,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-7" y="-7" width="1550" height="838" extended-state="7" />
+    <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.12013423" />
@@ -623,8 +620,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/home.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="218">
-          <caret line="91" column="30" lean-forward="true" selection-start-line="91" selection-start-column="30" selection-end-line="91" selection-end-column="39" />
+        <state relative-caret-position="248">
+          <caret line="192" column="129" selection-start-line="192" selection-start-column="129" selection-end-line="192" selection-end-column="129" />
           <folding>
             <element signature="e#0#41#0" expanded="true" />
           </folding>
