@@ -461,7 +461,7 @@ class home extends React.Component {
                             <Tab eventKey="summary" title="Summary">
                                 <Button variant="outline-light" style={{width:70, 'font-size': '0.8em'}} value = 'Compare' onClick={this.clickOnCompare}>Compare</Button>
                                 <Button variant="outline-light" style={{width:70, 'font-size': '0.8em'}} value = 'CompareWithOriginal' onClick={this.clickOnCompareWithOriginal}>CompareWithOriginal</Button>
-                                <div id="summaryResult">
+                                <div id="summaryResult" style={{'white-space': 'pre-line',overflow : 'auto'}}>
                                     {this.state.summary}
                                 </div>
                             </Tab>
