@@ -346,7 +346,7 @@ class home extends React.Component {
                                 <Row style={{'margin-top':10}}>
                                     <Col sm={4}>
 
-                                            partition Fairness:
+                                            Partition Fairness:
 
                                     </Col>
                                     <Col sm={8}>
