@@ -259,6 +259,7 @@ export default class Map extends React.Component{
       this.paLayer = L.geoJson.ajax("https://raw.githubusercontent.com/QienJiang/CSE308/master/map-app-react/public/pa_data.geojson",{style: this.precinctStyle,onEachFeature: this.onEachFeature});
       this.paDistrict = L.geoJson.ajax("https://raw.githubusercontent.com/QienJiang/CSE308/master/map-app-react/public/PaCongressional2019_01.geojson",{style: this.precinctStyle,onEachFeature: this.onEachFeature});
       this.nmDistrict = L.geoJson.ajax("https://raw.githubusercontent.com/QienJiang/CSE308/master/map-app-react/public/nm_congressional_district.geojson",{style: this.precinctStyle,onEachFeature: this.onEachFeature})
+      this.iaDistrict = L.geoJson.ajax("https://raw.githubusercontent.com/QienJiang/CSE308/master/map-app-react/public/IA_finalGeoJson.geojson",{style: this.precinctStyle,onEachFeature: this.onEachFeature})
       /*
       this.stateLayer.on('data:loaded',()=> {
           this.stateLayer.eachLayer(function (layer) {
@@ -417,16 +418,34 @@ export default class Map extends React.Component{
                 this.baseLayer.removeLayer(this.newDistrict)
             }
             this.baseLayer.removeLayer(this.paLayer)
+            this.baseLayer.removeLayer(this.iaLayer)
+            this.baseLayer.removeLayer(this.paDistrict)
+            this.baseLayer.removeLayer(this.iaDistrict)
+            this.baseLayer.addBaseLayer(this.nmDistrict,"Original")
             this.baseLayer.addBaseLayer(this.nmLayer,"Precinct")
         }else if(e.target.feature.properties.name === 'Pennsylvania'){
             if(this.newDistrict!==null) {
                 this.baseLayer.removeLayer(this.newDistrict)
             }
             this.baseLayer.removeLayer(this.nmLayer)
-            this.baseLayer.addBaseLayer(this.paLayer,"Precinct")
-        }else{
-
+            this.baseLayer.removeLayer(this.iaLayer)
+            this.baseLayer.removeLayer(this.nmDistrict)
+            this.baseLayer.removeLayer(this.iaDistrict)
+            this.baseLayer.addBaseLayer(this.paDistrict,"Original")
+            this.baseLayer.addBaseLayer(this.paLayer,"Current")
+        }else if (e.target.feature.properties.name === 'Iowa'){
+            if(this.newDistrict!==null) {
+                this.baseLayer.removeLayer(this.newDistrict)
+            }
+            this.baseLayer.removeLayer(this.nmLayer)
+            this.baseLayer.removeLayer(this.paLayer)
+            this.baseLayer.removeLayer(this.nmDistrict)
+            this.baseLayer.removeLayer(this.paDistrict)
+            this.baseLayer.addBaseLayer(this.iaDistrict,"Original")
+            this.baseLayer.addBaseLayer(this.iaLayer,"Current")
         }
+
+
     }
         /*
     this.setState({
