@@ -152,6 +152,7 @@ class Admin extends Component {
             </Row>
             <Row style={{'margin-top':30}}>
                               <Col><Button variant="outline-light" style={{width:70, 'font-size': '0.8em'}} value = "register" onClick={this.clickOnChange}>Register</Button></Col>
+
             </Row>
             </div>
         )

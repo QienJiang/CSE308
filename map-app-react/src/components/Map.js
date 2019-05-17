@@ -390,7 +390,7 @@ export default class Map extends React.Component{
           let nf = new Intl.NumberFormat()
           this._districtDiv.innerHTML = '<h4>District Information</h4>' +  (props ?
               '<b>'+ 'GeoId: ' + props.GEOID10 + '</b><br />' +'Population: '+ nf.format(props.POP100)
-              + '<br />' + 'democracy vote: ' + nf.format(props.GOVDV2010) + '<br/>' + 'republican vote: ' + nf.format(props.GOVRV2010)
+              + '<br />' + 'Democracy vote: ' + nf.format(props.GOVDV2010) + '<br/>' + 'Republican vote: ' + nf.format(props.GOVRV2010)
               : 'run algorithm to see detail');
       };
       this.districtInfo.addTo(this.mymap);
