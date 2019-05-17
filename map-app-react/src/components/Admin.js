@@ -24,8 +24,17 @@ class Admin extends Component {
         }
         this.setSelectedUser = this.setSelectedUser.bind(this)
         this.clickOnChange = this.clickOnChange.bind(this)
+        this.handleChange = this.handleChange.bind(this);
     }
+    handleChange(e) {
+      let target = e.target;
+      let value = target.value;
+      let name = target.name;
 
+      this.setState({
+        [name]: value
+      });
+    }
     setSelectedUser(user){
         this.setState({
             selectedUser : user
@@ -34,8 +43,8 @@ class Admin extends Component {
 
     clickOnChange(e){
       let  data=JSON.stringify({//×ªJSON ¸ñÊ½
-        "email":this.state.selectedUser,
-        "password":"fadjghj"
+        "email":e.target.elements.email.value,
+        "password":e.target.elements.password.value
       })
 
       if(e.target.value === 'update'){
@@ -101,10 +110,10 @@ class Admin extends Component {
             </Dropdown>
             <Row style={{'margin-top':30}}>
                 <Col><Button variant="outline-light" style={{width:70, 'font-size': '0.8em'}} value = "update" onClick={this.clickOnChange}>Update</Button></Col>
-                <Col><Popup trigger={<button> Trigger</button>} position="right top">
+                <Col>
                 <div className="FormField">
                   <label className="FormField__Label" htmlFor="name">Full Name</label>
-                  <input type="text" id="name" className="FormField__Input" placeholder="Enter your full name" name="name" value={this.state.name} onChange={this.handleChange} />
+                  <input type="text" id="name" className="FormField__Input" placeholder="Enter your full name" name="name" value={this.state.user} onChange={this.handleChange} />
                 </div>
                 <div className="FormField">
                   <label className="FormField__Label" htmlFor="password">Password</label>
@@ -112,9 +121,9 @@ class Admin extends Component {
                 </div>
                 <div className="FormField">
                   <label className="FormField__Label" htmlFor="email">E-Mail Address</label>
-                  <input type="email" id="email" className="FormField__Input" placeholder="Enter your email" name="email" value={this.state.email} onChange={this.handleChange} />
+                  <input type="email" id="email" className="FormField__Input" placeholder="Enter your email" name="email" value={this.state.selectedUser} onChange={this.handleChange} />
                 </div>
-                </Popup></Col>
+                </Col>
                 <Col><Button variant="outline-light" style={{width:70, 'font-size': '0.8em'}} value = 'deleted' onClick={this.clickOnChange} >deleted</Button></Col>
 
             </Row>
