@@ -25,7 +25,7 @@ class home extends React.Component {
         super(props);
         this.state = {
             email: store.get('email'),
-            state: 35,
+            state: 19,
             targetDistrictNumber:10,
             equality: 5,
             fairness :5,
@@ -43,7 +43,8 @@ class home extends React.Component {
             startDisable: false,
             compactnessMethod: 'Select compactness',
             mapHistory : [],
-            selectedMap : 'Select Map'
+            selectedMap : 'Select Map',
+            summary :''
         };
 
         this.clickOnStart = this.clickOnStart.bind(this);
@@ -170,6 +171,11 @@ class home extends React.Component {
                 phase: 'Phase two'
             })
         });
+        this.props.socket.on('summary', (data)=> {
+            this.setState({
+                summary: data
+            })
+        });
 
     }
 
@@ -181,7 +187,7 @@ class home extends React.Component {
                 })
             }else if(this.props.selectedState=== 'Iowa'){
                 this.setState({
-                    state : 29
+                    state : 19
                 })
             }else if(this.props.selectedState === 'Pennsylvania'){
                 this.setState({
@@ -456,7 +462,7 @@ class home extends React.Component {
                                 <Button variant="outline-light" style={{width:70, 'font-size': '0.8em'}} value = 'Compare' onClick={this.clickOnCompare}>Compare</Button>
                                 <Button variant="outline-light" style={{width:70, 'font-size': '0.8em'}} value = 'CompareWithOriginal' onClick={this.clickOnCompareWithOriginal}>CompareWithOriginal</Button>
                                 <div id="summaryResult">
-
+                                    {this.state.summary}
                                 </div>
                             </Tab>
                         </Tabs>

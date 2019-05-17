@@ -24,10 +24,12 @@ class MyRadar extends Component{
         return (
             <div>
                 <p className='voteStyle'>
-                    Id: {this.props.vote.PA_GEO_ID || this.props.vote.name} <br/>
+                    Id: {this.props.vote.GEOID10 || this.props.vote.name || this.props.vote.DISTRICT} <br/>
                     Population: {this.nf.format(this.props.vote.total)}<br/>
                 Democracy  vote: {this.nf.format(this.props.vote.GOVDV2010)} <br/>
-                Republican vote: {this.nf.format(this.props.vote.GOVRV2010)}
+                Republican vote: {this.nf.format(this.props.vote.GOVRV2010)}<br/>
+                    Democracy %: {this.props.vote.GOVDPercent} <br/>
+                    Republican %:  {this.props.vote.GOVRPercent}
                 </p>
                 <Carousel>
                     <Carousel.Item>
