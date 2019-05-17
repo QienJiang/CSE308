@@ -65,7 +65,7 @@ class App extends Component {
       </Route>
       <Route path="/sign-in" component={SignIn} storeEmail = {this.storeEmail}>
       </Route>
-      <Route exact path="/Guest" component={Guest}>
+      <Route exact path="/Guest" render ={()=><Guest selectedState = {this.state.selectedState} setSelectedState = {this.setSelectedState}/>}>
       </Route>
       <Route exact path="/home" render={()=> <Home selectedState = {this.state.selectedState} setSelectedState = {this.setSelectedState} socket={this.socket} compareList = {this.state.compareList}/>} >
       </Route>

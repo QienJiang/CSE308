@@ -1,10 +1,15 @@
 import React, { Component } from 'react';
 import { HashRouter as Router, Route, Link, NavLink } from 'react-router-dom';
 import Toggle from './Toggle';
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
+import Dropdown from "react-bootstrap/Dropdown";
+import Button from "react-bootstrap/Button";
+import {Tab} from "react-bootstrap";
 
 class GuestForm extends Component {
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
 
         this.state = {
             email: '',
@@ -38,11 +43,19 @@ class GuestForm extends Component {
         return (
             <div className="FormCenter" >
                   <Toggle/>
-                <form onSubmit={this.handleSubmit} className="FormFields">
-                    <div className="FormField">
-                        <button className="FormField__Button mr-20">Guest View</button>
-                    </div>
-                </form>
+                <Row style={{margin:10}}><Col>
+                    <Dropdown >
+                        <Dropdown.Toggle style={{width:210}} variant="outline-light" id="dropdown-basic">
+                            {this.props.selectedState}
+                        </Dropdown.Toggle>
+                        <Dropdown.Menu>
+                            <Dropdown.Item onClick={()=>{this.props.setSelectedState('New Mexico');}}>New Mexico</Dropdown.Item>
+                            <Dropdown.Item onClick={()=>{this.props.setSelectedState('Iowa');}}>Iowa</Dropdown.Item>
+                            <Dropdown.Item onClick={()=>{this.props.setSelectedState('Pennsylvania');}}>Pennsylvania</Dropdown.Item>
+                        </Dropdown.Menu>
+                    </Dropdown>
+                </Col>
+                </Row>
             </div>
         );
     }

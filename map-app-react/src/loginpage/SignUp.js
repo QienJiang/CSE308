@@ -39,10 +39,11 @@ class SignUpForm extends Component {
         if(this.state.hasAgreed === true){
 
           console.log("submit "+this.state.hasAgreed);
-        let  data=JSON.stringify({//×ªJSON ¸ñÊ½
+        let  data=JSON.stringify({
           "email":e.target.elements.email.value,
           "password":e.target.elements.password.value,
-          "name":e.target.elements.name.value
+          "name":e.target.elements.name.value,
+            "role": 'user'
         })
         axios.post('http://localhost:8080/homepage/signup',
           data,{
