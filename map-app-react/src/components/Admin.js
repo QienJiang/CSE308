@@ -25,6 +25,7 @@ class Admin extends Component {
         this.setSelectedUser = this.setSelectedUser.bind(this)
         this.clickOnChange = this.clickOnChange.bind(this)
         this.handleChange = this.handleChange.bind(this);
+        this.getAllUsers = this.getAllUsers.bind(this);
     }
     handleChange(e) {
       let target = e.target;
@@ -45,7 +46,8 @@ class Admin extends Component {
       let  data=JSON.stringify({//×ªJSON ¸ñÊ½
         "email":this.state.email,
         "password":this.state.password,
-        "name":this.state.name
+        "name":this.state.name,
+          "role":"user"
       })
 
       if(e.target.value === 'update'){
@@ -66,6 +68,7 @@ class Admin extends Component {
           headers:{ 'Content-Type': 'application/json;charset=UTF-8'}
         })
         .then(request =>{
+            this.getAllUsers()
             console.log("register")
         }).catch((error)=>{
           this.setState({
@@ -79,7 +82,12 @@ class Admin extends Component {
           headers:{ 'Content-Type': 'application/json;charset=UTF-8'}
         })
         .then(request =>{
+            this.getAllUsers()
+            this.setState({
+                selectedUser : 'Select User'
+            })
             console.log("deleted")
+
         }).catch((error)=>{
           this.setState({
               msg: 'Invalid User or Password'
@@ -91,7 +99,7 @@ class Admin extends Component {
 
 
     }
-    componentDidMount(){
+    getAllUsers(){
         let userList = [];
         axios.post('http://localhost:8080/homepage/admin')
             .then(request =>{
@@ -107,6 +115,9 @@ class Admin extends Component {
                 msg: 'Invalid User or Password'
             })
         })
+    }
+    componentDidMount(){
+        this.getAllUsers()
 
     }
     render() {

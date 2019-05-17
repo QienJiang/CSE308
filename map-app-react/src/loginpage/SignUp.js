@@ -36,9 +36,9 @@ class SignUpForm extends Component {
 
     handleSubmit(e) {
         e.preventDefault();
-        if(this.state.hasAgreed === true){
 
           console.log("submit "+this.state.hasAgreed);
+
         let  data=JSON.stringify({
           "email":e.target.elements.email.value,
           "password":e.target.elements.password.value,
@@ -60,7 +60,7 @@ class SignUpForm extends Component {
             })
         })
         console.log('The form was submitted with the following data:');
-      }
+
 
     }
 

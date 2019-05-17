@@ -44,8 +44,11 @@ class SignInForm extends Component {
     .then(request =>{
       store.set('loggedIn',true);
       store.set('user',request.data)
-        console.log("login")
-      this.props.history.push('/home');
+        if(request.data.role=== 'manager'){
+            this.props.history.push('/admin');
+        }else {
+            this.props.history.push('/home');
+        }
 
     }).catch((error)=>{
       this.setState({
