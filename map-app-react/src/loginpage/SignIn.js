@@ -43,7 +43,7 @@ class SignInForm extends Component {
     })
     .then(request =>{
       store.set('loggedIn',true);
-      store.set('user',request.data)
+      store.set('email',request.data.email)
         if(request.data.role=== 'manager'){
             this.props.history.push('/admin');
         }else {

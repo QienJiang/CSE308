@@ -184,6 +184,7 @@ class home extends React.Component {
             })
         });
         this.props.socket.on('summary', (data)=> {
+            this.updateMapHistory()
             this.setState({
                 summary: data
             })

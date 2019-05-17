@@ -115,10 +115,9 @@ export default class Map extends React.Component{
         if(feature.properties.isMajorMinor === 'true'){
             return {
                 fillColor: feature.properties.COLOR,
-                weight: 5,
+                weight: 1,
                 opacity: 1,
-                dashArray: '3',
-                fillOpacity: 0.8,
+                fillOpacity: 1,
                 color: 'white',
             };
         }else {
@@ -126,7 +125,7 @@ export default class Map extends React.Component{
                 fillColor: feature.properties.COLOR,
                 weight: 1,
                 opacity: 1,
-                fillOpacity: 1,
+                fillOpacity: 0.7,
                 color: 'white',
             };
         }
@@ -236,7 +235,6 @@ export default class Map extends React.Component{
       });
 
       this.props.socket.on('updateDistrictBoundary',(data)=>{
-          console.log(data)
           var boundry = JSON.parse(data)
           this.newDistrict = L.geoJson(boundry,{style: this.newDistrictStyle,onEachFeature: this.onEachFeature})
           this.newDistrict.eachLayer((layer)=> {
