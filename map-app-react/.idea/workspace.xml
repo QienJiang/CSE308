@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="70f1d53b-8570-4fbc-af18-b25098566ca7" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/Map.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Map.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -41,8 +42,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/components/Map.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="219">
-              <caret line="389" column="107" selection-start-line="389" selection-start-column="107" selection-end-line="389" selection-end-column="107" />
+            <state relative-caret-position="247">
+              <caret line="390" column="135" selection-start-line="390" selection-start-column="135" selection-end-line="390" selection-end-column="135" />
               <folding>
                 <element signature="e#0#26#0" expanded="true" />
               </folding>
@@ -53,8 +54,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/components/DistrictInfo.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="129">
-              <caret line="26" column="69" lean-forward="true" selection-start-line="26" selection-start-column="69" selection-end-line="26" selection-end-column="78" />
+            <state relative-caret-position="238">
+              <caret line="26" column="53" lean-forward="true" selection-start-line="26" selection-start-column="43" selection-end-line="26" selection-end-column="53" />
             </state>
           </provider>
         </entry>
@@ -84,7 +85,7 @@
         <entry file="file://$PROJECT_DIR$/public/paksmi.json">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="17">
-              <caret line="1" column="31" lean-forward="true" selection-start-line="1" selection-start-column="31" selection-end-line="1" selection-end-column="41" />
+              <caret line="1" column="38" lean-forward="true" selection-start-line="1" selection-start-column="31" selection-end-line="1" selection-end-column="41" />
             </state>
           </provider>
         </entry>
@@ -146,11 +147,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>start</find>
-      <find>this.summaryResult</find>
-      <find>summaryResult</find>
-      <find>GEO</find>
-      <find>layer.</find>
       <find>compareList</find>
       <find>weight</find>
       <find>nyDis</find>
@@ -164,7 +160,6 @@
       <find>storeEmail</find>
       <find>overlay</find>
       <find>whie</find>
-      <find>render</find>
       <find>saveMap</find>
       <find>this.iaLayer</find>
       <find>this.mol</find>
@@ -172,10 +167,16 @@
       <find>json</find>
       <find>DistrictInfo</find>
       <find>updateColor</find>
-      <find>batchRun</find>
       <find>upd</find>
       <find>update</find>
       <find>data</find>
+      <find>render</find>
+      <find>this.precinctInfo</find>
+      <find>precinctInfo</find>
+      <find>onaddcon</find>
+      <find>this.districtInfo</find>
+      <find>this.upda</find>
+      <find>batchRun</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -217,8 +218,8 @@
     </treeState>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="376" />
-    <option name="y" value="265" />
+    <option name="x" value="216" />
+    <option name="y" value="97" />
     <option name="width" value="1397" />
     <option name="height" value="833" />
   </component>
@@ -268,7 +269,7 @@
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1558061640958" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1558063397233" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
@@ -337,12 +338,12 @@
       <workItem from="1557726711307" duration="505000" />
       <workItem from="1557970518440" duration="4859000" />
       <workItem from="1557983259840" duration="5441000" />
-      <workItem from="1558029321461" duration="25128000" />
+      <workItem from="1558029321461" duration="26957000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="240784000" />
+    <option name="totallyTimeSpent" value="242613000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -357,7 +358,7 @@
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.16107382" />
+      <window_info content_ui="combo" id="Project" order="0" weight="0.16107382" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -614,13 +615,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/public/paksmi.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="1" column="31" lean-forward="true" selection-start-line="1" selection-start-column="31" selection-end-line="1" selection-end-column="41" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/components/MyRadar.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="248">
@@ -628,6 +622,13 @@
           <folding>
             <element signature="e#0#37#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/paksmi.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="1" column="38" lean-forward="true" selection-start-line="1" selection-start-column="31" selection-end-line="1" selection-end-column="41" />
         </state>
       </provider>
     </entry>
@@ -640,15 +641,15 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/components/DistrictInfo.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="129">
-          <caret line="26" column="69" lean-forward="true" selection-start-line="26" selection-start-column="69" selection-end-line="26" selection-end-column="78" />
+        <state relative-caret-position="238">
+          <caret line="26" column="53" lean-forward="true" selection-start-line="26" selection-start-column="43" selection-end-line="26" selection-end-column="53" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/components/Map.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="219">
-          <caret line="389" column="107" selection-start-line="389" selection-start-column="107" selection-end-line="389" selection-end-column="107" />
+        <state relative-caret-position="247">
+          <caret line="390" column="135" selection-start-line="390" selection-start-column="135" selection-end-line="390" selection-end-column="135" />
           <folding>
             <element signature="e#0#26#0" expanded="true" />
           </folding>
