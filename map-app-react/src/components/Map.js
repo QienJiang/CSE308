@@ -196,8 +196,8 @@ export default class Map extends React.Component{
                     })
                 }
             })
-        }else if(this.props.selectedState === 'Missouri'){
-            this.moLayer.eachLayer(function (layer) {
+        }else if(this.props.selectedState === 'Iowa'){
+            this.iaLayer.eachLayer(function (layer) {
                 if (datamap.has(layer.feature.properties.GEOID10)) {
                     layer.setStyle({
                         fillColor: datamap.get(layer.feature.properties.GEOID10),
@@ -249,7 +249,7 @@ export default class Map extends React.Component{
       }).addTo(this.mymap);
       this.stateLayer = L.geoJson.ajax("https://raw.githubusercontent.com/QienJiang/CSE308/master/map-app-react/public/paksmi.json",{style: this.stateStyle,onEachFeature: this.onEachFeature});
       this.nmLayer = L.geoJson.ajax("https://raw.githubusercontent.com/QienJiang/CSE308/master/map-app-react/public/nm_data.geojson",{style: this.precinctStyle,onEachFeature: this.onEachFeature});
-      this.moLayer = L.geoJson.ajax("https://raw.githubusercontent.com/QienJiang/CSE308/master/map-app-react/public/mo_data.geojson",{style: this.precinctStyle,onEachFeature: this.onEachFeature})
+      this.iaLayer = L.geoJson.ajax("https://raw.githubusercontent.com/QienJiang/CSE308/master/map-app-react/public/ia_data.geojson",{style: this.precinctStyle,onEachFeature: this.onEachFeature})
       this.paLayer = L.geoJson.ajax("https://raw.githubusercontent.com/QienJiang/CSE308/master/map-app-react/public/pa_data.geojson",{style: this.precinctStyle,onEachFeature: this.onEachFeature});
       this.paDistrict = L.geoJson.ajax("https://raw.githubusercontent.com/QienJiang/CSE308/master/map-app-react/public/PaCongressional2019_01.geojson",{style: this.precinctStyle,onEachFeature: this.onEachFeature});
       this.nmDistrict = L.geoJson.ajax("https://raw.githubusercontent.com/QienJiang/CSE308/master/map-app-react/public/nm_congressional_district.geojson",{style: this.precinctStyle,onEachFeature: this.onEachFeature})
@@ -265,24 +265,24 @@ export default class Map extends React.Component{
       this.mymap.on('zoomend', () =>{
           if (this.mymap.getZoom() >6){
               if(this.props.selectedState === 'New Mexico') {
-                  this.mymap.removeLayer(this.moLayer);
+                  this.mymap.removeLayer(this.iaLayer);
                   this.mymap.removeLayer(this.paLayer);
                   this.mymap.addLayer(this.nmLayer);
               }
               else if(this.props.selectedState === 'Pennsylvania') {
-                  this.mymap.removeLayer(this.moLayer);
+                  this.mymap.removeLayer(this.iaLayer);
                   this.mymap.removeLayer(this.nmLayer);
                   this.mymap.addLayer(this.paLayer);
 
-              }else if(this.props.selectedState === 'Missouri'){
+              }else if(this.props.selectedState === 'Iowa'){
                   this.mymap.removeLayer(this.nmLayer);
                   this.mymap.removeLayer(this.paLayer);
-                  this.mymap.addLayer(this.moLayer);
+                  this.mymap.addLayer(this.iaLayer);
               }
               this.mymap.removeLayer(this.stateLayer);
           }
           else {
-              this.mymap.removeLayer(this.moLayer);
+              this.mymap.removeLayer(this.iaLayer);
               this.mymap.removeLayer(this.nmLayer);
               this.mymap.removeLayer(this.paLayer);
               this.mymap.addLayer(this.stateLayer);
@@ -402,7 +402,7 @@ export default class Map extends React.Component{
   zoomToFeature(e) {
     this.mymap.flyToBounds(e.target);
     if(e.target.feature.properties.name === 'New Mexico' ||
-        e.target.feature.properties.name === 'Missouri'||
+        e.target.feature.properties.name === 'Iowa'||
         e.target.feature.properties.name === 'Pennsylvania') {
         this.props.setSelectedState(e.target.feature.properties.name);
         if(e.target.feature.properties.name === 'New Mexico'){

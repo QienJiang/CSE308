@@ -179,7 +179,7 @@ class home extends React.Component {
                 this.setState({
                     state : 35
                 })
-            }else if(this.props.selectedState=== 'Missouri'){
+            }else if(this.props.selectedState=== 'Iowa'){
                 this.setState({
                     state : 29
                 })
@@ -210,7 +210,7 @@ class home extends React.Component {
                                         </Dropdown.Toggle>
                                         <Dropdown.Menu>
                                             <Dropdown.Item onClick={()=>{this.props.setSelectedState('New Mexico');}}>New Mexico</Dropdown.Item>
-                                            <Dropdown.Item onClick={()=>{this.props.setSelectedState('Missouri');}}>Missouri</Dropdown.Item>
+                                            <Dropdown.Item onClick={()=>{this.props.setSelectedState('Iowa');}}>Iowa</Dropdown.Item>
                                             <Dropdown.Item onClick={()=>{this.props.setSelectedState('Pennsylvania');}}>Pennsylvania</Dropdown.Item>
                                         </Dropdown.Menu>
                                     </Dropdown>
@@ -268,7 +268,13 @@ class home extends React.Component {
                                     <Col sm={3}>
                                         <Form.Control type="number"  value = {this.state.targetDistrictNumber} onChange={this.setNumOfDistrict}/>
                                     </Col>
-
+                                    <Col>
+                                        <Button style={{width:100}} variant="outline-light" onClick={()=>{
+                                            this.setState({
+                                                text : this.state.text + '\n' + 'save log success'
+                                            })
+                                        }}>Save Log</Button>
+                                    </Col>
                                 </Row>
                                 <Row style={{'margin-top':20}}>
                                     <Col sm={4}>
