@@ -43,7 +43,8 @@ class SignInForm extends Component {
     })
     .then(request =>{
       store.set('loggedIn',true);
-      store.set('email',request.data.email)
+      store.set('user',request.data)
+        console.log("login")
       this.props.history.push('/home');
 
     }).catch((error)=>{

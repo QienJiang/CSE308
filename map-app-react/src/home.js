@@ -18,6 +18,7 @@ import store from 'store'
 import {Link, NavLink, Redirect,withRouter} from 'react-router-dom';
 import hashmap from "hashmap";
 import CompareInfo from "./components/CompareInfo";
+import axios from "axios";
 
 class home extends React.Component {
     constructor(props) {
@@ -40,7 +41,9 @@ class home extends React.Component {
             phase: 'Start',
             text : "",
             startDisable: false,
-            compactnessMethod: 'Select compactness'
+            compactnessMethod: 'Select compactness',
+            mapHistory : [],
+            selectedMap : 'Select Map'
         };
 
         this.clickOnStart = this.clickOnStart.bind(this);
@@ -51,15 +54,50 @@ class home extends React.Component {
         this.setSelectedInterest = this.setSelectedInterest.bind(this);
         this.clickOnCompare = this.clickOnCompare.bind(this);
         this.clickOnCompareWithOriginal = this.clickOnCompareWithOriginal.bind(this)
+        this.updateMapHistory = this.updateMapHistory.bind(this)
+        this.setSelectedMap = this.setSelectedMap.bind(this)
+        this.saveMap = this.saveMap.bind(this)
+        this.loadMap = this.loadMap.bind(this)
+        this.deleteMap = this.deleteMap.bind(this)
+    }
+    updateMapHistory(){
+        let mapList = [];
+        console.log(store.get('user'))
+        axios.post('http://localhost:8080/homepage/getMap',store.get('user'))
+            .then(request =>{
+                mapList = request.data.map((map) => {
+                    console.log(map)
+                    return <Dropdown.Item onClick={()=> this.setSelectedMap(map) }>{map}</Dropdown.Item>
+                })
+                this.setState({
+                    mapHistory : mapList
+                });
+            })
+    }
+    setSelectedMap(map){
+        this.setState({
+            selectedMap : map
+        })
     }
     saveMap(e){
-        this.props.socket.emit('saveMap')
+        this.props.socket.emit('saveMap',()=>{
+            this.updateMapHistory()
+        })
     }
     loadMap(e){
-        this.props.socket.emit('loadMap')
+        this.props.socket.emit('loadMap',this.state.selectedMap)
     }
     deleteMap(e){
-        this.props.socket.emit('deleteMap', this.state)
+        if(this.state.selectedMap !== 'Select Map') {
+            this.props.socket.emit('deleteMap', this.state.selectedMap, ()=>{
+                this.setState({
+                    selectedMap :'Select Map'
+                })
+                this.updateMapHistory()
+            })
+
+
+        }
     }
     clickOnCompare(e){
         console.log(this.props.compareList)
@@ -121,6 +159,7 @@ class home extends React.Component {
         })
     }
     componentDidMount() {
+        this.updateMapHistory()
         this.props.socket.on('message', (data)=> {
           this.setState({
               text: this.state.text +'\n'+ data
@@ -182,12 +221,10 @@ class home extends React.Component {
                                 <Row style={{margin:10}}><Col>
                                     <Dropdown>
                                         <Dropdown.Toggle style={{width:210}} variant="outline-light" id="dropdown-basic">
-                                            Map history
+                                            {this.state.selectedMap}
                                         </Dropdown.Toggle>
                                         <Dropdown.Menu>
-                                            <Dropdown.Item>map1</Dropdown.Item>
-                                            <Dropdown.Item>map2</Dropdown.Item>
-                                            <Dropdown.Item>map3</Dropdown.Item>
+                                            {this.state.mapHistory}
                                         </Dropdown.Menu>
                                     </Dropdown>
                                 </Col><Col>

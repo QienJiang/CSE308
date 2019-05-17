@@ -13,6 +13,8 @@ import hashmap from 'hashmap';
 
 import { Container, Row, Col }  from "react-bootstrap";
 import MyRadar from "./MyRadar";
+import axios from "axios";
+import Dropdown from "react-bootstrap/Dropdown";
 
 const Wrapper = styled.div`
 width: ${props => props.width};
@@ -25,7 +27,7 @@ export default class Map extends React.Component{
             info: '',
             data: [],
             open: true,
-            state: ''
+            state: '',
         };
         this.stateStyle = this.stateStyle.bind(this);
         this.precinctStyle = this.precinctStyle.bind(this);
@@ -39,6 +41,7 @@ export default class Map extends React.Component{
         // this.componentDidUpdate = this.componentDidUpdate.bind(this);
         this.newDistrict = null
     }
+
     componentDidUpdate(prevProps){
         if (prevProps.selectedState  !== this.props.selectedState ) {
 
@@ -69,7 +72,7 @@ export default class Map extends React.Component{
 
     updatePrecinctInfo(props){
         var chartData = {
-            labels: ['Asian', 'African', 'Other', 'Indian', 'Hispanic','Hawaiian'],
+            labels: ['Asian', 'African', 'Other', 'Hispanic','Hawaiian'],
             datasets:[
                 {
                     label:'Population',
@@ -77,7 +80,6 @@ export default class Map extends React.Component{
                         props.asian,
                         props.black,
                         props.other,
-                        props.indian,
                         props.hispanic,
                         props.hawaiian,
                     ],
@@ -207,6 +209,7 @@ export default class Map extends React.Component{
       });
 
       this.props.socket.on('updateDistrictBoundary',(data)=>{
+          console.log(data)
           var boundry = JSON.parse(data)
           this.newDistrict = L.geoJson(boundry,{style: this.stateStyle,onEachFeature: this.onEachFeature})
           this.newDistrict.eachLayer((layer)=> {
@@ -215,9 +218,8 @@ export default class Map extends React.Component{
                   fillOpacity:1
               })
           })
-          this.baseLayer.addOverlay(this.newDistrict,"new District")
+          this.baseLayer.addBaseLayer(this.newDistrict,"new District")
       })
-
       this.mymap = L.map(this.refs.mymap, {
         zoomControl: false
         //... other options
