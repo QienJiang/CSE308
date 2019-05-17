@@ -104,10 +104,11 @@ export default class Map extends React.Component{
     }
     districtStyle(feature) {
         return {
-            fillColor: 'white',
+            fillColor: feature.properties.COLOR,
             weight: 1,
             opacity: 1,
-            color: 'blue',
+            fillOpacity:1,
+            color: 'white',
         };
     }
     highlightFeature(e) {
@@ -257,9 +258,9 @@ export default class Map extends React.Component{
       this.nmLayer = L.geoJson.ajax("https://raw.githubusercontent.com/QienJiang/CSE308/master/map-app-react/public/nm_data.geojson",{style: this.precinctStyle,onEachFeature: this.onEachFeature});
       this.iaLayer = L.geoJson.ajax("https://raw.githubusercontent.com/QienJiang/CSE308/master/map-app-react/public/ia_data.geojson",{style: this.precinctStyle,onEachFeature: this.onEachFeature})
       this.paLayer = L.geoJson.ajax("https://raw.githubusercontent.com/QienJiang/CSE308/master/map-app-react/public/pa_data.geojson",{style: this.precinctStyle,onEachFeature: this.onEachFeature});
-      this.paDistrict = L.geoJson.ajax("https://raw.githubusercontent.com/QienJiang/CSE308/master/map-app-react/public/PaCongressional2019_01.geojson",{style: this.precinctStyle,onEachFeature: this.onEachFeature});
-      this.nmDistrict = L.geoJson.ajax("https://raw.githubusercontent.com/QienJiang/CSE308/master/map-app-react/public/nm_congressional_district.geojson",{style: this.precinctStyle,onEachFeature: this.onEachFeature})
-      this.iaDistrict = L.geoJson.ajax("https://raw.githubusercontent.com/QienJiang/CSE308/master/map-app-react/public/IA_finalGeoJson.geojson",{style: this.precinctStyle,onEachFeature: this.onEachFeature})
+      this.paDistrict = L.geoJson.ajax("https://raw.githubusercontent.com/QienJiang/CSE308/master/map-app-react/public/PaCongressional2019_01.geojson",{style: this.districtStyle,onEachFeature: this.onEachFeature});
+      this.nmDistrict = L.geoJson.ajax("https://raw.githubusercontent.com/QienJiang/CSE308/master/map-app-react/public/nm_congressional_district.geojson",{style: this.districtStyle,onEachFeature: this.onEachFeature})
+      this.iaDistrict = L.geoJson.ajax("https://raw.githubusercontent.com/QienJiang/CSE308/master/map-app-react/public/IA_finalGeoJson.geojson",{style: this.districtStyle,onEachFeature: this.onEachFeature})
       /*
       this.stateLayer.on('data:loaded',()=> {
           this.stateLayer.eachLayer(function (layer) {
