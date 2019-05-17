@@ -15,6 +15,7 @@ import { Container, Row, Col }  from "react-bootstrap";
 import MyRadar from "./MyRadar";
 import axios from "axios";
 import Dropdown from "react-bootstrap/Dropdown";
+import DistrictInfo from "./DistrictInfo";
 
 const Wrapper = styled.div`
 width: ${props => props.width};
@@ -171,7 +172,12 @@ export default class Map extends React.Component{
     }
   componentDidMount(){
       this.props.socket.on('updateColor', (data)=> {
-        var array = data.split(',');
+          var datas = data.split("$")
+          if(datas.length === 2){
+              var info = JSON.parse(datas[1]);
+              ReactDOM.render(<DistrictInfo data={this.info}/>,this._districtDiv)
+          }
+        var array = datas[0].split(',');
         var datamap = new hashmap();
 
         for(var i=0; i<array.length; i++){
@@ -374,16 +380,15 @@ export default class Map extends React.Component{
       this.districtInfo = L.control({position: 'topleft'});
       this.districtInfo.onAdd = function (map) {
           this._districtDiv = L.DomUtil.create('div', 'districtInfo');
-          this.update();
           return this._districtDiv;
       };
 
-      this.districtInfo.update = function (props) {
-          this._districtDiv.innerHTML = '<h4>District Information</h4>' +  (props ?
-              '<b>'+ 'GeoId: ' + props.GEOID10 + '</b><br />' +'Population: '+ props.POP100
-              + '<br />' + 'democracy vote: ' +props.GOV_DVOTE_+ '<br/>' + 'republican vote: ' + props.GOV_RVOTE_
-              : 'run algorithm to see detail');
-      };
+      // this.districtInfo.update = function (props) {
+      //     this._districtDiv.innerHTML = '<h4>District Information</h4>' +  (props ?
+      //         '<b>'+ 'GeoId: ' + props.GEOID10 + '</b><br />' +'Population: '+ props.POP100
+      //         + '<br />' + 'democracy vote: ' +props.GOV_DVOTE_+ '<br/>' + 'republican vote: ' + props.GOV_RVOTE_
+      //         : 'run algorithm to see detail');
+      // };
       this.districtInfo.addTo(this.mymap);
 
       this.overlayMaps = {
