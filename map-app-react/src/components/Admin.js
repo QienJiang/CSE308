@@ -8,7 +8,7 @@ import Button from 'react-bootstrap/Button'
 import ReactDOM from "react-dom";
 import Row from 'react-bootstrap/Row'
 import Form from 'react-bootstrap/Form'
-import Popup from "reactjs-popup";
+
 
 
 class Admin extends Component {
