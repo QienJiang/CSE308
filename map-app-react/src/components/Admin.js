@@ -43,8 +43,9 @@ class Admin extends Component {
 
     clickOnChange(e){
       let  data=JSON.stringify({//×ªJSON ¸ñÊ½
-        "email":e.target.elements.email.value,
-        "password":e.target.elements.password.value
+        "email":this.state.email,
+        "password":this.state.password,
+        "name":this.state.name
       })
 
       if(e.target.value === 'update'){
@@ -60,6 +61,17 @@ class Admin extends Component {
           })
         })
       }else if(e.target.value === 'register'){
+        axios.post('http://localhost:8080/homepage/register',
+          data,{
+          headers:{ 'Content-Type': 'application/json;charset=UTF-8'}
+        })
+        .then(request =>{
+            console.log("register")
+        }).catch((error)=>{
+          this.setState({
+              msg: 'Invalid User or Password'
+          })
+        })
 
       }else if(e.target.value === 'deleted'){
         axios.post('http://localhost:8080/homepage/delete',
@@ -121,11 +133,14 @@ class Admin extends Component {
                 </div>
                 <div className="FormField">
                   <label className="FormField__Label" htmlFor="email">E-Mail Address</label>
-                  <input type="email" id="email" className="FormField__Input" placeholder="Enter your email" name="email" value={this.state.selectedUser} onChange={this.handleChange} />
+                  <input type="email" id="email" className="FormField__Input" placeholder="Enter your email" name="email" value={this.state.email} onChange={this.handleChange} />
                 </div>
                 </Col>
                 <Col><Button variant="outline-light" style={{width:70, 'font-size': '0.8em'}} value = 'deleted' onClick={this.clickOnChange} >deleted</Button></Col>
 
+            </Row>
+            <Row style={{'margin-top':30}}>
+                              <Col><Button variant="outline-light" style={{width:70, 'font-size': '0.8em'}} value = "register" onClick={this.clickOnChange}>Register</Button></Col>
             </Row>
             </div>
         )

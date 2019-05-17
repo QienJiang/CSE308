@@ -60,6 +60,7 @@ class home extends React.Component {
         this.saveMap = this.saveMap.bind(this)
         this.loadMap = this.loadMap.bind(this)
         this.deleteMap = this.deleteMap.bind(this)
+        this.startBatchRun = this.startBatchRun.bind(this)
     }
     updateMapHistory(){
         let mapList = [];
@@ -115,6 +116,9 @@ class home extends React.Component {
         this.setState({
             interestCommunity : s
         })
+    }
+    startBatchRun(e){
+        this.props.socket.emit('runAlgorithm', this.state)
     }
     clickOnStart(e){
         if(e.target.value === 'Start') {
@@ -429,7 +433,7 @@ class home extends React.Component {
                                     </Col>
                                 </Row>
                                 <Row style={{'margin-top':30}}>
-                                    <Col><Button variant="outline-light" style={{width:70, 'font-size': '0.8em'}}  onClick={this.clickOnStart}>Batch Run</Button></Col>
+                                    <Col><Button variant="outline-light" style={{width:70, 'font-size': '0.8em'}}  onClick={this.startBatchRun}>Batch Run</Button></Col>
                                     <Col><Button variant="outline-light" style={{width:70, 'font-size': '0.8em'}}  onClick={this.clickOnStart}>Stop</Button></Col>
                                     <Col><Button variant="outline-light" style={{width:70, 'font-size': '0.8em'}}  onClick={this.clickOnStart}>Pause</Button></Col>
                                     <Col><Button variant="outline-light" style={{width:70, 'font-size': '0.8em'}}  onClick={this.clickOnStart}>Resume</Button></Col>
