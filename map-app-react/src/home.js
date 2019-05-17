@@ -44,7 +44,8 @@ class home extends React.Component {
             compactnessMethod: 'Select compactness',
             mapHistory : [],
             selectedMap : 'Select Map',
-            summary :''
+            summary :'',
+            changeMeasures: ''
         };
 
         this.clickOnStart = this.clickOnStart.bind(this);
@@ -61,6 +62,13 @@ class home extends React.Component {
         this.loadMap = this.loadMap.bind(this)
         this.deleteMap = this.deleteMap.bind(this)
         this.startBatchRun = this.startBatchRun.bind(this)
+        this.setRadio = this.setRadio.bind(this)
+    }
+    setRadio(e){
+        console.log(e.target.value)
+        this.setState({
+            changeMeasures : e.target.value
+        })
     }
     updateMapHistory(){
         let mapList = [];
@@ -325,7 +333,7 @@ class home extends React.Component {
                                 <Row style={{'margin-top':20}}>
                                     <Col sm={4}>
 
-                                            Equality:
+                                            Population Equality:
                                     </Col>
                                     <Col sm={8}>
                                         <InputRange
@@ -338,7 +346,7 @@ class home extends React.Component {
                                 <Row style={{'margin-top':10}}>
                                     <Col sm={4}>
 
-                                            Fairness:
+                                            partition Fairness:
 
                                     </Col>
                                     <Col sm={8}>
@@ -439,22 +447,19 @@ class home extends React.Component {
                                     <Col><Button variant="outline-light" style={{width:70, 'font-size': '0.8em'}}  onClick={this.clickOnStart}>Resume</Button></Col>
                                 </Row>
                                 <Row>
-                                    <input type="radio" name="config" value="compactness"/> Compactness
+                                    <input type="radio" name="config" value="COMPACTNESS" onChange={this.setRadio}/> Compactness
                                 </Row>
                                 <Row>
-                                    <input type="radio" name="config" value="female"/> Population equality
+                                    <input type="radio" name="config" value="POPULATION_EQUALITY" onChange={this.setRadio}/> Population equality
                                 </Row>
                                 <Row>
-                                    <input type="radio" name="config" value="other"/> Fairness
+                                    <input type="radio" name="config" value="PARTISAN_FAIRNESS" onChange={this.setRadio}/> Partition Fairness
                                 </Row>
                                 <Row>
-                                    <input type="radio" name="config" value="aa"/> Major Minor
+                                    <input type="radio" name="config" value="EFFICIENCY_GAP" onChange={this.setRadio}/> Efficiency Gap
                                 </Row>
                                 <Row>
-                                    <input type="radio" name="config" value="other"/> Efficiency Gap
-                                </Row>
-                                <Row>
-                                    <input type="radio" name="config" value="other"/> Competitive
+                                    <input type="radio" name="config" value="COMPETITIVENESS" onChange={this.setRadio}/> Competitive
                                 </Row>
 
                                 <Row style={{'margin-top':10}}>
