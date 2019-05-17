@@ -289,9 +289,7 @@ class home extends React.Component {
                                     </Col>
                                     <Col>
                                         <Button style={{width:100}} variant="outline-light" onClick={()=>{
-                                            this.setState({
-                                                text : this.state.text + '\n' + 'save log success'
-                                            })
+                                            this.props.socket.emit('saveLog')
                                         }}>Save Log</Button>
                                     </Col>
                                 </Row>
